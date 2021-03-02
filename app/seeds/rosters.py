@@ -1,13 +1,10 @@
-from werkzeug.security import generate_password_hash
-from app.models import db, User
+from app.models import db, Roster
 
 # Adds a demo user, you can add other users here if you want
-def seed_users():
+def seed_rosters():
 
-    demo = User(id=1, username='Demo', email='demo@aa.io',
-                password='password')
-
-    db.session.add(demo)
+    db.session.add(Roster(id=1, name="Raw", notes="This is the Raw Roster", user_id=1))
+    db.session.add(Roster(id=2, name="Smackdown", notes="This is the Smackdown Roster", user_id=1))
 
     db.session.commit()
 
@@ -15,6 +12,6 @@ def seed_users():
 # SQLAlchemy doesn't have a built in function to do this
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
-def undo_users():
-    db.session.execute('TRUNCATE users CASCADE;')
+def undo_rosters():
+    db.session.execute('TRUNCATE rosters CASCADE;')
     db.session.commit()

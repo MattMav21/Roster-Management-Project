@@ -1,11 +1,10 @@
 from .db import db
 
 class Roster_Member(db.Model):
-    __tablename__ = "roster_members"
+    __tablename__ = 'roster_members'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
-    rosterId = db.Column(db.Integer, db.ForeignKey("rosters.id"))
-    memberId = db.Column(db.Integer, db.ForeignKey("members.id"), nullable=False)
+    roster_id = db.Column(db.Integer, db.ForeignKey("rosters.id"), nullable=False)
+    member_id = db.Column(db.Integer, db.ForeignKey("members.id"), nullable=False)
 
-    member_rm = db.relationship("Member", back_populates="roster_members")
-    roster_rm = db.relationship("Roster", back_populates="roster_members")
+    rosters = db.relationship("Roster", back_populates="roster_members")
+    member = db.relationship("Member", back_populates="roster_member")

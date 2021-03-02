@@ -1,13 +1,10 @@
-from werkzeug.security import generate_password_hash
-from app.models import db, User
+from app.models import db, Property
 
 # Adds a demo user, you can add other users here if you want
-def seed_users():
+def seed_properties():
 
-    demo = User(id=1, username='Demo', email='demo@aa.io',
-                password='password')
-
-    db.session.add(demo)
+    db.session.add(Property(id=1, name="injured", is_checked=False))
+    db.session.add(Property(id=2, name="injured", is_checked=False))
 
     db.session.commit()
 
@@ -15,6 +12,6 @@ def seed_users():
 # SQLAlchemy doesn't have a built in function to do this
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
-def undo_users():
-    db.session.execute('TRUNCATE users CASCADE;')
+def undo_properties():
+    db.session.execute('TRUNCATE properties CASCADE;')
     db.session.commit()
