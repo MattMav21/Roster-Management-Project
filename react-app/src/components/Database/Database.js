@@ -8,9 +8,6 @@ const Database = () => {
     const dispatch = useDispatch();
     const { getMembers } = memberActions;
     const everybody = useSelector((state) => state.member.member);
-    if (everybody !== undefined) {
-        console.log(Object.values(everybody).map((member) => member.name))
-    }
 
     useEffect(() => {
         dispatch(getMembers(everybody)).then(() => setLoaded(true))
@@ -19,7 +16,7 @@ const Database = () => {
     return (
         <div className="flex">
             <table className="border-black m-auto">
-                <thead className="bg-gray-200">
+                <thead className="bg-gray-200 p-4">
                     <tr>
                         <th colSpan="3">
                             Your Database

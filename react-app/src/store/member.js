@@ -12,6 +12,13 @@ export const getMembers = () => async (dispatch) => {
     return res;
 }
 
+export const getOneMember = (id) => async (dispatch) => {
+    const response = await fetch(`/api/members/${id}`);
+    const res = await response.json();
+    dispatch(loading_everyone(res));
+    return res;
+}
+
 const memberReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {

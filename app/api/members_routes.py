@@ -18,3 +18,15 @@ def everybody():
         idx+=1
     
     return ppl
+
+
+@members_routes.route('/<int:id>', methods=["GET"])
+def person(id):
+    member = Member.query.get(id)
+    single_person = {
+        "id": member.id,
+        "name": member.name,
+        "notes": member.notes,
+        "created_at": member.created_at,
+    }
+    return single_person
