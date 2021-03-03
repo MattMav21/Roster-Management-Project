@@ -7,23 +7,20 @@ const loading_everyone = (members) => ({
 
 export const getMembers = () => async (dispatch) => {
     const response = await fetch(`/api/members/`);
-    debugger
     const res = await response.json();
-    debugger
     dispatch(loading_everyone(res));
     return res;
 }
 
-const INITIAL_STATE = { member: null };
-
-const memberReducer = (state = INITIAL_STATE, action) => {
+const memberReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
         case LOAD_MEMBERS:
         newState = Object.assign({}, state);
-        debugger
-        newState.member = action.member
+        newState.member = action.members
         //add stuff here later
+        return newState
+
         default:
             return state
     }
