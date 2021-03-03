@@ -4,10 +4,12 @@ import thunk from "redux-thunk";
 import memberReducer from "./member";
 import * as storage from 'redux-storage';
 import createEngine from 'redux-storage-engine-localstorage';
+import rosterReducer from "./roster";
 
 const rootReducer = combineReducers({
     // user: userReducer,
     member: memberReducer,
+    roster: rosterReducer,
 });
 
 let enhancer;
