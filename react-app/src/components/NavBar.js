@@ -4,9 +4,9 @@ import LogoutButton from './auth/LogoutButton';
 
 const NavBar = ({ setAuthenticated }) => {
   return (
-    <nav>
-      <ul>
-        <li>
+    <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-accentLight mb-3">
+      <div className="container px-4 mx-auto flex flex-wrap items-center justify-between list-none">
+        <li list-none>
           <NavLink to="/" exact={true} activeClassName="active">
             Home
           </NavLink>
@@ -29,7 +29,7 @@ const NavBar = ({ setAuthenticated }) => {
         <li>
           <LogoutButton setAuthenticated={setAuthenticated} />
         </li>
-      </ul>
+      </div>
     </nav>
   );
 }

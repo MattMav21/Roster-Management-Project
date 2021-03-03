@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
+import {Database, Member, AllRosters, Roster} from "./components/index"
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -47,6 +48,18 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
+        </ProtectedRoute>
+        <ProtectedRoute path="/members" exact={true} authenticated={authenticated}>
+          <Database />
+        </ProtectedRoute>
+        <ProtectedRoute path="/members/:memberId" exact={true} authenticated={authenticated}>
+          <Member />
+        </ProtectedRoute>
+        <ProtectedRoute path="/rosters" exact={true} authenticated={authenticated}>
+          <AllRosters />
+        </ProtectedRoute>
+        <ProtectedRoute path="/rosters/:rosterId" exact={true} authenticated={authenticated}>
+          <Roster />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
