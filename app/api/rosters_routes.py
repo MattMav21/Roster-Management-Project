@@ -45,14 +45,16 @@ def roster(id):
     
     count = 0
     for correct in correct_members:
+        print("CORRECT MEMBER", correct.name)
         correct_object[count] = {
-            "id": correct_members[count].id,
-            "name": correct_members[count].id,
-            "notes": correct_members[count].notes,
-            "created_at": correct_members[count].created_at
+            "id": correct.id,
+            "name": correct.name,
+            "notes": correct.notes,
+            "created_at": correct.created_at
         }
+        count+=1
 
-    print("OMG", correct_object)
+    print("OMG!!!!!!!!!!!!!!!", correct_object)
 
     single_roster = {
         "id": roster.id,

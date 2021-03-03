@@ -12,9 +12,15 @@ const Roster = () => {
     const { getOneRoster } = rosterActions;
     const { getMembers } = memberActions;
     const roster = useSelector((state) => state.roster.roster);
-    const rosterMembers = useSelector((state) => state.member.member)
+    const memberState = useSelector((state) => state.member.member)
     // const rosterMembers = useSelector((state) => state.roster.roster.this_roster)
-    console.log(roster)
+
+    if (roster !== undefined) {
+        console.log(Object.values(roster.this_roster))
+    }
+
+    // console.log(roster.this_roster)
+
     // if (rosterMembers !== undefined) {
     //     console.log(rosterMembers)
     // }
@@ -25,7 +31,7 @@ const Roster = () => {
             .then(() => setLoaded(true))
     }, [getOneRoster])
 
-    console.log(rosterMembers)
+    //console.log(Object.values(rosterMembers))
 
     return (
         <div className="flex">
@@ -42,7 +48,14 @@ const Roster = () => {
                         <tr className="border-black">
                             <td className="border-black">{roster.notes}</td>
                         </tr>
-                        
+                    {Object.values(roster.this_roster).map((member) => {
+                        return (
+                        <ul className="list-none p-1 m-1">
+                            <li>
+                                {member.name}
+                            </li>
+                        </ul>
+                    )})}
 
                     </tbody>
                 </table>

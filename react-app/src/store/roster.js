@@ -7,6 +7,7 @@ const load_rosters = (rosters) => ({
 
 export const getRosters = () => async (dispatch) => {
     const response = await fetch(`/api/rosters/`);
+    debugger
     const res = await response.json();
     dispatch(load_rosters(res));
     return res;
@@ -26,6 +27,7 @@ const rosterReducer = (state = {}, action) => {
         case LOAD_ROSTERS:
             newState = Object.assign({}, state);
             newState.roster = action.rosters
+            debugger
             //add stuff here later
             return newState
 
