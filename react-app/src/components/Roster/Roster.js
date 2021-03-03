@@ -48,14 +48,16 @@ const Roster = () => {
                         <tr className="border-black">
                             <td className="border-black">{roster.notes}</td>
                         </tr>
+                    <tr className="border-black">
                     {Object.values(roster.this_roster).map((member) => {
                         return (
-                        <ul className="list-none p-1 m-1">
-                            <li>
-                                {member.name}
-                            </li>
-                        </ul>
+                            <ul className="border-black list-none p-1 m-1">
+                                <a href={`/members/${member.id}`} className="border-black">
+                                    {member.name}
+                                </a>
+                            </ul>
                     )})}
+                        </tr>
 
                     </tbody>
                 </table>
