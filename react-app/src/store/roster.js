@@ -12,6 +12,14 @@ export const getRosters = () => async (dispatch) => {
     return res;
 }
 
+export const getOneRoster = (id) => async (dispatch) => {
+    const response = await fetch(`/api/rosters/${id}`);
+    const res = await response.json();
+    dispatch(load_rosters(res));
+    return res;
+}
+
+
 const rosterReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {

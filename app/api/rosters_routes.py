@@ -18,3 +18,14 @@ def everybody():
         idx+=1
     
     return each_roster
+
+@rosters_routes.route('/<int:id>', methods=["GET"])
+def roster(id):
+    roster = Roster.query.get(id)
+    single_roster = {
+        "id": roster.id,
+        "name": roster.name,
+        "notes": roster.notes,
+        "user_id": roster.user_id,
+    }
+    return single_roster
