@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as memberActions from "../../store/member"
 import { useDispatch, useSelector } from 'react-redux';
+import "./Database.css"
 
 const Database = () => {
     const [loaded, setLoaded] = useState(false);
@@ -16,13 +17,27 @@ const Database = () => {
     }, [getMembers])
 
     return (
-        <div>
-            {loaded && Object.values(everybody).map((member) => {
-                return (
-                    <h1>{member.name}</h1>
-                )
-            })}
-       </div>
+        <div className="flex">
+            <table className="border-black m-auto">
+                <thead className="bg-gray-200">
+                    <tr>
+                        <th colSpan="3">
+                            Your Database
+                        </th>
+                    </tr>
+                </thead>
+                <tbody className="border-black">
+                {loaded && Object.values(everybody).map((member) => {
+                    return (
+                        <tr className="border-black">
+                            <td className="border-black">{member.name}</    td>
+                            <td className="border-black">{member.notes}</   td>
+                        </tr>
+                    )
+                })}
+                </tbody>
+            </table>
+        </div>
     );
 
 };
