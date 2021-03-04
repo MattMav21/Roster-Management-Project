@@ -21,7 +21,7 @@ def everybody():
 
 @rosters_routes.route('/<int:id>', methods=["GET"])
 def roster(id):
-    roster = Roster.query.get(id)
+    roster = Roster.query.get_or_404(id)
 
     roster_members = Roster_Member.query.filter(Roster_Member.roster_id == id).all()
     print("ROSTER MEMBERS!!!!!!!!!!!!!!!!!!!!!", roster_members)
