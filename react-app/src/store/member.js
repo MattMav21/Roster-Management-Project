@@ -27,11 +27,6 @@ export const getOneMember = (id) => async (dispatch) => {
 
 export const addNewMember = data => async (dispatch) => {
     console.log(data)
-    // const { name, notes } = data;
-    // console.log(name, notes)
-    // const formData = new FormData();
-    // formData.append("name", name)
-    // formData.append("notes", notes)
     debugger
     const response = await fetch(`/api/members/create`, {
         method: 'POST',
@@ -43,8 +38,6 @@ export const addNewMember = data => async (dispatch) => {
     debugger
 
     console.log(response)
-
-    // console.log(formData)
 
     if (response.ok) {
         const member = await response.json();

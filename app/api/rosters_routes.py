@@ -1,5 +1,6 @@
-from flask import Blueprint
-from app.models import User, Roster, Roster_Member, Member
+from flask import Blueprint, request, redirect, session
+from app.models import db, User, Roster, Roster_Member, Member
+from app.forms import RosterCreateForm
 
 rosters_routes = Blueprint('rosters', __name__)
 
@@ -16,7 +17,6 @@ def everybody():
             "user_id": rosters[idx].user_id,
         }
         idx+=1
-    
     return each_roster
 
 @rosters_routes.route('/<int:id>', methods=["GET"])
@@ -65,3 +65,26 @@ def roster(id):
     }
 
     return single_roster
+
+
+@rosters_routes.route('/create', methods=["GET", "POST"])
+def form_for_new_rosters():
+    current_user = int(session['_user_id'])
+    print("REQUEST!", request.data)
+    form = RosterCreateForm()
+    if request.method == "POST":
+        print("ATTEMPTING TO POST!!")
+        if form.validate_on_submit:
+            data = form.data
+            print("DATA!!!!!", data)
+            new_roster = Roster(
+                name=data['name'],
+                notes=data['notes'],
+                user_id=current_user
+            )
+            print("ROSTER NAME!!!!!!!!!!!", new_roster.name, new_roster.notes)
+            db.session.add(new_roster)
+            db.session.commit()
+            return redirect("/rosters")
+        else:
+            print("NO!!")
