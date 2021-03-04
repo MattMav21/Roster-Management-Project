@@ -9,9 +9,14 @@ const RosterAssignmentForm = () => {
     let memberOptions = ["SELECT A MEMBER"];
     let rosterOptions = ["SELECT A ROSTER"];
 
+    let memberIds = [0]
+    let rosterIds = [0]
+
     const [loaded, setLoaded] = useState(false);
     const [member, setMember] = useState(memberOptions[0])
     const [roster, setRoster] = useState(rosterOptions[0])
+    // const [memberId, setMemberId] = useState(null)
+    // const [rosterId, setRosterId] = useState(null)
 
     const dispatch = useDispatch();
 
@@ -23,8 +28,8 @@ const RosterAssignmentForm = () => {
 
 
 
-    // console.log("MEMBERS", members)
-    // console.log("ROSTERS", rosters)
+    console.log("MEMBERS", members)
+    console.log("ROSTERS", rosters)
 
     useEffect(() => {
         dispatch(getRosters()).then(() =>
@@ -34,10 +39,12 @@ const RosterAssignmentForm = () => {
 
     if (members !== undefined) {
         Object.values(members).map((member) => memberOptions.push(member.name))
+        Object.values(members).map((member) => memberIds.push(member.id))
     }
 
     if (rosters !== undefined) {
         Object.values(rosters).map((roster) => rosterOptions.push(roster.name))
+        Object.values(rosters).map((roster) => rosterIds.push(roster.id))
     }
 
     const onSubmit = (e) => {
@@ -53,6 +60,16 @@ const RosterAssignmentForm = () => {
     
     console.log("MEMBER OPTIONS", memberOptions)
     console.log("ROSTER OPTIONS", rosterOptions)
+    console.log("MEMBER IDS", memberIds)
+    console.log("ROSTER IDS", rosterIds)
+
+    const memberCorr = {}
+    const rosterCorr = {}
+    memberOptions.forEach((option, i) => memberCorr[option] = memberIds[i])
+    rosterOptions.forEach((option, i) => rosterCorr[option] = rosterIds[i])
+
+    console.log("MEMBER OBJECT", memberCorr)
+    console.log("ROSTER OBJECT", rosterCorr)
 
     return (
         <div className="container p-3 m-auto bg-gray-200 rounded">
@@ -71,7 +88,17 @@ const RosterAssignmentForm = () => {
                         value={member}
                         onChange={(e) => setMember(e.target.value)}
                     >
-                        {memberOptions.map((member) => {
+                    {Object.keys(memberCorr).map((key) => {
+                        return (
+                            <option
+                                value={memberCorr[key]}
+                                onChange={(e) => setMember(e.target.value)}
+                            >
+                                {key}
+                            </option>
+                        )
+                    })}
+                        {/* {memberOptions.map((member) => {
                             {console.log(member)}
                             return (
                                 <option
@@ -81,7 +108,7 @@ const RosterAssignmentForm = () => {
                                 {member}
                                 </option>
                             )
-                        })}
+                        })} */}
                     </select>
 
                     
@@ -92,7 +119,17 @@ const RosterAssignmentForm = () => {
                         value={roster}
                         onChange={(e) => setRoster(e.target.value)}
                     >
-                        {rosterOptions.map((roster) => {
+                        {Object.keys(rosterCorr).map((key) => {
+                            return (
+                                <option
+                                    value={rosterCorr[key]}
+                                    onChange={(e) => setRoster(e.target.value)}
+                                >
+                                    {key}
+                                </option>
+                            )
+                        })}
+                        {/* {rosterOptions.map((roster) => {
                             { console.log(roster) }
                             return (
                                 <option
@@ -102,7 +139,7 @@ const RosterAssignmentForm = () => {
                                     {roster}
                                 </option>
                             )
-                        })}
+                        })} */}
                     </select>
                 </div>
                 <button 
