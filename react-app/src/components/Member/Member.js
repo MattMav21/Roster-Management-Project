@@ -10,7 +10,6 @@ const Member = () => {
     const dispatch = useDispatch();
     const { getOneMember } = memberActions;
     const everybody = useSelector((state) => state.member.member);
-    console.log(everybody)
 
     useEffect(() => {
         dispatch(getOneMember(memberId)).then(() => setLoaded(true))
@@ -31,7 +30,7 @@ const Member = () => {
                                 <tr className="border-black">
                                     <td className="border-black">{everybody.notes}</   td>
                                 </tr>
-                
+
                     </tbody>
                 </table>
             }

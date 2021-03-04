@@ -30,3 +30,8 @@ def person(id):
         "created_at": member.created_at,
     }
     return single_person
+
+
+@members_routes.route('/create', methods=["GET"])
+def form_for_new_members():
+    return "LOL"

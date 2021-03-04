@@ -6,7 +6,7 @@ const loading_everyone = (members) => ({
 })
 
 export const getMembers = () => async (dispatch) => {
-    const response = await fetch(`/api/members/`);
+    const response = await fetch('/api/members/');
     const res = await response.json();
     dispatch(loading_everyone(res));
     return res;
