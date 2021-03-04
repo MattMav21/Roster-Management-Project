@@ -1,6 +1,6 @@
 from flask import Blueprint, request, redirect, session
 from app.models import db, User, Roster, Roster_Member, Member
-from app.forms import RosterCreateForm
+from app.forms import RosterCreateForm, RosterAssignmentForm
 
 rosters_routes = Blueprint('rosters', __name__)
 
@@ -91,5 +91,26 @@ def form_for_new_rosters():
 
 
 @rosters_routes.route('/assign', methods=["GET", "POST"])
-def assignment():
-    return "Hello"
+def assignment(): 
+    # print("ASSIGNMENT ATTEMPT!!!!!!!!!!")   
+
+    form = RosterAssignmentForm()
+    if request.method == "POST":
+        # print("ATTEMPTING TO POST!!")
+        if form.validate_on_submit:
+            data = form.data
+            print("DATA!!!!!", data)
+            new_assignment = Roster_Member(
+                roster_id=data['roster_id'],
+                member_id=data['member_id']
+            )
+            # print("ROSTER NAME!!!!!!!!!!!", new_roster.name, new_roster.notes)
+            print("NEW ASSIGNMENT!!!!!!!!!!!!!!!!!", new_assignment)
+            db.session.add(new_assignment)
+            db.session.commit()
+            return redirect("/rosters")
+
+        else:
+            print("NO!!")
+    
+    return each_roster

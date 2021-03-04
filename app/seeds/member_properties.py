@@ -1,10 +1,13 @@
-from app.models import db, Member_Property
+from app.models import db, Member_Property, Member, Property
 
 # Adds a demo user, you can add other users here if you want
 def seed_member_properties():
 
-    db.session.add(Member_Property(id=1, member_id=1, property_id=1))
-    db.session.add(Member_Property(id=2, member_id=2, property_id=2))
+    members = Member.query.all()
+    properties = Property.query.all()
+
+    db.session.add(Member_Property(member_id=members[0].id, property_id=properties[0].id))
+    db.session.add(Member_Property(member_id=members[1].id, property_id=properties[1].id))
 
     db.session.commit()
 

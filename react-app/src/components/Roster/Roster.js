@@ -15,9 +15,9 @@ const Roster = () => {
     const memberState = useSelector((state) => state.member.member)
     // const rosterMembers = useSelector((state) => state.roster.roster.this_roster)
 
-    if (roster !== undefined) {
-        console.log(Object.values(roster.this_roster))
-    }
+    // if (roster !== undefined) {
+    //     console.log(Object.values(roster.this_roster))
+    // }
 
     // console.log(roster.this_roster)
 

@@ -1,5 +1,6 @@
 const LOAD_ROSTERS = "roster/LOAD_ROSTERS"
 const CREATE_ROSTER = "roster/LOAD_ROSTERS"
+const ASSIGN_TO_ROSTER = "roster/ASSIGN_TO_ROSTER"
 
 const load_rosters = (rosters) => ({
     type: LOAD_ROSTERS,
@@ -9,6 +10,11 @@ const load_rosters = (rosters) => ({
 const create_roster = (roster) => ({
     type: CREATE_ROSTER,
     roster
+})
+
+const assign_roster = (data) => ({
+    type: ASSIGN_TO_ROSTER,
+    data
 })
 
 export const getRosters = () => async (dispatch) => {
@@ -48,6 +54,28 @@ export const addNewRoster = data => async (dispatch) => {
     }
 }
 
+export const assignToRoster = data => async (dispatch) => {
+    console.log(data)
+    debugger
+    const response = await fetch(`/api/rosters/assign`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+    debugger
+
+    console.log(response)
+
+    if (response.ok) {
+        const roster = await response.json();
+        dispatch(assign_roster(roster));
+        debugger
+        return roster;
+    }
+}
+
 
 const rosterReducer = (state = {}, action) => {
     let newState;
@@ -59,6 +87,11 @@ const rosterReducer = (state = {}, action) => {
             //add stuff here later
             return newState
         case CREATE_ROSTER:
+            newState = Object.assign({}, state);
+            newState.roster = action.rosters
+            debugger
+            return newState
+        case ASSIGN_TO_ROSTER:
             newState = Object.assign({}, state);
             newState.roster = action.rosters
             debugger

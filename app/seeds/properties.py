@@ -3,8 +3,8 @@ from app.models import db, Property
 # Adds a demo user, you can add other users here if you want
 def seed_properties():
 
-    db.session.add(Property(id=1, name="injured", is_checked=False))
-    db.session.add(Property(id=2, name="injured", is_checked=False))
+    db.session.add(Property(name="injured", is_checked=False))
+    db.session.add(Property(name="injured", is_checked=False))
 
     db.session.commit()
 

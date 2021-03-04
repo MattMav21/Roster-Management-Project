@@ -6,5 +6,5 @@ class Roster_Member(db.Model):
     roster_id = db.Column(db.Integer, db.ForeignKey("rosters.id"), nullable=False)
     member_id = db.Column(db.Integer, db.ForeignKey("members.id"), nullable=False)
 
-    rosters = db.relationship("Roster", back_populates="roster_members")
-    member = db.relationship("Member", back_populates="roster_member")
+    roster = db.relationship("Roster", back_populates="roster_members")
+    member = db.relationship("Member", back_populates="roster_members")

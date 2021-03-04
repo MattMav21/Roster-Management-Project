@@ -4,6 +4,7 @@ import * as rosterActions from "../../store/roster"
 import { useDispatch, useSelector } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 import "./RosterAssignmentForm.css"
+import { useHistory } from 'react-router-dom';
 
 const RosterAssignmentForm = () => {
     let memberOptions = ["SELECT A MEMBER"];
@@ -19,9 +20,10 @@ const RosterAssignmentForm = () => {
     // const [rosterId, setRosterId] = useState(null)
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const { getMembers } = memberActions;
-    const { getRosters } = rosterActions;
+    const { getRosters, assignToRoster } = rosterActions;
 
     const members = useSelector((state) => state.member.member)
     const rosters = useSelector((state) => state.roster.roster)
@@ -50,10 +52,11 @@ const RosterAssignmentForm = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         const assignment = {
-            member,
-            roster,
+            member_id: member,
+            roster_id: roster,
         }
-        console.log(assignment)
+        dispatch(assignToRoster(assignment))
+        .then(() => history.push(`/rosters/${roster}`))
     }
 
     

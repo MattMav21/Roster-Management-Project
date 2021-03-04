@@ -8,5 +8,5 @@ class Roster(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     user = db.relationship("User", back_populates="rosters")
-    roster_members = db.relationship("Roster_Member", back_populates="rosters")
+    roster_members = db.relationship("Roster_Member", back_populates="roster")
     

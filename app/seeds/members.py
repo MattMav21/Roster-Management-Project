@@ -3,8 +3,8 @@ from app.models import db, Member
 # Adds a demo user, you can add other users here if you want
 def seed_members():
 
-    db.session.add(Member(id=1, name="Jeff Hardy", notes="The Charismatic Enigma", created_at="2021-03-01 14:00:00"))
-    db.session.add(Member(id=2, name="Edge", notes="The Rated-R Superstar", created_at="2021-03-01 14:00:00"))
+    db.session.add(Member(name="Jeff Hardy", notes="The Charismatic Enigma", created_at="2021-03-01 14:00:00"))
+    db.session.add(Member(name="Edge", notes="The Rated-R Superstar", created_at="2021-03-01 14:00:00"))
 
     db.session.commit()
 

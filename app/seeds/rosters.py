@@ -1,10 +1,11 @@
-from app.models import db, Roster
+from app.models import db, Roster, User
 
 # Adds a demo user, you can add other users here if you want
 def seed_rosters():
+    user = User.query.first()
 
-    db.session.add(Roster(id=1, name="Raw", notes="This is the Raw Roster", user_id=1))
-    db.session.add(Roster(id=2, name="Smackdown", notes="This is the Smackdown Roster", user_id=1))
+    db.session.add(Roster(name="Raw", notes="This is the Raw Roster", user_id=user.id))
+    db.session.add(Roster(name="Smackdown", notes="This is the Smackdown Roster", user_id=user.id))
 
     db.session.commit()
 

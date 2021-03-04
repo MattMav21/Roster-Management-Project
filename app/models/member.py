@@ -7,5 +7,5 @@ class Member(db.Model):
     notes = db.Column(db.String)
     created_at = db.Column(db.Date, nullable=False)
 
-    roster_member = db.relationship("Roster_Member", back_populates="member")
+    roster_members = db.relationship("Roster_Member", back_populates="member")
     member_proper_t = db.relationship("Member_Property", back_populates="member")
