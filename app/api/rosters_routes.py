@@ -88,3 +88,8 @@ def form_for_new_rosters():
             return redirect("/rosters")
         else:
             print("NO!!")
+
+
+@rosters_routes.route('/assign', methods=["GET", "POST"])
+def assignment():
+    return "Hello"
