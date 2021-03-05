@@ -28,7 +28,7 @@ export const getOneMember = (id) => async (dispatch) => {
 export const addNewMember = data => async (dispatch) => {
     console.log(data)
     debugger
-    const response = await fetch(`/api/members/create/`, {
+    const response = await fetch(`/api/members/create`, {
         method: 'POST',
         headers: {
             'Content-Type': "application/json",

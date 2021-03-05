@@ -35,7 +35,7 @@ export const getOneRoster = (id) => async (dispatch) => {
 export const addNewRoster = data => async (dispatch) => {
     console.log(data)
     debugger
-    const response = await fetch(`/api/rosters/create/`, {
+    const response = await fetch(`/api/rosters/create`, {
         method: 'POST',
         headers: {
             'Content-Type': "application/json",
@@ -57,7 +57,7 @@ export const addNewRoster = data => async (dispatch) => {
 export const assignToRoster = data => async (dispatch) => {
     console.log(data)
     debugger
-    const response = await fetch(`/api/rosters/assign/`, {
+    const response = await fetch(`/api/rosters/assign`, {
         method: 'POST',
         headers: {
             'Content-Type': "application/json",

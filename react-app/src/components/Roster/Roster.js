@@ -53,7 +53,7 @@ const Roster = () => {
                     {Object.values(roster.this_roster).map((member) => {
                         return (
                             <div className="container flex">
-                                <ul className="border-black list-none p-1 m-1 flex flex-row">
+                                <div className="border-black list-none p-1 m-1 flex flex-row">
                                     <div className="border-black flex flex-row justify-between">
                                         <a href={`/members/${member.id}`}>
                                             {member.name}
@@ -62,7 +62,7 @@ const Roster = () => {
                                             <UnassignButton />
                                         </div>
                                     </div>
-                                </ul>
+                                </div>
                             </div>
                     )})}
                         </tr>
