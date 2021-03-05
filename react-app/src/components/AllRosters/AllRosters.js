@@ -33,8 +33,12 @@ const AllRosters = () => {
                     {loaded && Object.values(everyRoster).map((roster) => {
                         return (
                             <tr className="border-black">
-                                <td className="border-black">{roster.name}</    td>
-                                <td className="border-black">{roster.notes}</   td>
+                                <td className="border-black">{
+                                    <a href={`/rosters/${roster.id}`} className="border-black">
+                                        {roster.name}
+                                    </a>
+                                }</td>
+                                <td className="border-black">{roster.notes}</td>
                             </tr>
                         )
                     })}

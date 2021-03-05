@@ -27,7 +27,11 @@ const Database = () => {
                 {loaded && Object.values(everybody).map((member) => {
                     return (
                         <tr className="border-black">
-                            <td className="border-black">{member.name}</    td>
+                            <td className="border-black">
+                                <a href={`/members/${member.id}`} className="border-black">
+                                    {member.name}
+                                </a>
+                            </td>
                             <td className="border-black">{member.notes}</   td>
                         </tr>
                     )

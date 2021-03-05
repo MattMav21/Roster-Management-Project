@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
+
 const NavBar = ({ setAuthenticated }) => {
   return (
     <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-accentLight mb-3">
@@ -11,19 +12,14 @@ const NavBar = ({ setAuthenticated }) => {
             Home
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
+        <li list-none="true">
+          <NavLink to="/rosters" exact={true} activeClassName="active">
+            Rosters
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
+        <li list-none="true">
+          <NavLink to="/members" exact={true} activeClassName="active">
+            Database
           </NavLink>
         </li>
         <li>

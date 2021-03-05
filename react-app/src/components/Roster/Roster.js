@@ -4,6 +4,7 @@ import * as memberActions from "../../store/member"
 import { useDispatch, useSelector } from 'react-redux';
 import "./Roster.css"
 import { useParams } from 'react-router-dom';
+import UnassignButton from '../buttons/UnassignButton'
 
 const Roster = () => {
     const [loaded, setLoaded] = useState(false);
@@ -51,11 +52,18 @@ const Roster = () => {
                     <tr className="border-black">
                     {Object.values(roster.this_roster).map((member) => {
                         return (
-                            <ul className="border-black list-none p-1 m-1">
-                                <a href={`/members/${member.id}`} className="border-black">
-                                    {member.name}
-                                </a>
-                            </ul>
+                            <div className="container flex">
+                                <ul className="border-black list-none p-1 m-1 flex flex-row">
+                                    <div className="border-black flex flex-row justify-between">
+                                        <a href={`/members/${member.id}`}>
+                                            {member.name}
+                                        </a>
+                                        <div className="relative">
+                                            <UnassignButton />
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
                     )})}
                         </tr>
 
