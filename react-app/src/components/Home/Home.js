@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Home = () => {
     return (
-       <div className="container flex m-auto">
-        <div className="container flex justify-space-between p-5 m-auto">
-            <div className="p-10 m-10 space-x-10 m-auto">
+        <div className="container flex m-auto flex-nowrap">
+            <div className="container flex justify-space-between p-5 m-auto flex-nowrap">
+                <div className="container flex p-10 m-10 space-x-10 m-auto flex-nowrap">
                 <Link to="/rosters/create" className="border-black bg-gray-500 p-5 rounded cursor-pointer">
                     Create a new roster!
                 </Link>

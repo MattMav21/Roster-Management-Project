@@ -51,6 +51,7 @@ const Roster = () => {
                         </tr>
                     <tr className="border-black">
                     {Object.values(roster.this_roster).map((member) => {
+                        //try making a table row for each
                         return (
                             <div className="container flex">
                                 <div className="border-black list-none p-1 m-1 flex flex-row">
