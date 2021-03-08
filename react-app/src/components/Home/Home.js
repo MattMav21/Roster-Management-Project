@@ -6,19 +6,19 @@ import { useDispatch, useSelector } from 'react-redux';
 const Home = () => {
     return (
         <div className="container flex m-auto flex-nowrap">
-            <div className="container flex justify-space-between p-5 m-auto flex-nowrap">
-                <div className="container flex p-10 m-10 space-x-10 m-auto flex-nowrap">
-                <Link to="/rosters/create" className="border-black bg-gray-500 p-5 rounded cursor-pointer">
-                    Create a new roster!
-                </Link>
-                    <Link to="/members/create" className="border-black bg-gray-500 p-5 rounded cursor-pointer">
-                    Add member to database!
-                </Link>
-                    <Link to="/rosters/assign" className="border-black bg-gray-500 p-5 rounded cursor-pointer">
-                    Assign a member to your roster!
-                </Link>
+            {/* <div className="container flex justify-space-between p-5 m-auto flex-nowrap"> */}
+                <div className="container flex p-10 m-auto space-x-10 m-auto justify-around flex-nowrap">
+                    <Link to="/rosters/create" className="border-black bg-gray-500 p-5 rounded cursor-pointer">
+                        Create a new roster!
+                    </Link>
+                        <Link to="/members/create" className="border-black bg-gray-500 p-5 rounded cursor-pointer">
+                        Add member to database!
+                    </Link>
+                        <Link to="/rosters/assign" className="border-black bg-gray-500 p-5 rounded cursor-pointer">
+                        Assign a member to your roster!
+                    </Link>
             </div>
-        </div>
+        {/* </div> */}
        </div>
     )
 }
