@@ -85,7 +85,8 @@ def form_for_new_rosters():
             print("ROSTER NAME!!!!!!!!!!!", new_roster.name, new_roster.notes)
             db.session.add(new_roster)
             db.session.commit()
-            return redirect("/rosters")
+            return { "Message" : "Roster Created Successfully!"}, 200
+            # return redirect("/rosters")
         else:
             print("NO!!")
 
