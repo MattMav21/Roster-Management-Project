@@ -4,7 +4,8 @@ import * as memberActions from "../../store/member"
 import { useDispatch, useSelector } from 'react-redux';
 import "./Roster.css"
 import { useParams } from 'react-router-dom';
-import UnassignButton from '../buttons/UnassignButton'
+import UnassignButton from '../buttons/UnassignButton';
+import EditRosterButton from '../buttons/EditRosterButton';
 import { Link } from 'react-router-dom'
 
 const Roster = () => {
@@ -54,13 +55,18 @@ const Roster = () => {
                     {Object.values(roster.this_roster).map((member) => {
                         //try making a table row for each
                         return (
-                            <tr className="border-r">
+                            <tr className="border-r border-black">
                                 <td className="flex border-0 border-r justify-between" colSpan="3">
                                         <Link colSpan="2" to={`/members/${member.id}`}>
                                             {member.name}
                                         </Link>
-                                        <div className="relative">
-                                            <UnassignButton />
+                                        <div className="flex relative left-4 space-x-2">
+                                            <div className="relative">
+                                                <EditRosterButton />
+                                            </div>
+                                            <div className="relative">
+                                                <UnassignButton />
+                                            </div>
                                         </div>
                                     </td>
                             </tr>
