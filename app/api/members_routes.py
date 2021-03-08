@@ -51,7 +51,9 @@ def form_for_new_members():
             print("MEMBER NAME!!!!!!!!!!!", new_member.name, new_member.notes)
             db.session.add(new_member)
             db.session.commit()
-            return redirect("/members")
+            return { "Message" : "Member Created Successfully!"}, 200
+
+            # return redirect("/members")
         else:
             print("NO!!")
 

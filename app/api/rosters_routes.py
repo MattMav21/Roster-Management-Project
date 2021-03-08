@@ -86,6 +86,8 @@ def form_for_new_rosters():
             db.session.add(new_roster)
             db.session.commit()
             return { "Message" : "Roster Created Successfully!"}, 200
+
+            # NEVER use redirect if you're only using the route for API Fetch
             # return redirect("/rosters")
         else:
             print("NO!!")
@@ -109,8 +111,9 @@ def assignment():
             print("NEW ASSIGNMENT!!!!!!!!!!!!!!!!!", new_assignment)
             db.session.add(new_assignment)
             db.session.commit()
-            return redirect("/rosters")
 
+            return { "Message" : "Assignment Successful!"}, 200
+            # return redirect("/rosters")
         else:
             print("NO!!")
     
