@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import "./Roster.css"
 import { useParams } from 'react-router-dom';
 import UnassignButton from '../buttons/UnassignButton'
+import { Link } from 'react-router-dom'
 
 const Roster = () => {
     const [loaded, setLoaded] = useState(false);
@@ -49,24 +50,22 @@ const Roster = () => {
                         <tr className="border-black">
                             <td className="border-black">{roster.notes}</td>
                         </tr>
-                    <tr className="border-black">
+                    {/* <tr className="border-black" colSpan="3"> */}
                     {Object.values(roster.this_roster).map((member) => {
                         //try making a table row for each
                         return (
-                            <div className="container flex">
-                                <div className="border-black list-none p-1 m-1 flex flex-row">
-                                    <div className="border-black flex flex-row justify-between">
-                                        <a href={`/members/${member.id}`}>
+                            <tr className="border-r">
+                                <td className="flex border-0 border-r justify-between" colSpan="3">
+                                        <Link colSpan="2" to={`/members/${member.id}`}>
                                             {member.name}
-                                        </a>
+                                        </Link>
                                         <div className="relative">
                                             <UnassignButton />
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
+                                    </td>
+                            </tr>
                     )})}
-                        </tr>
+                        {/* </tr> */}
 
                     </tbody>
                 </table>

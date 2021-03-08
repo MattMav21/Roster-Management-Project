@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 const Home = () => {
     return (
         <div className="container flex m-auto flex-nowrap">
-            {/* <div className="container flex justify-space-between p-5 m-auto flex-nowrap"> */}
                 <div className="container flex p-10 m-auto space-x-10 m-auto justify-around flex-nowrap">
                     <Link to="/rosters/create" className="border-black bg-gray-500 p-5 rounded cursor-pointer">
                         Create a new roster!
@@ -18,7 +17,6 @@ const Home = () => {
                         Assign a member to your roster!
                     </Link>
             </div>
-        {/* </div> */}
        </div>
     )
 }

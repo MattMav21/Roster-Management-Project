@@ -13,7 +13,7 @@ const UnassignButton = () => {
         console.log("Button Clicked")
     };
 
-    return <button className="bg-red-700 rounded p-2" onClick={unassign}> X </button>;
+    return <button className="bg-red-700 rounded p-1" onClick={unassign}> X </button>;
 };
 
 export default UnassignButton;
