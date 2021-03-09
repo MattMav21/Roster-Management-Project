@@ -74,7 +74,7 @@ def edit_member(id):
             # db.session.add(member_to_edit)
             print("EDITING THIS MEMBER", member_to_edit)
             db.session.commit()
-            return { "Message" : "Member Created Successfully!"}, 200
+            return { "Message" : "Member Edited Successfully!"}, 200
             # return redirect("/members")
         else:
             print("NO!!")

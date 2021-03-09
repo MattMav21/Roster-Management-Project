@@ -13,7 +13,6 @@ const EditMemberButton = () => {
         //then dispatch getOneRoster
         //then dispatch getMembers
         //then set loaded to true
-        console.log("Button Clicked")
         history.push(`/members/edit/${memberId}`)
     };
 

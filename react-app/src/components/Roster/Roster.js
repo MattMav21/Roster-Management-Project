@@ -6,6 +6,7 @@ import "./Roster.css"
 import { useParams } from 'react-router-dom';
 import UnassignButton from '../buttons/UnassignButton';
 import { Link } from 'react-router-dom'
+import EditRosterButton from '../buttons/EditRosterButton';
 
 const Roster = () => {
     const [loaded, setLoaded] = useState(false);
@@ -37,6 +38,7 @@ const Roster = () => {
 
     return (
         <div className="flex">
+        <EditRosterButton />
             {loaded &&
                 <table className="border-black m-auto">
                     <thead className="bg-gray-200 p-4">

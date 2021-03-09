@@ -1,6 +1,6 @@
 from flask import Blueprint, request, redirect, session
 from app.models import db, User, Roster, Roster_Member, Member
-from app.forms import RosterCreateForm, RosterAssignmentForm
+from app.forms import RosterCreateForm, RosterAssignmentForm, RosterEditForm
 
 rosters_routes = Blueprint('rosters', __name__)
 
@@ -118,3 +118,26 @@ def assignment():
             print("NO!!")
     
     return each_roster
+
+
+@rosters_routes.route('/edit/<int:id>', methods=["GET", "PUT"])
+def edit_roster(id):
+    roster_to_edit = Roster.query.get_or_404(id)
+    # HERE
+    form = RosterEditForm()
+    print("EDIT THIS ROSTER!!!!!!!!!!!!!", roster_to_edit)
+    if request.method == "PUT":
+        print("PUT REQUEST")
+        if form.validate_on_submit:
+            data = form.data
+            print("UPDATED ROSTER DATA!!!!!", data)
+            roster_to_edit.name=data['name'],
+            roster_to_edit.notes=data['notes'],
+            # print("MEMBER NAME!!!!!!!!!!!", edited_member.name, edited_member.notes)
+            # db.session.add(member_to_edit)
+            print("EDITING THIS ROSTER", roster_to_edit)
+            db.session.commit()
+            return { "Message" : "Roster Edited Successfully!"}, 200
+            # return redirect("/members")
+        else:
+            print("NO!!")

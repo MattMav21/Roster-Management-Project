@@ -75,13 +75,6 @@ export const editMember = (data) => async (dispatch) => {
         return member;
     }
     
-    // dispatch(edit_a_member(data));
-    // debugger
-    // return data;
-
-    // if (response.ok) {
-        // const member = await response.json();
-    // }
 }
 
 const memberReducer = (state = {}, action) => {
