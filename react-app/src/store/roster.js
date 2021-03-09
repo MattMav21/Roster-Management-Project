@@ -3,6 +3,7 @@ const CREATE_ROSTER = "roster/LOAD_ROSTERS"
 const ASSIGN_TO_ROSTER = "roster/ASSIGN_TO_ROSTER"
 const EDIT_ROSTER = "roster/EDIT_ROSTER"
 const UNASSIGN_TO_ROSTER = "roster/UNASSIGN_TO_ROSTER"
+const DELETE_ROSTER = "roster/DELETE_ROSTER"
 
 const load_rosters = (rosters) => ({
     type: LOAD_ROSTERS,
@@ -27,6 +28,11 @@ const edit_a_roster = (roster) => ({
 const unassign_roster = (data) => ({
     type: UNASSIGN_TO_ROSTER,
     data
+})
+
+const delete_roster = (roster) => ({
+    type: DELETE_ROSTER,
+    roster
 })
 
 export const getRosters = () => async (dispatch) => {
@@ -129,6 +135,22 @@ export const unassignToRoster = (data) => async (dispatch) => {
     }
 }
 
+export const destroyRoster = (id) => async (dispatch) => {
+    debugger
+    const response = await fetch(`/api/rosters/delete/${id}`, {
+        method: 'DELETE',
+    });
+
+    debugger
+
+    console.log(response)
+
+    if (response.ok) {
+        const roster = await response.json();
+        dispatch(delete_roster(roster));
+    }
+}
+
 
 
 const rosterReducer = (state = {}, action) => {
@@ -156,6 +178,11 @@ const rosterReducer = (state = {}, action) => {
             debugger
             return newState
         case UNASSIGN_TO_ROSTER:
+            newState = Object.assign({}, state);
+            newState.roster = action.roster;
+            debugger
+            return newState;
+        case DELETE_ROSTER:
             newState = Object.assign({}, state);
             newState.roster = action.roster;
             debugger

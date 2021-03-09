@@ -134,16 +134,26 @@ def edit_roster(id):
             print("NO!!")
 
 
+@rosters_routes.route('/delete/<int:r_id>', methods=["DELETE"])
+def unassign(r_id):
+    roster_to_destroy = Roster.query.get_or_404(r_id)
+    # member_to_unassign = Member.query.filter()
+    unassigned_members = Roster_Member.query.filter(Roster_Member.roster_id == roster_to_destroy.id).all()
+    # print("THESE WILL BE UNASSIGNED!!!!!!!", unassigned_members)
+
+    for gone in unassigned_members:
+        db.session.delete(gone)
+    db.session.delete(roster_to_destroy)
+    db.session.commit()
+    return { "Deletion" : "successful" }
+
+
+
 @rosters_routes.route('<int:r_id>/delete/<int:m_id>', methods=["DELETE"])
-def unassign(r_id, m_id):
+def delete_roster(r_id, m_id):
     roster_to_unassign = Roster.query.get_or_404(r_id)
     member_to_unassign = Member.query.get_or_404(m_id)
-    print("ROSTER TO UNASSIGN!!!!!!!!", roster_to_unassign.name)
-    print("MEMBER TO UNASSIGN!!!!!!!!", member_to_unassign.name)
     deleted_roster_member = Roster_Member.query.filter(Roster_Member.member_id == m_id and Roster_Member.roster_id == r_id).one()
-    print("DELETE MEEEEEEE!!!!!!!!!!!", deleted_roster_member.id)
-    # this_member = Roster_Member.query.filter(Roster_Member
     db.session.delete(deleted_roster_member)
     db.session.commit()
-    # print("DELETE THIS ROSTER", roster_to_delete)
     return { "Deletion" : "successful" }

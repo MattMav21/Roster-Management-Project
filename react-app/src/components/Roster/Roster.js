@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import UnassignButton from '../buttons/UnassignButton';
 import { Link } from 'react-router-dom'
 import EditRosterButton from '../buttons/EditRosterButton';
+import DeleteRosterButton from '../buttons/DeleteRosterButton';
 
 const Roster = () => {
     const [loaded, setLoaded] = useState(false);
@@ -39,9 +40,10 @@ const Roster = () => {
     //console.log(Object.values(rosterMembers))
 
     return (
+        <div>
+        {loaded && roster &&
         <div className="flex">
-        <EditRosterButton />
-            {loaded && roster &&
+            <EditRosterButton />
                 <table className="border-black m-auto">
                     <thead className="bg-gray-200 p-4">
                         <tr>
@@ -71,11 +73,10 @@ const Roster = () => {
                                     </td>
                             </tr>
                     )})}
-                        {/* </tr> */}
-
                     </tbody>
                 </table>
-            }
+        </div>
+        }
         </div>
     );
 

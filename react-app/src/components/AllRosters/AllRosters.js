@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as rosterActions from "../../store/roster"
 import { useDispatch, useSelector } from 'react-redux';
 import "./AllRosters.css"
+import DeleteRosterButton from '../buttons/DeleteRosterButton';
 
 const AllRosters = () => {
     const [loaded, setLoaded] = useState(false);
@@ -34,9 +35,12 @@ const AllRosters = () => {
                         return (
                             <tr className="border-black">
                                 <td className="border-black">{
+                                    <>
+                                    <DeleteRosterButton rosterId={roster.id} rosterName={roster.name} />
                                     <a href={`/rosters/${roster.id}`} className="border-black">
                                         {roster.name}
                                     </a>
+                                </>
                                 }</td>
                                 <td className="border-black">{roster.notes}</td>
                             </tr>
