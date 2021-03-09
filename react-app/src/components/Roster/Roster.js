@@ -28,18 +28,20 @@ const Roster = () => {
     //     console.log(rosterMembers)
     // }
 
+    
     useEffect(() => {
         dispatch(getOneRoster(rosterId)).then(() =>
-            dispatch(getMembers()))
-            .then(() => setLoaded(true))
+        dispatch(getMembers()))
+        .then(() => setLoaded(true))
     }, [getOneRoster])
-
+    
+    debugger
     //console.log(Object.values(rosterMembers))
 
     return (
         <div className="flex">
         <EditRosterButton />
-            {loaded &&
+            {loaded && roster &&
                 <table className="border-black m-auto">
                     <thead className="bg-gray-200 p-4">
                         <tr>
@@ -63,7 +65,7 @@ const Roster = () => {
                                         </Link>
                                         <div className="flex relative left-4 space-x-2">
                                             <div className="relative">
-                                                <UnassignButton />
+                                            <UnassignButton roster_name={roster.name} this_member={Object.values(roster.this_roster).filter((data) => member.id === data.id)} />
                                             </div>
                                         </div>
                                     </td>

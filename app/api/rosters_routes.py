@@ -22,30 +22,22 @@ def everybody():
 @rosters_routes.route('/<int:id>', methods=["GET"])
 def roster(id):
     roster = Roster.query.get_or_404(id)
-
     roster_members = Roster_Member.query.filter(Roster_Member.roster_id == id).all()
-    print("ROSTER MEMBERS!!!!!!!!!!!!!!!!!!!!!", roster_members)
+    # print("ROSTER MEMBERS!!!!!!!!!!!!!!!!!!!!!", roster_members)
     # this is good!
-
     correct_members_ids = []
     # [2, 4] if id is 2, [1, 3, 5] if id is 1
-
     idx = 0
     for member in roster_members:
         correct_members_ids.append(int(member.member_id))
         idx+=1
-
-    print("CORR MEMBER IDS", correct_members_ids)
-
+    # print("CORR MEMBER IDS", correct_members_ids)
     correct_members = Member.query.filter(Member.id.in_(correct_members_ids)).all()
-
-    print("CORR MEMBERS", correct_members)
-
+    # print("CORR MEMBERS", correct_members)
     correct_object = {}
-    
     count = 0
     for correct in correct_members:
-        print("CORRECT MEMBER", correct.name)
+        # print("CORRECT MEMBER", correct.name)
         correct_object[count] = {
             "id": correct.id,
             "name": correct.name,
@@ -53,9 +45,7 @@ def roster(id):
             "created_at": correct.created_at
         }
         count+=1
-
-    print("OMG!!!!!!!!!!!!!!!", correct_object)
-
+    # print("OMG!!!!!!!!!!!!!!!", correct_object)
     single_roster = {
         "id": roster.id,
         "name": roster.name,
@@ -63,6 +53,7 @@ def roster(id):
         "user_id": roster.user_id,
         "this_roster": correct_object
     }
+    # print("CORRECT OBJECT")
 
     return single_roster
 
@@ -141,3 +132,18 @@ def edit_roster(id):
             # return redirect("/members")
         else:
             print("NO!!")
+
+
+@rosters_routes.route('<int:r_id>/delete/<int:m_id>', methods=["DELETE"])
+def unassign(r_id, m_id):
+    roster_to_unassign = Roster.query.get_or_404(r_id)
+    member_to_unassign = Member.query.get_or_404(m_id)
+    print("ROSTER TO UNASSIGN!!!!!!!!", roster_to_unassign.name)
+    print("MEMBER TO UNASSIGN!!!!!!!!", member_to_unassign.name)
+    deleted_roster_member = Roster_Member.query.filter(Roster_Member.member_id == m_id and Roster_Member.roster_id == r_id).one()
+    print("DELETE MEEEEEEE!!!!!!!!!!!", deleted_roster_member.id)
+    # this_member = Roster_Member.query.filter(Roster_Member
+    db.session.delete(deleted_roster_member)
+    db.session.commit()
+    # print("DELETE THIS ROSTER", roster_to_delete)
+    return { "Deletion" : "successful" }

@@ -2,6 +2,7 @@ const LOAD_ROSTERS = "roster/LOAD_ROSTERS"
 const CREATE_ROSTER = "roster/LOAD_ROSTERS"
 const ASSIGN_TO_ROSTER = "roster/ASSIGN_TO_ROSTER"
 const EDIT_ROSTER = "roster/EDIT_ROSTER"
+const UNASSIGN_TO_ROSTER = "roster/UNASSIGN_TO_ROSTER"
 
 const load_rosters = (rosters) => ({
     type: LOAD_ROSTERS,
@@ -21,6 +22,11 @@ const assign_roster = (data) => ({
 const edit_a_roster = (roster) => ({
     type: EDIT_ROSTER,
     roster
+})
+
+const unassign_roster = (data) => ({
+    type: UNASSIGN_TO_ROSTER,
+    data
 })
 
 export const getRosters = () => async (dispatch) => {
@@ -106,6 +112,24 @@ export const editRoster = (data) => async (dispatch) => {
 
 }
 
+export const unassignToRoster = (data) => async (dispatch) => {
+    console.log(data)
+    debugger
+    const response = await fetch(`/api/rosters/${data.rosterId}/delete/${data.memberId}`, {
+        method: 'DELETE',
+    });
+
+    debugger
+
+    console.log(response)
+
+    if (response.ok) {
+        const roster = await response.json();
+        dispatch(unassign_roster(roster));
+    }
+}
+
+
 
 const rosterReducer = (state = {}, action) => {
     let newState;
@@ -131,6 +155,11 @@ const rosterReducer = (state = {}, action) => {
             newState.roster = action.roster
             debugger
             return newState
+        case UNASSIGN_TO_ROSTER:
+            newState = Object.assign({}, state);
+            newState.roster = action.roster;
+            debugger
+            return newState;
         default:
             return state
     }
