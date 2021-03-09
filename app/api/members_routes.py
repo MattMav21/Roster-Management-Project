@@ -1,5 +1,5 @@
 from flask import Blueprint, request, redirect
-from app.models import db, User, Member
+from app.models import db, User, Member, Member_Property, Roster_Member
 from app.forms import MemberCreateForm, MemberEditForm
 from datetime import datetime
 
@@ -78,6 +78,26 @@ def edit_member(id):
             # return redirect("/members")
         else:
             print("NO!!")
+
+
+@members_routes.route('/delete/<int:m_id>', methods=["DELETE"])
+def unassign(m_id):
+    member_to_destroy = Member.query.get_or_404(m_id)
+    # member_to_unassign = Member.query.filter()
+    unassigned_properties = Member_Property.query.filter(Member_Property.member_id == member_to_destroy.id).all()
+    unassigned_members = Roster_Member.query.filter(Roster_Member.member_id == member_to_destroy.id).all()
+    # print("THESE WILL BE UNASSIGNED!!!!!!!", unassigned_members)
+
+    for gone in unassigned_members:
+        db.session.delete(gone)
+
+    for seeya in unassigned_properties:
+        db.session.delete(seeya)
+
+    db.session.delete(member_to_destroy)
+    db.session.commit()
+    return { "Deletion" : "successful" }
+
 
     # members = Member.query.all()
     # ppl = {}

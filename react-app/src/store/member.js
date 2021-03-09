@@ -1,6 +1,7 @@
 const LOAD_MEMBERS = "member/LOAD_MEMBERS"
 const CREATE_MEMBER = "member/CREATE_MEMBER"
 const EDIT_MEMBER = "member/EDIT_MEMBER"
+const DELETE_MEMBER = "member/DELETE_MEMBER"
 
 const loading_everyone = (members) => ({
     type: LOAD_MEMBERS,
@@ -14,6 +15,11 @@ const create_member = (member) => ({
 
 const edit_a_member = (member) => ({
     type: EDIT_MEMBER,
+    member
+})
+
+const delete_member = (member) => ({
+    type: DELETE_MEMBER,
     member
 })
 
@@ -74,8 +80,24 @@ export const editMember = (data) => async (dispatch) => {
         debugger
         return member;
     }
-    
 }
+
+export const destroyMember = (id) => async (dispatch) => {
+    debugger
+    const response = await fetch(`/api/members/delete/${id}`, {
+        method: 'DELETE',
+    });
+
+    debugger
+
+    console.log(response)
+
+    if (response.ok) {
+        const member = await response.json();
+        dispatch(delete_member(member));
+    }
+}
+
 
 const memberReducer = (state = {}, action) => {
     let newState;
@@ -94,6 +116,11 @@ const memberReducer = (state = {}, action) => {
             newState.member = action.member
             debugger
             return newState
+        case DELETE_MEMBER:
+            newState = Object.assign({}, state);
+            newState.roster = action.roster;
+            debugger
+            return newState;
         default:
             return state
     }
