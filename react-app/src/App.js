@@ -15,7 +15,8 @@ import {
   MemberCreateForm, 
   RosterCreateForm, 
   RosterAssignmentForm, 
-  Home
+  Home,
+  EditMemberForm
 } from "./components/index"
 
 function App() {
@@ -57,6 +58,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <Home />
+        </ProtectedRoute>
+        <ProtectedRoute path="/members/edit/:memberId" exact={true} authenticated={authenticated}>
+          <EditMemberForm />
         </ProtectedRoute>
         <ProtectedRoute path="/rosters/assign" exact={true} authenticated={authenticated}>
           <RosterAssignmentForm />

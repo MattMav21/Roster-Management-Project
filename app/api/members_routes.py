@@ -1,6 +1,6 @@
 from flask import Blueprint, request, redirect
 from app.models import db, User, Member
-from app.forms import MemberCreateForm
+from app.forms import MemberCreateForm, MemberEditForm
 from datetime import datetime
 
 members_routes = Blueprint('members', __name__)
@@ -57,6 +57,28 @@ def form_for_new_members():
         else:
             print("NO!!")
 
+
+@members_routes.route('/edit/<int:id>', methods=["GET", "PUT"])
+def edit_member(id):
+    member_to_edit = Member.query.get_or_404(id)
+    form = MemberEditForm()
+    print("EDIT THIS MEMBER!!!!!!!!!!!!!", member_to_edit)
+    if request.method == "PUT":
+        print("PUT REQUEST")
+        if form.validate_on_submit:
+            data = form.data
+            print("DATA!!!!!", data)
+            member_to_edit.name=data['name'],
+            member_to_edit.notes=data['notes'],
+            # print("MEMBER NAME!!!!!!!!!!!", edited_member.name, edited_member.notes)
+            # db.session.add(member_to_edit)
+            print("EDITING THIS MEMBER", member_to_edit)
+            db.session.commit()
+            return { "Message" : "Member Created Successfully!"}, 200
+            # return redirect("/members")
+        else:
+            print("NO!!")
+
     # members = Member.query.all()
     # ppl = {}
     # idx = 0
@@ -83,3 +105,4 @@ def form_for_new_members():
 #     #     else:
 #     #         print("NO!!")
 #     return "Gello"
+

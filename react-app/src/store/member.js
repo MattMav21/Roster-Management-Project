@@ -1,5 +1,6 @@
 const LOAD_MEMBERS = "member/LOAD_MEMBERS"
 const CREATE_MEMBER = "member/CREATE_MEMBER"
+const EDIT_MEMBER = "member/EDIT_MEMBER"
 
 const loading_everyone = (members) => ({
     type: LOAD_MEMBERS,
@@ -8,6 +9,11 @@ const loading_everyone = (members) => ({
 
 const create_member = (member) => ({
     type: CREATE_MEMBER,
+    member
+})
+
+const edit_a_member = (member) => ({
+    type: EDIT_MEMBER,
     member
 })
 
@@ -47,6 +53,37 @@ export const addNewMember = data => async (dispatch) => {
     }
 }
 
+
+export const editMember = (data) => async (dispatch) => {
+    console.log(data)
+    debugger
+    const response = await fetch(`/api/members/edit/${data.memberId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+    debugger
+
+    console.log(response)
+
+    if (response.ok) {
+        const member = await response.json();
+        dispatch(edit_a_member(member));
+        debugger
+        return member;
+    }
+    
+    // dispatch(edit_a_member(data));
+    // debugger
+    // return data;
+
+    // if (response.ok) {
+        // const member = await response.json();
+    // }
+}
+
 const memberReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
@@ -58,6 +95,10 @@ const memberReducer = (state = {}, action) => {
         case CREATE_MEMBER:
             newState = Object.assign({}, state);
             newState.member = action.members
+            return newState
+        case EDIT_MEMBER:
+            newState = Object.assign({}, state);
+            newState.member = action.member
             debugger
             return newState
         default:

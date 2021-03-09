@@ -7,6 +7,7 @@ import MemberCreateForm from "./MemberCreateForm"
 import RosterCreateForm from "./RosterCreateForm"
 import RosterAssignmentForm from "./RosterAssignmentForm"
 import Home from "./Home"
+import EditMemberForm from './EditMemberForm'
 
 
 // Export ALL components here
@@ -18,5 +19,6 @@ export {
     MemberCreateForm, 
     RosterCreateForm, 
     RosterAssignmentForm,
-    Home
+    Home,
+    EditMemberForm,
 }

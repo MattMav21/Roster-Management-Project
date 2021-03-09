@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import "./Roster.css"
 import { useParams } from 'react-router-dom';
 import UnassignButton from '../buttons/UnassignButton';
-import EditRosterButton from '../buttons/EditRosterButton';
 import { Link } from 'react-router-dom'
 
 const Roster = () => {
@@ -61,9 +60,6 @@ const Roster = () => {
                                             {member.name}
                                         </Link>
                                         <div className="flex relative left-4 space-x-2">
-                                            <div className="relative">
-                                                <EditRosterButton />
-                                            </div>
                                             <div className="relative">
                                                 <UnassignButton />
                                             </div>

@@ -13,7 +13,7 @@ const EditRosterButton = () => {
         console.log("Button Clicked")
     };
 
-    return <button className="bg-green-400 rounded p-1" onClick={editRoster}> E </button>;
+    return <button className="bg-green-400 rounded p-1" onClick={editRoster}> Edit </button>;
 };
 
-export default EditRosterButton;
+export default EditRosterButton; 

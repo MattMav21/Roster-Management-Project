@@ -3,6 +3,7 @@ import * as memberActions from "../../store/member"
 import { useDispatch, useSelector } from 'react-redux';
 import "./Member.css"
 import { useParams } from 'react-router-dom';
+import EditMemberButton from '../buttons/EditMemberButton';
 
 const Member = () => {
     const [loaded, setLoaded] = useState(false);
@@ -17,6 +18,7 @@ const Member = () => {
 
     return (
         <div className="flex">
+            <EditMemberButton />
             {loaded &&
                 <table className="border-black m-auto">
                     <thead className="bg-gray-200 p-4">
