@@ -48,54 +48,37 @@ const EditMemberForm = () => {
         <div className="flex m-auto border-black text-center flex-col w-9/12">
             {loaded && prevName && prevNotes &&
                 <>
-                <h1 className="m-auto">Edit {prevName}</h1>
                 <br></br>
-                <form className="border-black m-auto flex flex-col w-6/12 p-8" onSubmit={onSubmit}>
+                <form className="self-center m-auto" onSubmit={onSubmit}>
+                    <h1 className="text-left p-1 text-center bg-gray-200">Edit {prevName}</h1>
                     {/* <span contentEditable="true"> */}
-                    <input
-                        className="bg-gray-200 border-black p-4 text-center w-full"
-                        type="text"
-                        placeholder={prevName}
-                        defaultValue={name}
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-
-                    {/* </span> */}
-                        {/* <input
-                            className="bg-gray-200 p-8 center w-full"
+                    <div className="flex flex-col p-2">
+                        <label className="text-left p-1 text-left" htmlFor="email">Name</label>
+                        <input
+                            className="border-black p-4 text-center bg-gray-100 w-full"
                             type="text"
                             placeholder={prevName}
+                            defaultValue={name}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                        /> */}
-                    <input
-                        contentEditable="true"
-                        className="border-black p-8 grid overflow-hidden text-center"
-                        type="text"
-                        placeholder={prevNotes}
-                        defaultValue={notes}
-                        value={notes}
-                        onChange={(e) => setNotes(e.target.value)}
-                    />
-                        {/* <input
-                                className="bg-gray-200 p-8 center w-full"
-                                type="text"
-                                placeholder={prevName}
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                            /> */}
-                    {/* <div className="border-black overflow-visible w-full">
-                            <textarea
-                                className="border-black"
+                        />
+
+                    </div>
+
+                    <div className="flex flex-col p-2">
+                        <label className="text-left p-1 text-left" htmlFor="email">Notes</label>
+                        <input
+                                className="border-black p-4 text-center bg-gray-100 w-full"
+                                contentEditable="true"
                                 type="text"
                                 placeholder={prevNotes}
+                                defaultValue={notes}
                                 value={notes}
                                 onChange={(e) => setNotes(e.target.value)}
                             />
-                    </div> */}
+                    </div>
                     <br></br>
-                    <button type="submit" className="bg-blue-400 rounded hover:bg-blue-900 w-6/12">Edit</button>
+                    <button type="submit" className="bg-blue-400 p-1 m-4 rounded hover:bg-blue-900 w-6/12">Edit</button>
                 </form>
             </>}
         </div>
