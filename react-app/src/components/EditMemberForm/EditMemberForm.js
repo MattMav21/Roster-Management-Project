@@ -45,11 +45,11 @@ const EditMemberForm = () => {
     }
 
     return (
-        <div className="flex m-auto border-black text-center flex-col w-9/12">
+        <div className="flex m-auto border-black text-center flex-col p-2">
             {loaded && prevName && prevNotes &&
                 <>
                 <br></br>
-                <form className="self-center m-auto" onSubmit={onSubmit}>
+                <form className="self-center m-auto w-full" onSubmit={onSubmit}>
                     <h1 className="text-left p-1 text-center bg-gray-200">Edit {prevName}</h1>
                     {/* <span contentEditable="true"> */}
                     <div className="flex flex-col p-2">
@@ -68,7 +68,7 @@ const EditMemberForm = () => {
                     <div className="flex flex-col p-2">
                         <label className="text-left p-1 text-left" htmlFor="email">Notes</label>
                         <input
-                                className="border-black p-4 text-center bg-gray-100 w-full"
+                                className="border-black p-4 h-auto text-center bg-gray-100 w-full"
                                 contentEditable="true"
                                 type="text"
                                 placeholder={prevNotes}
