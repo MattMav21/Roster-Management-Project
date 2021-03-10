@@ -39,37 +39,42 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        <label>User Name</label>
+    <form className="border-black m-auto flex flex-col w-6/12" onSubmit={onSignUp}>
+      <h1 className="bg-gray-200 border-black p-4 text-center w-full"> Sign Up </h1>
+      <div className="flex flex-col p-2">
+        <label className="text-left p-1 text-left">User Name</label>
         <input
+          className="bg-gray-100"
           type="text"
           name="username"
           onChange={updateUsername}
           value={username}
         ></input>
       </div>
-      <div>
-        <label>Email</label>
+      <div className="flex flex-col p-2">
+        <label className="text-left p-1 text-left">Email</label>
         <input
+          className="bg-gray-100"
           type="text"
           name="email"
           onChange={updateEmail}
           value={email}
         ></input>
       </div>
-      <div>
-        <label>Password</label>
+      <div className="flex flex-col p-2">
+        <label className="text-left p-1 text-left">Password</label>
         <input
+          className="bg-gray-100"
           type="password"
           name="password"
           onChange={updatePassword}
           value={password}
         ></input>
       </div>
-      <div>
-        <label>Repeat Password</label>
+      <div className="flex flex-col p-2">
+        <label className="text-left p-1 text-left">Repeat Password</label>
         <input
+          className="bg-gray-100"
           type="password"
           name="repeat_password"
           onChange={updateRepeatPassword}
@@ -77,7 +82,10 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           required={true}
         ></input>
       </div>
-      <button type="submit">Sign Up</button>
+      <button className="bg-green-700 w-6/12 self-center p-1 m-4 hover:bg-blue-300 hover:text-yellow-300 rounded" type="submit">Sign Up</button>
+      <div className="p-3">
+        <a classNane="text-blue-500" href="/login">I already have an account</a>
+      </div>
     </form>
   );
 };
