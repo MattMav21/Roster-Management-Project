@@ -56,6 +56,7 @@ const EditMemberForm = () => {
                         className="bg-gray-200 border-black p-4 text-center w-full"
                         type="text"
                         placeholder={prevName}
+                        defaultValue={name}
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
@@ -73,6 +74,7 @@ const EditMemberForm = () => {
                         className="border-black p-8 grid overflow-hidden text-center"
                         type="text"
                         placeholder={prevNotes}
+                        defaultValue={notes}
                         value={notes}
                         onChange={(e) => setNotes(e.target.value)}
                     />
