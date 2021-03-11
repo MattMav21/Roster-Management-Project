@@ -15,12 +15,27 @@ const LandingPage = ({authenticated, setAuthenticated}) => {
     return (
         <>
             <div className="splash-page flex flex-col h-screen w-screen">
-                <div className="splash-container container relative m-auto bg-gray-800 bottom-20 opacity-95 w-6/12">
-                <div className="bg-blue-800 text-yellow-600 rounded opacity-60 p-6">
+                <div className="splash-container container relative m-auto bg-gray-900 bottom-32 opacity-95 w-6/12 rounded">
+                <div className="bg-blue-800 text-yellow-600 rounded p-6">
                     <h1 className="font-bold text-center opacity-100">ROSTER MANAGEMENT</h1>
                     <h2 className="text-center">Manage your roster today!</h2>
                 </div>
-                    <div className="p-32">
+                    <div className="">
+                        <h3 className="p-12 text-white text-center">You have a group of people to manage? We've got you covered!</h3>
+                        <div className="flex justify-around mb-8">
+                            <a href="/sign-up" className="">
+                                <div className="p-4 bg-blue-800 hover:bg-gray-700 hover:text-yellow-700 hover:font-bold rounded">
+                                    <h1>Login</h1>
+                                </div>
+                            </a>
+                            <div>
+                                <a href="/sign-up" className="">
+                                    <div className="p-4 bg-blue-800 hover:bg-gray-700 hover:text-yellow-700 hover:font-bold rounded">
+                                        <h1>Join Us!</h1>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
             </div>
         </div>
