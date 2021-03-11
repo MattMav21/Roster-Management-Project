@@ -5,43 +5,36 @@ import LogoutButton from './auth/LogoutButton';
 
 const NavBar = ({ setAuthenticated }) => {
   return (
-    <nav className="relative flex flex-wrap items-center justify-between navbar-expand-lg bg-accentLight mb-3 bg-gray-200">
-      <div className="container">
-        <div className=" px-4 mx-auto flex flex-wrap items-center justify-between list-none">
+    <nav className="flex m-auto flex-nowrap bg-black justify-around">
 
-        <div>
-          <div list-none="true" className="px-2 py-3">
-            <NavLink to="/home" exact={true} activeClassName="active">
+        <div className="w-1/4">
+          <a className="" to="/" exact={true} activeClassName="active">
+            <div className="pt-4 pb-4 bg-green-900">
               Home
-            </NavLink>
-          </div>
+            </div>
+          </a>
         </div>
 
-        <div>
-          <div list-none="true" className="px-2 py-3">
-            <NavLink to="/rosters" exact={true} activeClassName="active">
+      <div className="w-1/4">
+          <a to="/rosters" exact={true} activeClassName="active">
+          <div className="pt-4 pb-4  bg-blue-900">
               Rosters
-            </NavLink>
-          </div>
+            </div>
+          </a>
         </div>
 
-        <div>
-          <div list-none="true" className="px-2 py-3">
-            <NavLink to="/members" exact={true} activeClassName="active">
-              Database
-            </NavLink>
-          </div>
-        </div>
 
-        <div>
-          <div className="px-2 py-3">
+      <div className="w-1/4">
+            <a to="/members" exact={true} activeClassName="active">
+          <div className="pt-4 pb-4 bg-yellow-400">
+                Database
+              </div>
+            </a>
+          </div>
+
+      <div className="pt-4 pb-4  bg-red-900 w-1/4">
             <LogoutButton setAuthenticated={setAuthenticated} />
           </div>
-        </div>
-        </div>
-
-
-      </div>
     </nav>
   );
 }

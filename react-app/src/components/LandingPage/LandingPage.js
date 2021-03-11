@@ -23,7 +23,7 @@ const LandingPage = ({authenticated, setAuthenticated}) => {
                     <div className="">
                         <h3 className="p-12 text-white text-center">You have a group of people to manage? We've got you covered!</h3>
                         <div className="flex justify-around mb-8">
-                            <a href="/sign-up" className="">
+                            <a href="/login" className="">
                                 <div className="p-4 bg-blue-800 hover:bg-gray-700 hover:text-yellow-700 hover:font-bold rounded">
                                     <h1>Login</h1>
                                 </div>
