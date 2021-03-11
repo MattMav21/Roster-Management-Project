@@ -14,12 +14,14 @@ const LandingPage = ({authenticated, setAuthenticated}) => {
 
     return (
         <>
-        <div className="splash-page flex flex-col h-screen w-screen">
-            <div className="container absolute m-auto bg-gray-800 top-20 w-6/12 left-52">
-                <div className="bg-blue-800 text-white rounded">
-                    <h1 className="font-bold text-center">ROSTER MANAGEMENT</h1>
-                </div>
+            <div className="splash-page flex flex-col h-screen w-screen">
+                <div className="splash-container container relative m-auto bg-gray-800 bottom-20 opacity-95 w-6/12">
+                <div className="bg-blue-800 text-yellow-600 rounded opacity-60 p-6">
+                    <h1 className="font-bold text-center opacity-100">ROSTER MANAGEMENT</h1>
                     <h2 className="text-center">Manage your roster today!</h2>
+                </div>
+                    <div className="p-32">
+                    </div>
             </div>
         </div>
         {/* // <div className="container flex m-auto flex-nowrap">

@@ -2,4 +2,7 @@
     background-image: url(../../assets/City-Picture.jpg);
 }
 
+.splash-container {
+    box-shadow: 0 0 10px orangered;
+}
 /* background-image: url(../../assets/PinkIsPretty.jpg) */
