@@ -17,7 +17,8 @@ import {
   RosterAssignmentForm, 
   Home,
   EditMemberForm,
-  EditRosterForm
+  EditRosterForm,
+  LandingPage
 } from "./components/index"
 
 function App() {
@@ -40,7 +41,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
+      {authenticated && (
+        <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} />
+      )}
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm
@@ -57,7 +60,7 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+        <ProtectedRoute path="/home" exact={true} authenticated={authenticated}>
           <Home />
         </ProtectedRoute>
         <ProtectedRoute path="/members/edit/:memberId" exact={true} authenticated={authenticated}>
@@ -87,6 +90,9 @@ function App() {
         <ProtectedRoute path="/rosters/:rosterId" exact={true} authenticated={authenticated}>
           <Roster />
         </ProtectedRoute>
+        <Route path="/" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
+          <LandingPage />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

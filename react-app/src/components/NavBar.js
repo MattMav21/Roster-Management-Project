@@ -11,7 +11,7 @@ const NavBar = ({ setAuthenticated }) => {
 
         <div>
           <div list-none="true" className="px-2 py-3">
-            <NavLink to="/" exact={true} activeClassName="active">
+            <NavLink to="/home" exact={true} activeClassName="active">
               Home
             </NavLink>
           </div>

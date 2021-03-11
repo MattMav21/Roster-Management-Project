@@ -10,17 +10,8 @@ const DeleteMemberButton = (props) => {
     const history = useHistory()
 
     const { memberId, memberName } = props;
-    // console.log(rosterId, rosterName)
 
     const deleteMember = async (e) => {
-
-
-        //dispatch action that deletes Roster
-        //then dispatch getOneRoster
-        //then dispatch getMembers
-        //then set loaded to true
-        // history.push(`/rosters`)
-
         if (window.confirm(`Are you sure you want to delete ${memberName}?`)) {
 
             await dispatch(destroyMember(memberId)).then(() =>
@@ -33,9 +24,8 @@ const DeleteMemberButton = (props) => {
             //then dispatch getOneRoster
             //then dispatch getMembers
             //then set loaded to true
-            console.log("Yes")
         } else {
-            console.log("No")
+            return
         }
 
     };

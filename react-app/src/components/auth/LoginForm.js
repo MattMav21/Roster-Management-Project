@@ -26,11 +26,11 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   };
 
   if (authenticated) {
-    return <Redirect to="/" />;
+    return <Redirect to="/home" />;
   }
 
   return (
-    <>
+    <div className="p-14">
     <form className="border-black m-auto flex flex-col w-6/12" onSubmit={onLogin}>
       <div>
         {errors.map((error) => (
@@ -65,7 +65,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         <a classNane="text-blue-500" href="/sign-up">I don't have an account</a>
       </div>
     </form>
-    </>
+    </div>
   );
 };
 

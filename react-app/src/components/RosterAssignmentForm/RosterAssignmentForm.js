@@ -28,11 +28,6 @@ const RosterAssignmentForm = () => {
     const members = useSelector((state) => state.member.member)
     const rosters = useSelector((state) => state.roster.roster)
 
-
-
-    console.log("MEMBERS", members)
-    console.log("ROSTERS", rosters)
-
     useEffect(() => {
         dispatch(getRosters()).then(() =>
         dispatch(getMembers()))
@@ -59,20 +54,10 @@ const RosterAssignmentForm = () => {
         .then(() => history.push(`/rosters/${roster}`))
     }
 
-    
-    
-    console.log("MEMBER OPTIONS", memberOptions)
-    console.log("ROSTER OPTIONS", rosterOptions)
-    console.log("MEMBER IDS", memberIds)
-    console.log("ROSTER IDS", rosterIds)
-
     const memberCorr = {}
     const rosterCorr = {}
     memberOptions.forEach((option, i) => memberCorr[option] = memberIds[i])
     rosterOptions.forEach((option, i) => rosterCorr[option] = rosterIds[i])
-
-    console.log("MEMBER OBJECT", memberCorr)
-    console.log("ROSTER OBJECT", rosterCorr)
 
     return (
         <div className="block p-3 text-center bg-gray-600">

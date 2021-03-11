@@ -10,7 +10,6 @@ const DeleteRosterButton = (props) => {
     const history = useHistory()
 
     const { rosterId, rosterName } = props;
-    console.log(rosterId, rosterName)
         
     const deleteRoster = async (e) => {
         
@@ -28,14 +27,8 @@ const DeleteRosterButton = (props) => {
                         .then(() => setLoaded(true)))
                         .then(() => history.push(`/rosters`))
         
-
-            //dispatch action that deletes Roster_Member
-            //then dispatch getOneRoster
-            //then dispatch getMembers
-            //then set loaded to true
-            console.log("Yes")
         } else {
-            console.log("No")
+            return
         }
 
     };

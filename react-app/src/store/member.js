@@ -38,8 +38,6 @@ export const getOneMember = (id) => async (dispatch) => {
 }
 
 export const addNewMember = data => async (dispatch) => {
-    console.log(data)
-    debugger
     const response = await fetch(`/api/members/create`, {
         method: 'POST',
         headers: {
@@ -47,22 +45,16 @@ export const addNewMember = data => async (dispatch) => {
         },
         body: JSON.stringify(data),
     });
-    debugger
-
-    console.log(response)
 
     if (response.ok) {
         const member = await response.json();
         dispatch(create_member(member));
-        debugger
         return member;
     }
 }
 
 
 export const editMember = (data) => async (dispatch) => {
-    console.log(data)
-    debugger
     const response = await fetch(`/api/members/edit/${data.memberId}`, {
         method: 'PUT',
         headers: {
@@ -70,27 +62,19 @@ export const editMember = (data) => async (dispatch) => {
         },
         body: JSON.stringify(data),
     });
-    debugger
 
-    console.log(response)
 
     if (response.ok) {
         const member = await response.json();
         dispatch(edit_a_member(member));
-        debugger
         return member;
     }
 }
 
 export const destroyMember = (id) => async (dispatch) => {
-    debugger
     const response = await fetch(`/api/members/delete/${id}`, {
         method: 'DELETE',
     });
-
-    debugger
-
-    console.log(response)
 
     if (response.ok) {
         const member = await response.json();
@@ -105,7 +89,6 @@ const memberReducer = (state = {}, action) => {
         case LOAD_MEMBERS:
             newState = Object.assign({}, state);
             newState.member = action.members
-            //add stuff here later
             return newState
         case CREATE_MEMBER:
             newState = Object.assign({}, state);
@@ -114,12 +97,10 @@ const memberReducer = (state = {}, action) => {
         case EDIT_MEMBER:
             newState = Object.assign({}, state);
             newState.member = action.member
-            debugger
             return newState
         case DELETE_MEMBER:
             newState = Object.assign({}, state);
             newState.roster = action.roster;
-            debugger
             return newState;
         default:
             return state

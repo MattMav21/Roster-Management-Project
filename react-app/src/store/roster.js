@@ -37,7 +37,6 @@ const delete_roster = (roster) => ({
 
 export const getRosters = () => async (dispatch) => {
     const response = await fetch(`/api/rosters/`);
-    debugger
     const res = await response.json();
     dispatch(load_rosters(res));
     return res;
@@ -51,8 +50,6 @@ export const getOneRoster = (id) => async (dispatch) => {
 }
 
 export const addNewRoster = data => async (dispatch) => {
-    console.log(data)
-    debugger
     const response = await fetch(`/api/rosters/create`, {
         method: 'POST',
         headers: {
@@ -60,21 +57,15 @@ export const addNewRoster = data => async (dispatch) => {
         },
         body: JSON.stringify(data),
     });
-    debugger
-
-    console.log(response)
 
     if (response.ok) {
         const roster = await response.json();
         dispatch(create_roster(roster));
-        debugger
         return roster;
     }
 }
 
 export const assignToRoster = data => async (dispatch) => {
-    console.log(data)
-    debugger
     const response = await fetch(`/api/rosters/assign`, {
         method: 'POST',
         headers: {
@@ -82,22 +73,16 @@ export const assignToRoster = data => async (dispatch) => {
         },
         body: JSON.stringify(data),
     });
-    debugger
-
-    console.log(response)
 
     if (response.ok) {
         const roster = await response.json();
         dispatch(assign_roster(roster));
-        debugger
         return roster;
     }
 }
 
 
 export const editRoster = (data) => async (dispatch) => {
-    console.log(data)
-    debugger
     const response = await fetch(`/api/rosters/edit/${data.rosterId}`, {
         method: 'PUT',
         headers: {
@@ -105,29 +90,19 @@ export const editRoster = (data) => async (dispatch) => {
         },
         body: JSON.stringify(data),
     });
-    debugger
-
-    console.log(response)
 
     if (response.ok) {
         const roster = await response.json();
         dispatch(edit_a_roster(roster));
-        debugger
         return roster;
     }
 
 }
 
 export const unassignToRoster = (data) => async (dispatch) => {
-    console.log(data)
-    debugger
     const response = await fetch(`/api/rosters/${data.rosterId}/delete/${data.memberId}`, {
         method: 'DELETE',
     });
-
-    debugger
-
-    console.log(response)
 
     if (response.ok) {
         const roster = await response.json();
@@ -136,14 +111,9 @@ export const unassignToRoster = (data) => async (dispatch) => {
 }
 
 export const destroyRoster = (id) => async (dispatch) => {
-    debugger
     const response = await fetch(`/api/rosters/delete/${id}`, {
         method: 'DELETE',
     });
-
-    debugger
-
-    console.log(response)
 
     if (response.ok) {
         const roster = await response.json();
@@ -159,33 +129,26 @@ const rosterReducer = (state = {}, action) => {
         case LOAD_ROSTERS:
             newState = Object.assign({}, state);
             newState.roster = action.rosters
-            debugger
-            //add stuff here later
             return newState
         case CREATE_ROSTER:
             newState = Object.assign({}, state);
             newState.roster = action.rosters
-            debugger
             return newState
         case ASSIGN_TO_ROSTER:
             newState = Object.assign({}, state);
             newState.roster = action.rosters
-            debugger
             return newState
         case EDIT_ROSTER:
             newState = Object.assign({}, state);
             newState.roster = action.roster
-            debugger
             return newState
         case UNASSIGN_TO_ROSTER:
             newState = Object.assign({}, state);
             newState.roster = action.roster;
-            debugger
             return newState;
         case DELETE_ROSTER:
             newState = Object.assign({}, state);
             newState.roster = action.roster;
-            debugger
             return newState;
         default:
             return state

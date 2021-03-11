@@ -12,10 +12,8 @@ const UnassignButton = (props) => {
     const { unassignToRoster, getOneRoster } = rosterActions;
     const { getMembers } = memberActions;
     const history = useHistory()
-    // console.log(this_member)
 
     const { this_member, roster_name } = props;
-    console.log(this_member, roster_name)
 
     const unassign = async (e) => {
         const theMemberId = this_member.map((person) => {
@@ -39,14 +37,8 @@ const UnassignButton = (props) => {
                 .then(() => setLoaded(true))
                 .then(() => history.push(`/rosters/${rosterId}`))
             ));
-
-            //dispatch action that deletes Roster_Member
-            //then dispatch getOneRoster
-            //then dispatch getMembers
-            //then set loaded to true
-            console.log("Yes")
         } else {
-            console.log("No")
+            return
         }
 
 

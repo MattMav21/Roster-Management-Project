@@ -9,6 +9,7 @@ import RosterAssignmentForm from "./RosterAssignmentForm"
 import Home from "./Home"
 import EditMemberForm from './EditMemberForm'
 import EditRosterForm from './EditRosterForm'
+import LandingPage from './LandingPage'
 
 
 // Export ALL components here
@@ -22,5 +23,6 @@ export {
     RosterAssignmentForm,
     Home,
     EditMemberForm,
-    EditRosterForm
+    EditRosterForm,
+    LandingPage
 }

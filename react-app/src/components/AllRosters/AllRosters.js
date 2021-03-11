@@ -8,13 +8,7 @@ const AllRosters = () => {
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
     const { getRosters } = rosterActions;
-    const everyRoster = useSelector((state) => state.roster.roster);
-
-    debugger
-    
-    if (everyRoster !== undefined) {
-        console.log(everyRoster)
-    }
+    const everyRoster = useSelector((state) => state.roster.roster);    
 
     useEffect(() => {
         dispatch(getRosters(everyRoster)).then(() => setLoaded(true))

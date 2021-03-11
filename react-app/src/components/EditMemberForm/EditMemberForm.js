@@ -37,11 +37,8 @@ const EditMemberForm = () => {
             notes: notes,
             memberId: memberId
         }
-        debugger
-        console.log(editedMember)
         return dispatch(editMember(editedMember))
         .then(() => history.push(`/members/${memberId}`))
-        console.log(editedMember)
     }
 
     return (

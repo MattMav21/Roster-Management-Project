@@ -35,10 +35,11 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   };
 
   if (authenticated) {
-    return <Redirect to="/" />;
+    return <Redirect to="/home" />;
   }
 
   return (
+    <div className="p-14">
     <form className="border-black m-auto flex flex-col w-6/12" onSubmit={onSignUp}>
       <h1 className="bg-gray-200 border-black p-4 text-center w-full"> Sign Up </h1>
       <div className="flex flex-col p-2">
@@ -87,6 +88,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
         <a classNane="text-blue-500" href="/login">I already have an account</a>
       </div>
     </form>
+    </div>
   );
 };
 

@@ -16,29 +16,13 @@ const Roster = () => {
     const { getOneRoster } = rosterActions;
     const { getMembers } = memberActions;
     const roster = useSelector((state) => state.roster.roster);
-    const memberState = useSelector((state) => state.member.member)
-    // const rosterMembers = useSelector((state) => state.roster.roster.this_roster)
 
-    // if (roster !== undefined) {
-    //     console.log(Object.values(roster.this_roster))
-    // }
-
-    // console.log(roster.this_roster)
-
-    // if (rosterMembers !== undefined) {
-    //     console.log(rosterMembers)
-    // }
-
-    
     useEffect(() => {
         dispatch(getOneRoster(rosterId)).then(() =>
         dispatch(getMembers()))
         .then(() => setLoaded(true))
     }, [getOneRoster])
     
-    debugger
-    //console.log(Object.values(rosterMembers))
-
     return (
         <div>
         {loaded && roster &&
