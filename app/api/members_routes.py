@@ -1,5 +1,5 @@
 from flask import Blueprint, request, redirect
-from app.models import db, User, Member, Member_Property, Roster_Member
+from app.models import db, User, Member, Member_Property, Roster_Member, Roster
 from app.forms import MemberCreateForm, MemberEditForm
 from datetime import datetime
 
@@ -25,12 +25,35 @@ def everybody():
 @members_routes.route('/<int:id>', methods=["GET"])
 def person(id):
     member = Member.query.get_or_404(id)
+    
+    correct_roster_ids = []
+
+    member_of = Roster_Member.query.filter(Roster_Member.id == id).all()
+    print("MEMBER OF!!!!!!!!!!!!!!!", member_of)
+
+    for ros_mem in member_of:
+        correct_roster_ids.append(ros_mem.roster_id)
+    # rosters_on = Roster.query.filter
+
+    correct_rosters = Roster.query.filter(Roster.id.in_(correct_roster_ids)).all()
+
+    print("CORR ROST", correct_rosters)
+
+    send_this = []
+
+    for roster in correct_rosters:
+        send_this.append(roster.name)
+
+    print("SEND!!!!", send_this)
+
     single_person = {
         "id": member.id,
         "name": member.name,
         "notes": member.notes,
         "created_at": member.created_at,
+        "roster_in": send_this,
     }
+    
     return single_person
 
 

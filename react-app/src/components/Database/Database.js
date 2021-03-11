@@ -16,7 +16,7 @@ const Database = () => {
 
     return (
         <div className="flex">
-            <table className="border-black m-auto">
+            <table className="border-black m-auto pb-4">
                 <thead className="bg-gray-200 p-4">
                     <tr>
                         <th colSpan="3">

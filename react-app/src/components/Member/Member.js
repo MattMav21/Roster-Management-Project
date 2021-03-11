@@ -30,9 +30,11 @@ const Member = () => {
                     </thead>
                     <tbody className="border-black">
                                 <tr className="border-black">
-                                    <td className="border-black">{everybody.notes}</   td>
+                                    <td className="border-black">{everybody.notes}</td>
                                 </tr>
-
+                                <tr>
+                                    <td className="border-black">{everybody.roster_in}</td>
+                                </tr>
                     </tbody>
                 </table>
             }

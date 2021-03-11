@@ -20,7 +20,7 @@ const Unassigned = () => {
                 <thead className="bg-gray-200 p-4">
                     <tr>
                         <th colSpan="3">
-                            These People are not assigned to a Roster
+                            These People are not assigned to a roster.
                         </th>
                     </tr>
                 </thead>
