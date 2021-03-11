@@ -5,36 +5,38 @@ import LogoutButton from './auth/LogoutButton';
 
 const NavBar = ({ setAuthenticated }) => {
   return (
-    <nav className="flex m-auto flex-nowrap bg-black justify-around">
+    <nav className="flex m-auto flex-nowrap bg-gray-400 justify-around mb-12">
 
-        <div className="w-1/4">
-          <a className="" to="/" exact={true} activeClassName="active">
-            <div className="pt-4 pb-4 bg-green-900">
+      <a className="w-1/4" href="/home" exact={true} activeClassName="active">
+        <div className="">
+            <div className="pt-4 pb-4 hover:bg-green-700 text-center">
               Home
             </div>
-          </a>
         </div>
+          </a>
 
-      <div className="w-1/4">
-          <a to="/rosters" exact={true} activeClassName="active">
-          <div className="pt-4 pb-4  bg-blue-900">
+      <a className="w-1/4" href="/rosters" exact={true} activeClassName="active">
+        <div className="">
+          <div className="pt-4 pb-4  hover:bg-blue-700 text-center">
               Rosters
-            </div>
-          </a>
+          </div>
         </div>
+      </a>
 
 
-      <div className="w-1/4">
-            <a to="/members" exact={true} activeClassName="active">
-          <div className="pt-4 pb-4 bg-yellow-400">
-                Database
-              </div>
-            </a>
+      <a className="w-1/4" href="/members" exact={true} activeClassName="active">
+        <div className="">
+          <div className="pt-4 pb-4 hover:bg-yellow-400 text-center">
+            Database
           </div>
+        </div>
+      </a>
 
-      <div className="pt-4 pb-4  bg-red-900 w-1/4">
-            <LogoutButton setAuthenticated={setAuthenticated} />
-          </div>
+      {/* <a href="logout" className="w-1/4"> */}
+        
+          <LogoutButton setAuthenticated={setAuthenticated} />
+       
+      {/* </a> */}
     </nav>
   );
 }
