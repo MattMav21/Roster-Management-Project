@@ -30,13 +30,20 @@ const Member = () => {
                     </thead>
                     <tbody className="border-black">
                                 <tr className="border-black">
-                                    <td className="border-black">{everybody.notes}</td>
+                                    <td className="border-black text-center">{everybody.notes}</td>
                                 </tr>
-                                <tr>
-                                    {everybody.roster_in !== "" ? everybody.roster_in.map((roster) => {
-                                        return <td>{roster}</td>
-                                    }) : <td>None</td>}
-                                </tr>
+                                    
+                                        {everybody.roster_in !== [] ? everybody.roster_in.map((roster) => {
+                                            return (
+                                                <tr>
+                                                    <td className="flex border-0 border-r justify-between">
+                                                        {roster}
+                                                    </td>
+                                                </tr>
+                                            )
+                                        }) : <tr>None</tr>}
+                                    
+                                
                                 {/* <tr>
                                     <td className="border-black">{everybody.roster_in.map((roster) => roster)}</td>
                                 </tr> */}
