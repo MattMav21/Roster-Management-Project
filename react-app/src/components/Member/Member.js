@@ -33,8 +33,13 @@ const Member = () => {
                                     <td className="border-black">{everybody.notes}</td>
                                 </tr>
                                 <tr>
-                                    <td className="border-black">{everybody.roster_in}</td>
+                                    {everybody.roster_in !== "" ? everybody.roster_in.map((roster) => {
+                                        return <td>{roster}</td>
+                                    }) : <td>None</td>}
                                 </tr>
+                                {/* <tr>
+                                    <td className="border-black">{everybody.roster_in.map((roster) => roster)}</td>
+                                </tr> */}
                     </tbody>
                 </table>
             }

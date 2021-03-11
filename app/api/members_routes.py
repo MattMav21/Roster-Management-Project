@@ -28,7 +28,7 @@ def person(id):
     
     correct_roster_ids = []
 
-    member_of = Roster_Member.query.filter(Roster_Member.id == id).all()
+    member_of = Roster_Member.query.filter(Roster_Member.member_id == id).all()
     print("MEMBER OF!!!!!!!!!!!!!!!", member_of)
 
     for ros_mem in member_of:
@@ -53,7 +53,7 @@ def person(id):
         "created_at": member.created_at,
         "roster_in": send_this,
     }
-    
+
     return single_person
 
 
