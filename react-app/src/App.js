@@ -18,7 +18,8 @@ import {
   Home,
   EditMemberForm,
   EditRosterForm,
-  LandingPage
+  LandingPage,
+  Unassigned
 } from "./components/index"
 
 function App() {
@@ -65,6 +66,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/members/edit/:memberId" exact={true} authenticated={authenticated}>
           <EditMemberForm />
+        </ProtectedRoute>
+        <ProtectedRoute path="/members/unassigned" exact={true} authenticated={authenticated}>
+          <Unassigned />
         </ProtectedRoute>
         <ProtectedRoute path="/rosters/edit/:rosterId" exact={true} authenticated={authenticated}>
           <EditRosterForm />

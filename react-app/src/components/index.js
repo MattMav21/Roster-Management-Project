@@ -10,6 +10,7 @@ import Home from "./Home"
 import EditMemberForm from './EditMemberForm'
 import EditRosterForm from './EditRosterForm'
 import LandingPage from './LandingPage'
+import Unassigned from './Unassigned';
 
 
 // Export ALL components here
@@ -24,5 +25,6 @@ export {
     Home,
     EditMemberForm,
     EditRosterForm,
-    LandingPage
+    LandingPage,
+    Unassigned
 }

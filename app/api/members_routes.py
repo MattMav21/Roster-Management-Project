@@ -99,6 +99,37 @@ def unassign(m_id):
     return { "Deletion" : "successful" }
 
 
+@members_routes.route('/unassigned', methods=["GET"])
+def unassigned():
+    roster_members = Roster_Member.query.all()
+
+    unassigned_members_ids = []
+
+    idx = 0
+    for m in roster_members:
+        unassigned_members_ids.append(m.member_id)
+        idx+=1
+
+    no_home = Member.query.filter(Member.id.notin_(unassigned_members_ids)).all()
+
+    print("NO HOME!!!!!!!!", no_home)
+
+    # members = Member.query.all()
+    unassigned_ppl = {}
+    i = 0
+    for homeless in no_home:
+        unassigned_ppl[i] = {
+            "id": no_home[i].id,
+            "name": no_home[i].name,
+            "notes": no_home[i].notes,
+            "created_at": no_home[i].created_at,
+        }
+        i+=1
+
+    print("UNASSIGNED!!!!!!!!", unassigned_ppl)
+    
+    return unassigned_ppl
+
     # members = Member.query.all()
     # ppl = {}
     # idx = 0

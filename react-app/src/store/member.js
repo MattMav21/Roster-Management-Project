@@ -82,6 +82,14 @@ export const destroyMember = (id) => async (dispatch) => {
     }
 }
 
+export const getUnassignedMembers = () => async (dispatch) => {
+    const response = await fetch('/api/members/unassigned');
+    const res = await response.json();
+    dispatch(loading_everyone(res));
+    return res;
+}
+
+
 
 const memberReducer = (state = {}, action) => {
     let newState;
