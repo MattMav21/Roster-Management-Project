@@ -4,6 +4,7 @@ const ASSIGN_TO_ROSTER = "roster/ASSIGN_TO_ROSTER"
 const EDIT_ROSTER = "roster/EDIT_ROSTER"
 const UNASSIGN_TO_ROSTER = "roster/UNASSIGN_TO_ROSTER"
 const DELETE_ROSTER = "roster/DELETE_ROSTER"
+const SEARCH = "roster/SEARCH"
 
 const load_rosters = (rosters) => ({
     type: LOAD_ROSTERS,
@@ -33,6 +34,11 @@ const unassign_roster = (data) => ({
 const delete_roster = (roster) => ({
     type: DELETE_ROSTER,
     roster
+})
+
+const searching = (query) => ({
+    type: SEARCH,
+    query
 })
 
 export const getRosters = () => async (dispatch) => {
@@ -121,6 +127,13 @@ export const destroyRoster = (id) => async (dispatch) => {
     }
 }
 
+export const searchEverything = (query) => async (dispatch) => {
+    const response = await fetch(`/api/rosters/search/${query}`)
+    const res = await response.json();
+    dispatch(searching(res));
+    return res;
+}
+
 
 
 const rosterReducer = (state = {}, action) => {
@@ -150,6 +163,10 @@ const rosterReducer = (state = {}, action) => {
             newState = Object.assign({}, state);
             newState.roster = action.roster;
             return newState;
+        case LOAD_ROSTERS:
+            newState = Object.assign({}, state);
+            newState.roster = action.query
+            return newState
         default:
             return state
     }

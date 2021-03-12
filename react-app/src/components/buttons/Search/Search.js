@@ -7,17 +7,25 @@ import "./Search.css";
 
 const Search = () => {
     const [query, setQuery] = useState('');
+    const history = useHistory();
+
+    const { searchEverything } = rosterActions;
+
+    const dispatch = useDispatch();
 
 
-    const onSubmit = (e) => {
-        e.preventDefault()
-        console.log(query)
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        await dispatch(searchEverything(query))
+        .then(() => history.push(`/rosters/search/${query}`))     
     }
+        
+    
 
 
     return (
         <div className="search-bar m-auto">
-            <form className="container search-form m-auto flex flex-nowrap" action={`/rosters/search/${query}`} method="get" onSubmit={onSubmit}>
+            <form className="container search-form m-auto flex flex-nowrap" method="get" onSubmit={onSubmit}>
                 <div className="w-full relative m-0.5">
                     <input
                         className="search-field w-96 rounded p-1.5"
