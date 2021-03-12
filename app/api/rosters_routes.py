@@ -1,6 +1,8 @@
 from flask import Blueprint, request, redirect, session
 from app.models import db, User, Roster, Roster_Member, Member
 from app.forms import RosterCreateForm, RosterAssignmentForm, RosterEditForm
+from sqlalchemy import and_
+from sqlalchemy.sql import select
 
 rosters_routes = Blueprint('rosters', __name__)
 
@@ -148,12 +150,17 @@ def unassign(r_id):
     return { "Deletion" : "successful" }
 
 
-
+# debug this
 @rosters_routes.route('<int:r_id>/delete/<int:m_id>', methods=["DELETE"])
 def delete_roster(r_id, m_id):
     roster_to_unassign = Roster.query.get_or_404(r_id)
+    print("ROSTER!!!", roster_to_unassign)
     member_to_unassign = Member.query.get_or_404(m_id)
-    deleted_roster_member = Roster_Member.query.filter(Roster_Member.member_id == m_id and Roster_Member.roster_id == r_id).one()
+    print("MEMBER!!!", member_to_unassign)
+    # "and" is wrong!!!!
+    deleted_roster_member = Roster_Member.query.filter(and_(Roster_Member.roster_id == r_id, Roster_Member.member_id == m_id)).one()
+    # deleted_roster_member = Roster_Member.query.filter(Roster_Member.member_id == m_id.and_(Roster_Member.roster_id == r_id)).all()
+    print("DELETE THIS ROSTER_MEMBER Column!!!!!!!!!!!", deleted_roster_member)
     db.session.delete(deleted_roster_member)
     db.session.commit()
     return { "Deletion" : "successful" }
