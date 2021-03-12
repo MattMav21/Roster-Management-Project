@@ -18,8 +18,9 @@ const Member = () => {
 
     return (
         <div className="flex">
-            <EditMemberButton />
             {loaded &&
+                <div className="border-black m-auto">
+                <EditMemberButton />
                 <table className="border-black m-auto">
                     <thead className="bg-gray-200 p-4">
                         <tr>
@@ -49,6 +50,7 @@ const Member = () => {
                                 </tr> */}
                     </tbody>
                 </table>
+                </div>
             }
         </div>
     );

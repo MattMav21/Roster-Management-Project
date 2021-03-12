@@ -16,7 +16,7 @@ const EditMemberButton = () => {
         history.push(`/members/edit/${memberId}`)
     };
 
-    return <button className="bg-green-400 rounded p-1" onClick={editMember}> Edit This Member </button>;
+    return <button className="bg-green-400 rounded p-1 mb-2 h-10" onClick={editMember}> Edit </button>;
 };
 
 export default EditMemberButton; 
