@@ -161,7 +161,43 @@ def delete_roster(r_id, m_id):
 
 @rosters_routes.route('search/<query>', methods=["GET"])
 def search_for(query):
+    valid_members = {}
+    #or notes
     matching_members = Member.query.filter(Member.name.ilike('%{}%'.format(query))).all()
-    print("MATCHING MEMBERS!!!!!!!!", matching_members)
-    # matching_rosters = Roster. 
-    return { "Search" : "Initiated" }
+
+    idx = 0
+    for match_memb in matching_members:
+        valid_members[idx] = {
+            "id": matching_members[idx].id,
+            "name": matching_members[idx].name,
+            "notes": matching_members[idx].notes,
+            "created_at": matching_members[idx].created_at,
+        }
+        idx+=1
+
+    print("VALID", valid_members)
+
+    valid_rosters = {}
+    #or notes
+    matching_rosters = Roster.query.filter(Roster.name.ilike('%{}%'.format(query))).all()
+
+    idx2 = 0
+    for match_rost in matching_rosters:
+        valid_rosters[idx2] = {
+            "id": matching_rosters[idx2].id,
+            "name": matching_rosters[idx2].name,
+            "notes": matching_rosters[idx2].notes,
+            "user_id": matching_rosters[idx2].user_id,
+        }
+        idx2+=1
+
+    print("VALID", valid_rosters)
+
+    matching_dict = {
+        "matching_members": valid_members,
+        "matching_rosters": valid_rosters,
+    }
+
+    # matching_rosters = Roster.query.filter(Roster.name.ilike('%{}%'.format(query))).all()
+    # print("MATCHING ROSTERS!!!!!!!!", matching_rosters)
+    return matching_dict
