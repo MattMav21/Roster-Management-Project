@@ -17,7 +17,7 @@ const EditRosterButton = () => {
         history.push(`/rosters/edit/${rosterId}`)
     };
 
-    return <button className="bg-green-400 rounded p-1" onClick={editMember}> Edit This Roster </button>;
+    return <button className="bg-green-400 rounded p-1 mb-2 h-10" onClick={editMember}> Edit </button>;
 };
 
 export default EditRosterButton;

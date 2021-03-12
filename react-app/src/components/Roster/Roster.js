@@ -24,10 +24,10 @@ const Roster = () => {
     }, [getOneRoster])
     
     return (
-        <div>
-        {loaded && roster &&
         <div className="flex">
-            <EditRosterButton />
+        {loaded && roster &&
+                <div className="border-black m-auto">
+                <EditRosterButton />
                 <table className="border-black m-auto">
                     <thead className="bg-gray-200 p-4">
                         <tr>
