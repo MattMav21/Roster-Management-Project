@@ -1,0 +1,13 @@
+.search-bar {
+    border: none!important;
+}
+
+.search-form {
+    /* border: none!important; */
+    border: none!important;
+
+}
+
+.search-field {
+    border: solid 0.5px gray!important;
+}

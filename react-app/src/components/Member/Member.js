@@ -33,21 +33,15 @@ const Member = () => {
                                 <tr className="border-black">
                                     <td className="border-black text-center">{everybody.notes}</td>
                                 </tr>
-                                    
-                                        {everybody.roster_in !== [] ? everybody.roster_in.map((roster) => {
-                                            return (
-                                                <tr>
-                                                    <td className="flex border-0 border-r justify-between">
-                                                        {roster}
-                                                    </td>
-                                                </tr>
-                                            )
-                                        }) : <tr>None</tr>}
-                                    
-                                
-                                {/* <tr>
-                                    <td className="border-black">{everybody.roster_in.map((roster) => roster)}</td>
-                                </tr> */}
+                                    {everybody.roster_in !== [] ? everybody.roster_in.map((roster) => {
+                                        return (
+                                            <tr>
+                                                <td className="flex border-0 border-r justify-between">
+                                                    {roster}
+                                                </td>
+                                            </tr>
+                                        )
+                                    }) : <tr>None</tr>}
                     </tbody>
                 </table>
                 </div>

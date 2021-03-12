@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom"
 import * as memberActions from "../../store/member"
 import { useDispatch, useSelector } from 'react-redux';
+import Search from "../buttons/Search/Search";
 
 const Home = () => {
+    const [query, setQuery] = useState('');
+
     return (
         <div className="container flex flex-col m-auto flex-nowrap">
+            <div className="flex ">
+                <Search />
+            </div>
             <div className="container flex p-10 m-auto space-x-10 m-auto justify-around flex-nowrap">
                 <Link to="/rosters/create" className="border-black bg-gray-500 p-5 rounded cursor-pointer">
                     Create a new roster!
