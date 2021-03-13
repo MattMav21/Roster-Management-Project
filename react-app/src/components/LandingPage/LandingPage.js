@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Redirect } from "react-router-dom"
+import { Link, Redirect, useHistory } from "react-router-dom"
 import * as memberActions from "../../store/member"
 import { useDispatch, useSelector } from 'react-redux';
 // import * as UserActions from '../../store/'
@@ -8,8 +8,10 @@ import "./LandingPage.css"
 
 const LandingPage = ({authenticated, setAuthenticated}) => {
     const dispatch = useDispatch();
+    const history = useHistory();
+    
     if (authenticated) {
-        return <Redirect to="/home" />;
+        history.push('/home')
     }
 
     return (

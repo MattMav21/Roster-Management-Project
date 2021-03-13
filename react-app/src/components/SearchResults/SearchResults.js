@@ -24,7 +24,11 @@ const SearchResults = () => {
     return (
         loaded && matchingData &&
         <div className="flex flex-col">
-        <h1>Search Results for "{query}":</h1>
+        <div className="pb-4 m-auto font-bold">
+            <h1>Search Results for "{query}":</h1>
+        </div>
+
+            <div className="pb-12">
             <table className="border-black m-auto pb-4">
                 <thead className="bg-gray-200 p-4">
                     <tr>
@@ -50,8 +54,9 @@ const SearchResults = () => {
                     })}
                 </tbody>
             </table>
+            </div>
 
-
+            <div className="pb-12">
             <table className="border-black m-auto pb-4">
                 <thead className="bg-gray-200 p-4">
                     <tr>
@@ -66,7 +71,7 @@ const SearchResults = () => {
                             <tr className="border-black">
                                 <td className="border-black">
                                     <>
-                                        <a href={`/members/${roster.id}`} className="border-black">
+                                        <a href={`/rosters/${roster.id}`} className="border-black">
                                             {roster.name}
                                         </a>
                                     </>
@@ -77,6 +82,7 @@ const SearchResults = () => {
                     })}
                 </tbody>
             </table>
+            </div>
         </div>
     );
 
