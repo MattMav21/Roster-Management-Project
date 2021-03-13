@@ -12,19 +12,19 @@ const SearchResults = () => {
     console.log(query)
     const { searchEverything } = rosterActions;
     const matchingData = useSelector((state) => state.roster.roster);
-    debugger
 
     useEffect(() => {
         dispatch(searchEverything(query)).then(() => setLoaded(true))
     }, [searchEverything])
 
-    console.log(matchingData.matching_members)
+    function isEmpty(obj) {
+        return Object.keys(obj).length === 0;
+    }
 
     return (
-        loaded &&
-        <div className="flex">
+        loaded && matchingData &&
+        <div className="flex flex-col">
         <h1>Search Results for "{query}":</h1>
-        <h2>Members:</h2>
             <table className="border-black m-auto pb-4">
                 <thead className="bg-gray-200 p-4">
                     <tr>
@@ -34,8 +34,7 @@ const SearchResults = () => {
                     </tr>
                 </thead>
                 <tbody className="border-black">
-                    {loaded && Object.values(matchingData.matching_members).map((member) => {
-                        debugger
+                    {isEmpty(matchingData.matching_members) ? <td>No Results</td> : Object.values(matchingData.matching_members).map((member) => {
                         return (
                             <tr className="border-black">
                                 <td className="border-black">
@@ -46,6 +45,33 @@ const SearchResults = () => {
                                     </>
                                 </td>
                                 <td className="border-black">{member.notes}</   td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
+
+
+            <table className="border-black m-auto pb-4">
+                <thead className="bg-gray-200 p-4">
+                    <tr>
+                        <th colSpan="3">
+                            Rosters:
+                        </th>
+                    </tr>
+                </thead>
+                <tbody className="border-black">
+                    {isEmpty(matchingData.matching_rosters) ? <td>No Results</td> :  Object.values(matchingData.matching_rosters).map((roster) => {
+                        return (
+                            <tr className="border-black">
+                                <td className="border-black">
+                                    <>
+                                        <a href={`/members/${roster.id}`} className="border-black">
+                                            {roster.name}
+                                        </a>
+                                    </>
+                                </td>
+                                <td className="border-black">{roster.notes}</   td>
                             </tr>
                         )
                     })}

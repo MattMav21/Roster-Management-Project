@@ -165,7 +165,6 @@ const rosterReducer = (state = {}, action) => {
             return newState;
         case SEARCH:
             newState = Object.assign({}, state);
-            debugger
             newState.roster = action.query
             return newState
         default:
