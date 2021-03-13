@@ -11,6 +11,7 @@ import EditMemberForm from './EditMemberForm'
 import EditRosterForm from './EditRosterForm'
 import LandingPage from './LandingPage'
 import Unassigned from './Unassigned';
+import SearchResults from './SearchResults'
 
 
 // Export ALL components here
@@ -26,5 +27,6 @@ export {
     EditMemberForm,
     EditRosterForm,
     LandingPage,
-    Unassigned
+    Unassigned,
+    SearchResults,
 }
