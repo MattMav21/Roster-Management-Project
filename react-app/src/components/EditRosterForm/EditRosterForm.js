@@ -9,8 +9,6 @@ const EditRosterForm = () => {
     const [loaded, setLoaded] = useState(false);
     const { rosterId } = useParams();
     const dispatch = useDispatch();
-
-    //make editRoster action
     const { getOneRoster, editRoster } = rosterActions;
     const history = useHistory();
 
@@ -24,11 +22,13 @@ const EditRosterForm = () => {
         prevNotes = everybody.notes;
     }
 
-    const [name, setName] = useState(prevName)
-    const [notes, setNotes] = useState(prevNotes)
+    const [name, setName] = useState(localStorage.getItem("name"))
+    const [notes, setNotes] = useState(localStorage.getItem("notes"))
 
-    useEffect(() => {
-        dispatch(getOneRoster(rosterId)).then(() => setLoaded(true))
+    useEffect(async () => {
+        await localStorage.setItem("name", name)
+        await localStorage.setItem("notes", notes)
+        await dispatch(getOneRoster(rosterId)).then(() => setLoaded(true))
     }, [getOneRoster])
 
 
@@ -58,7 +58,7 @@ const EditRosterForm = () => {
                                 className="border-black p-4 text-center bg-gray-100 w-full"
                                 type="text"
                                 placeholder={prevName}
-                                value={name}
+                                defaultValue={prevName}
                                 onChange={(e) => setName(e.target.value)}
                             />
                     </div>
@@ -69,7 +69,7 @@ const EditRosterForm = () => {
                             className="border-black p-4 h-auto text-center bg-gray-100 w-full"
                             type="text"
                             placeholder={prevNotes}
-                            value={notes}
+                            defaultValue={prevNotes}
                             onChange={(e) => setNotes(e.target.value)}
                         />
                     </div>
