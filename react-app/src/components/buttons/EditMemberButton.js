@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
+import { getOneMember } from "../../store/member";
 
 const EditMemberButton = () => {
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch()
     const history = useHistory()
     const { memberId } = useParams()
+
+    
+
 
     const editMember = async (e) => {
         //dispatch action that deletes Roster_Member

@@ -43,6 +43,7 @@ const EditRosterForm = () => {
     }
 
     return (
+        loaded && everybody &&
         <div className="flex m-auto border-black text-center flex-col p-2">
             {loaded && prevName && prevNotes &&
                 <>

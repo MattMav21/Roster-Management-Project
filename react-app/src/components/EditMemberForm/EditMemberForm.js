@@ -22,13 +22,14 @@ const EditMemberForm = () => {
         prevNotes = everybody.notes;
     }
     
-    const [name, setName] = useState(prevName)
-    const [notes, setNotes] = useState(prevNotes)
-    
-    useEffect(() => {
-        dispatch(getOneMember(memberId)).then(() => setLoaded(true))
-    }, [getOneMember])
+    const [name, setName] = useState(localStorage.getItem("name"))
+    const [notes, setNotes] = useState(localStorage.getItem("notes"))
 
+    useEffect(async () => {
+        await localStorage.setItem("name", name)
+        await localStorage.setItem("notes", notes)
+        await dispatch(getOneMember(memberId)).then(() => setLoaded(true))
+    }, [])
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -42,6 +43,7 @@ const EditMemberForm = () => {
     }
 
     return (
+        loaded && everybody &&
         <div className="flex m-auto border-black text-center flex-col p-2">
             {loaded && prevName && prevNotes &&
                 <>
@@ -55,8 +57,8 @@ const EditMemberForm = () => {
                             className="border-black p-4 text-center bg-gray-100 w-full"
                             type="text"
                             placeholder={prevName}
-                            defaultValue={name}
-                            value={name}
+                            defaultValue={prevName}
+                            // value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
 
@@ -69,13 +71,13 @@ const EditMemberForm = () => {
                                 contentEditable="true"
                                 type="text"
                                 placeholder={prevNotes}
-                                defaultValue={notes}
-                                value={notes}
+                                defaultValue={prevNotes}
+                                // value={notes}
                                 onChange={(e) => setNotes(e.target.value)}
                             />
                     </div>
                     <br></br>
-                    <button type="submit" className="bg-blue-400 p-1 m-4 rounded hover:bg-blue-900 w-6/12">Edit</button>
+                    <button disabled={!name ? true : false} type="submit" className="bg-blue-400 p-1 m-4 rounded hover:bg-blue-900 w-6/12">Edit</button>
                 </form>
             </>}
         </div>
