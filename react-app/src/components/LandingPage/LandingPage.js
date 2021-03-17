@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link, Redirect, useHistory } from "react-router-dom"
 import * as memberActions from "../../store/member"
 import { useDispatch, useSelector } from 'react-redux';
-// import * as UserActions from '../../store/'
 import "./LandingPage.css"
 import { authenticate } from '../../services/auth';
 
