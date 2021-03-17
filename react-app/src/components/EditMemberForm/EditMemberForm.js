@@ -58,7 +58,6 @@ const EditMemberForm = () => {
                             type="text"
                             placeholder={prevName}
                             defaultValue={prevName}
-                            // value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
 
@@ -72,9 +71,8 @@ const EditMemberForm = () => {
                                 type="text"
                                 placeholder={prevNotes}
                                 defaultValue={prevNotes}
-                                // value={notes}
                                 onChange={(e) => setNotes(e.target.value)}
-                            />
+                        />
                     </div>
                     <br></br>
                     <button disabled={!name ? true : false} type="submit" className="bg-blue-400 p-1 m-4 rounded hover:bg-blue-900 w-6/12">Edit</button>

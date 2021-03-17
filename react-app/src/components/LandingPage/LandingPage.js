@@ -4,14 +4,25 @@ import * as memberActions from "../../store/member"
 import { useDispatch, useSelector } from 'react-redux';
 // import * as UserActions from '../../store/'
 import "./LandingPage.css"
+import { authenticate } from '../../services/auth';
 
 
-const LandingPage = ({authenticated, setAuthenticated}) => {
+const LandingPage = () => {
+    const [authenticated, setAuthenticated] = useState(false)
     const dispatch = useDispatch();
     const history = useHistory();
-    
+
+
+    useEffect( async () => {
+        await authenticate().then((res) => {
+            if (res.id) {
+                setAuthenticated(true)
+            }
+        })
+    }, [])
+
     if (authenticated) {
-        history.push('/home')
+        return <Redirect to="/home" />;
     }
 
     return (
