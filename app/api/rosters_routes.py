@@ -8,7 +8,7 @@ rosters_routes = Blueprint('rosters', __name__)
 
 @rosters_routes.route('/', methods=["GET"])
 def everybody():
-    rosters = Roster.query.all()
+    rosters = Roster.query.order_by(Roster.name).all()
     each_roster = {}
     idx = 0
     for roster in rosters:
@@ -34,7 +34,7 @@ def roster(id):
         correct_members_ids.append(int(member.member_id))
         idx+=1
     # print("CORR MEMBER IDS", correct_members_ids)
-    correct_members = Member.query.filter(Member.id.in_(correct_members_ids)).all()
+    correct_members = Member.query.filter(Member.id.in_(correct_members_ids)).order_by(Member.name).all()
     # print("CORR MEMBERS", correct_members)
     correct_object = {}
     count = 0

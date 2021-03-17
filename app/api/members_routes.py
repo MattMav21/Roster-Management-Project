@@ -7,7 +7,7 @@ members_routes = Blueprint('members', __name__)
 
 @members_routes.route('/', methods=["GET"])
 def everybody():
-    members = Member.query.all()
+    members = Member.query.order_by(Member.name).all()
     ppl = {}
     idx = 0
     for member in members:
