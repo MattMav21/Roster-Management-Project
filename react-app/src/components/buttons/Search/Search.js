@@ -28,14 +28,14 @@ const Search = () => {
             <form className="container search-form m-auto flex flex-nowrap" method="get" onSubmit={onSubmit}>
                 <div className="w-full relative m-0.5">
                     <input
-                        className="search-field w-96 rounded p-1.5"
+                        className="search-field w-96 rounded p-1.5 focus:bg-blue-300"
                         placeholder="Search"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                     />
                 </div>
                 <div className="m-0.5">
-                    <button className="rounded bg-black text-white p-1.5" type="submit">Search</button>
+                    <button className="search-button rounded bg-black text-white p-2 hover:bg-blue-700 hover:shadow-xl hover:text-yellow-300" type="submit">Search</button>
                 </div>
             </form>
 

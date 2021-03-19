@@ -33,7 +33,7 @@ const DeleteRosterButton = (props) => {
 
     };
 
-    return <button className="relative right-4 bg-red-400 rounded p-1" onClick={deleteRoster}> X </button>;
+    return <button className="relative right-4 text-red-600 rounded px-2 hover:bg-red-900 hover:text-white" onClick={deleteRoster}> X </button>;
 };
 
 export default DeleteRosterButton;

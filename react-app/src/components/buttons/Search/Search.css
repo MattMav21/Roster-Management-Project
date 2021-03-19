@@ -11,3 +11,9 @@
 .search-field {
     border: solid 0.5px gray!important;
 }
+
+.search-button:hover {
+    background-color: rgb(23, 116, 250);
+    color: white;
+    box-shadow: 0 0 15px orangered;
+}
