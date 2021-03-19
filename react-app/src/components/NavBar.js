@@ -1,11 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import "./NavBar.css"
 
 
 const NavBar = ({ setAuthenticated }) => {
   return (
-    <nav className="flex m-auto flex-nowrap bg-gray-400 justify-around mb-12">
+    <nav className="navigation-bar flex m-auto flex-nowrap bg-gray-400 justify-around mb-12">
 
       <a className="w-1/4" href="/home" exact={true} activeClassName="active">
         <div className="">
