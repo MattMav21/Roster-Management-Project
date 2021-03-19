@@ -6,11 +6,11 @@ import "./NavBar.css"
 
 const NavBar = ({ setAuthenticated }) => {
   return (
-    <nav className="navigation-bar flex m-auto flex-nowrap bg-gray-400 justify-around mb-12">
+    <nav className="navigation-bar flex m-auto flex-nowrap bg-blue-700 justify-around mb-12">
 
       <a className="w-1/4" href="/home" exact={true} activeClassName="active">
         <div className="">
-            <div className="pt-4 pb-4 hover:bg-green-700 text-center">
+            <div className="pt-4 pb-4 hover:text-white hover:underline text-center">
               Home
             </div>
         </div>
@@ -18,7 +18,7 @@ const NavBar = ({ setAuthenticated }) => {
 
       <a className="w-1/4" href="/rosters" exact={true} activeClassName="active">
         <div className="">
-          <div className="pt-4 pb-4 hover:bg-blue-700 text-center">
+          <div className="pt-4 pb-4 hover:text-white hover:underline text-center">
               Rosters
           </div>
         </div>
@@ -27,7 +27,7 @@ const NavBar = ({ setAuthenticated }) => {
 
       <a className="w-1/4" href="/members" exact={true} activeClassName="active">
         <div className="">
-          <div className="pt-4 pb-4 hover:bg-yellow-400 text-center">
+          <div className="pt-4 pb-4 hover:text-white hover:underline text-center">
             Database
           </div>
         </div>

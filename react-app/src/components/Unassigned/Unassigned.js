@@ -31,7 +31,7 @@ const Unassigned = () => {
                                 <td className="border-black">
                                     <>
                                         <DeleteMemberButton memberId={member.id} memberName={member.name} />
-                                        <a href={`/members/${member.id}`} className="border-black">
+                                        <a href={`/members/${member.id}`} className="border-black text-blue-600 hover:underline">
                                             {member.name}
                                         </a>
                                     </>

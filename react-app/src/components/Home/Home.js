@@ -14,18 +14,18 @@ const Home = () => {
             </div>
             <div className="container flex p-10 m-auto space-x-10 m-auto justify-around flex-nowrap">
                 <Link to="/rosters/create" className="border-black bg-gray-500 p-5 rounded cursor-pointer">
-                    Create a new roster!
+                    Add to Roster
                 </Link>
                     <Link to="/members/create" className="border-black bg-gray-500 p-5 rounded cursor-pointer">
-                    Add member to database!
+                    Add to Database
                 </Link>
                     <Link to="/rosters/assign" className="border-black bg-gray-500 p-5 rounded cursor-pointer">
-                    Assign a member to your roster!
+                    Assign to Roster!
                 </Link>
             </div>
             <br></br>
             <div className="flex p-10 m-auto">
-                <Link to="/members/unassigned" className="border-black bg-gray-500 p-5 rounded cursor-pointer">These People Need A Home</Link>
+                <Link to="/members/unassigned" className="border-black bg-gray-500 p-5 rounded cursor-pointer">Unassigned</Link>
             </div>
 
        </div>

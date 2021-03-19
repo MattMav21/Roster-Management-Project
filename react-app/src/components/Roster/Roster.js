@@ -46,7 +46,7 @@ const Roster = () => {
                         return (
                             <tr className="border-r border-black">
                                 <td className="flex border-0 border-r justify-between" colSpan="3">
-                                        <Link colSpan="2" to={`/members/${member.id}`}>
+                                    <Link className="text-blue-600 hover:underline" colSpan="2" to={`/members/${member.id}`}>
                                             {member.name}
                                         </Link>
                                         <div className="flex relative left-4 space-x-2">

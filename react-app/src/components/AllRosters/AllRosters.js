@@ -31,7 +31,7 @@ const AllRosters = () => {
                                 <td className="border-black">{
                                     <>
                                     <DeleteRosterButton rosterId={roster.id} rosterName={roster.name} />
-                                    <a href={`/rosters/${roster.id}`} className="border-black">
+                                    <a href={`/rosters/${roster.id}`} className="border-black text-blue-600 hover:underline">
                                         {roster.name}
                                     </a>
                                 </>
