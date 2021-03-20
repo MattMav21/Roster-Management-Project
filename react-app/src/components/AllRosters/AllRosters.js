@@ -15,16 +15,20 @@ const AllRosters = () => {
     }, [getRosters])
 
     return (
-        <div className="flex">
-            <table className="border-black m-auto">
-                <thead className="bg-gray-200 p-4">
-                    <tr>
-                        <th colSpan="3">
+        <div className="flex mb-10">
+            <table className="black m-auto">
+                <thead className="p-6">
+                    <tr className="border-black">
+                        <th className="border-black bg-blue-700 text-white p-6" colSpan="2">
                             Your Rosters
                         </th>
                     </tr>
                 </thead>
                 <tbody className="border-black">
+                    <tr className="subheading border-black">
+                        <td className="p-4 border-black text-center font-bold" colSpan="1">Rosters</td>
+                        <td className="p-4 border-black text-center font-bold" colSpan="1">Notes</td>
+                    </tr>
                     {loaded && Object.values(everyRoster).map((roster) => {
                         return (
                             <tr className="border-black">

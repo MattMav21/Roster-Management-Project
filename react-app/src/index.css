@@ -2,3 +2,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* body {
+    background-color: rgb(50, 50, 50);
+} */
+
+tr {
+    background-color: rgb(214, 246, 255);
+}
+
+table {
+    min-width: 80%;
+}
+
+thead {
+    padding: 1.5rem;
+    color: white;
+}
+
+.subheading {
+    background-color: rgb(119, 162, 255);
+}

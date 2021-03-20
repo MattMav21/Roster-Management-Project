@@ -13,7 +13,7 @@
 }
 
 .search-button:hover {
-    background-color: rgb(23, 116, 250);
+    background-color: orange;
     color: white;
-    box-shadow: 0 0 15px orangered;
+    box-shadow: 0 0 20px orangered;
 }

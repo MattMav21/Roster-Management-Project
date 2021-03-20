@@ -35,7 +35,7 @@ const Search = () => {
                     />
                 </div>
                 <div className="m-0.5">
-                    <button className="search-button rounded bg-black text-white p-2 hover:bg-blue-700 hover:shadow-xl hover:text-yellow-300" type="submit">Search</button>
+                    <button className="search-button rounded text-gray-700 p-2 bg-blue-400 hover:shadow-xl hover:text-yellow-300" type="submit">Search</button>
                 </div>
             </form>
 

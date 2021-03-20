@@ -15,16 +15,20 @@ const Database = () => {
     }, [getMembers])
 
     return (
-        <div className="flex">
+        <div className="flex mb-10">
             <table className="border-black m-auto pb-4">
                 <thead className="bg-gray-200 p-4">
                     <tr>
-                        <th colSpan="3">
+                        <th className="border-black bg-blue-700 text-white p-6" colSpan="2">
                             Your Database
                         </th>
                     </tr>
                 </thead>
                 <tbody className="border-black">
+                    <tr className="subheading border-black">
+                        <td className="p-4 border-black text-center font-bold" colSpan="1">Members</td>
+                        <td className="p-4 border-black text-center font-bold" colSpan="1">Notes</td>
+                    </tr>
                 {loaded && Object.values(everybody).map((member) => {
                     return (
                         <tr className="border-black">
