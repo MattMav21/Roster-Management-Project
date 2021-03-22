@@ -24,10 +24,12 @@ const Roster = () => {
     }, [getOneRoster])
     
     return (
-        <div className="flex">
+        <div className="flex m-auto">
         {loaded && roster &&
-                <div className="border-black m-auto">
-                <EditRosterButton />
+                <div className="container roster flex flex-col border-black m-auto">
+                <div className="relative left-16">
+                    <EditRosterButton />
+                </div>
                 <table className="black m-auto">
                     <thead className="p-6">
                         <tr>
@@ -46,16 +48,19 @@ const Roster = () => {
                         return (
                             <tr className="border-r border-black">
                                 {/* <td className="flex border-0 border-r justify-between" colSpan="3"> */}
-                                    <td className="text-blue-600 hover:underline" colSpan="2" to={`/members/${member.id}`}>
-                                            {/* {member.name} */}
-                                    <a href={`/members/${member.id}`} className="border-black text-blue-600 hover:underline">
-                                        {member.name}
-                                    </a>
-                                        </td>
+                                    <td className="border-black" to={`/members/${member.id}`}>
+                                        <UnassignButton roster_name={roster.name} this_member={Object.values(roster.this_roster).filter((data) => member.id === data.id)} />
+                                        <a href={`/members/${member.id}`} className="border-black text-blue-600 hover:underline">
+                                            {member.name}
+                                        </a>
+                                    <div className="">
+                                        {/* <div className="relative"> */}
+                                        {/* </div> */}
+                                    </div>
+                                    </td>
                                         {/* <div className="flex relative left-4 space-x-2"> */}
-                                        <td className="relative">
-                                            <UnassignButton roster_name={roster.name} this_member={Object.values(roster.this_roster).filter((data) => member.id === data.id)} />
-                                        </td>
+                                        {/* <td className="relative">
+                                        </td> */}
                                         {/* </div> */}
                                     {/* </td> */}
                             </tr>

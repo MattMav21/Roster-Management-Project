@@ -44,7 +44,7 @@ const UnassignButton = (props) => {
 
     };
 
-    return <button className="bg-red-700 rounded p-1" onClick={unassign}> X </button>;
+    return <button className="relative right-4 text-red-600 rounded px-2 hover:bg-red-900 hover:text-white" onClick={unassign}> X </button>;
 };
 
 export default UnassignButton;
