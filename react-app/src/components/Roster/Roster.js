@@ -28,33 +28,36 @@ const Roster = () => {
         {loaded && roster &&
                 <div className="border-black m-auto">
                 <EditRosterButton />
-                <table className="border-black m-auto">
-                    <thead className="bg-gray-200 p-4">
+                <table className="black m-auto">
+                    <thead className="p-6">
                         <tr>
-                            <th colSpan="3">
+                            <th className="border-black bg-blue-700 text-white p-6" colSpan="3">
                                 {roster.name}
                             </th>
                         </tr>
                     </thead>
                     <tbody className="border-black">
-                        <tr className="border-black">
-                            <td className="border-black">{roster.notes}</td>
+                        <tr className="subheading border-black">
+                            <td className="p-4 border-black text-center font-bold" colSpan="3">{roster.notes}</td>
                         </tr>
                     {/* <tr className="border-black" colSpan="3"> */}
                     {Object.values(roster.this_roster).map((member) => {
                         //try making a table row for each
                         return (
                             <tr className="border-r border-black">
-                                <td className="flex border-0 border-r justify-between" colSpan="3">
-                                    <Link className="text-blue-600 hover:underline" colSpan="2" to={`/members/${member.id}`}>
-                                            {member.name}
-                                        </Link>
-                                        <div className="flex relative left-4 space-x-2">
-                                            <div className="relative">
+                                {/* <td className="flex border-0 border-r justify-between" colSpan="3"> */}
+                                    <td className="text-blue-600 hover:underline" colSpan="2" to={`/members/${member.id}`}>
+                                            {/* {member.name} */}
+                                    <a href={`/members/${member.id}`} className="border-black text-blue-600 hover:underline">
+                                        {member.name}
+                                    </a>
+                                        </td>
+                                        {/* <div className="flex relative left-4 space-x-2"> */}
+                                        <td className="relative">
                                             <UnassignButton roster_name={roster.name} this_member={Object.values(roster.this_roster).filter((data) => member.id === data.id)} />
-                                            </div>
-                                        </div>
-                                    </td>
+                                        </td>
+                                        {/* </div> */}
+                                    {/* </td> */}
                             </tr>
                     )})}
                     </tbody>
