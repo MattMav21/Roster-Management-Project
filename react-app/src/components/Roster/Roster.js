@@ -43,12 +43,12 @@ const Roster = () => {
                             <td className="p-4 border-black text-center font-bold" colSpan="3">{roster.notes}</td>
                         </tr>
                     {/* <tr className="border-black" colSpan="3"> */}
-                    {Object.values(roster.this_roster).map((member) => {
+                        {Object.values(roster.this_roster).length ? Object.values(roster.this_roster).map((member) => {
                         //try making a table row for each
                         return (
-                            <tr className="border-r border-black">
+                            <tr className="border-black border-r">
                                 {/* <td className="flex border-0 border-r justify-between" colSpan="3"> */}
-                                    <td className="border-black" to={`/members/${member.id}`}>
+                                    <td colSpan="3" className="border-0" to={`/members/${member.id}`}>
                                         <UnassignButton roster_name={roster.name} this_member={Object.values(roster.this_roster).filter((data) => member.id === data.id)} />
                                         <a href={`/members/${member.id}`} className="border-black text-blue-600 hover:underline">
                                             {member.name}
@@ -63,8 +63,9 @@ const Roster = () => {
                                         </td> */}
                                         {/* </div> */}
                                     {/* </td> */}
-                            </tr>
-                    )})}
+                                </tr>
+                            )
+                        }) : <td colSpan="3" className="text-center">This roster has no members.</td> }
                     </tbody>
                 </table>
         </div>
