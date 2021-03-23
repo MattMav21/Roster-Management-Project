@@ -13,28 +13,12 @@ const EditRosterForm = () => {
     const history = useHistory();
     
     const everybody = useSelector((state) => state.roster.roster);
-    // let prevName;
-    // let prevNotes;
-
-    // if (everybody !== undefined) {
-    //     prevName = everybody.name;
-    //     prevNotes = everybody.notes;
-    // }
 
     const [name, setName] = useState(everybody?.name)
     const [notes, setNotes] = useState(everybody?.notes)
 
     useEffect(async () => {
-        
         await dispatch(getOneRoster(rosterId)).then(() => setLoaded(true))
-        // if (prevName !== undefined) {
-        //     await setName(prevName)
-        // }
-        // if(prevNotes !== undefined) {
-        //     await setName(prevNotes)
-        // }
-
-        // await setLoaded(true)
     }, [getOneRoster])
 
 

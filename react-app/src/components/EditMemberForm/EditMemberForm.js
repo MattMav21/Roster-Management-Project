@@ -14,22 +14,12 @@ const EditMemberForm = () => {
     
     const everybody = useSelector((state) => state.member.member);
     
-    let prevName;
-    let prevNotes;
-    
-    if (everybody !== undefined) {
-        prevName = everybody.name;
-        prevNotes = everybody.notes;
-    }
-    
-    const [name, setName] = useState(localStorage.getItem("name"))
-    const [notes, setNotes] = useState(localStorage.getItem("notes"))
+    const [name, setName] = useState(everybody?.name)
+    const [notes, setNotes] = useState(everybody?.notes)
 
     useEffect(async () => {
-        await localStorage.setItem("name", name)
-        await localStorage.setItem("notes", notes)
         await dispatch(getOneMember(memberId)).then(() => setLoaded(true))
-    }, [])
+    }, [getOneMember])
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -45,19 +35,19 @@ const EditMemberForm = () => {
     return (
         loaded && everybody &&
         <div className="flex m-auto border-black text-center flex-col p-2">
-            {loaded && prevName && prevNotes &&
+            {loaded &&
                 <>
                 <br></br>
                 <form className="self-center m-auto w-full" onSubmit={onSubmit}>
-                    <h1 className="text-left p-1 text-center bg-gray-200">Edit {prevName}</h1>
+                    <h1 className="text-left p-1 text-center bg-gray-200">Edit {name}</h1>
                     {/* <span contentEditable="true"> */}
                     <div className="flex flex-col p-2">
                         <label className="text-left p-1 text-left" htmlFor="email">Name</label>
                         <input
                             className="border-black p-4 text-center bg-gray-100 w-full"
                             type="text"
-                            placeholder={prevName}
-                            defaultValue={prevName}
+                            placeholder={name}
+                            defaultValue={name}
                             onChange={(e) => setName(e.target.value)}
                         />
 
@@ -69,8 +59,8 @@ const EditMemberForm = () => {
                                 className="border-black p-4 h-auto text-center bg-gray-100 w-full"
                                 contentEditable="true"
                                 type="text"
-                                placeholder={prevNotes}
-                                defaultValue={prevNotes}
+                                placeholder={notes}
+                                defaultValue={notes}
                                 onChange={(e) => setNotes(e.target.value)}
                         />
                     </div>
