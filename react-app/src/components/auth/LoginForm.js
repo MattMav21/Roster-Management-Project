@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { login } from "../../services/auth";
+import "./auth.css";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);
@@ -31,17 +32,22 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
 
   return (
     <div className="p-14">
-    <form className="border-black m-auto flex flex-col w-6/12" onSubmit={onLogin}>
-      <div>
+    <style>{'body { background-color: navy; }'}</style>
+    <form className="rounded border-black m-auto flex flex-col bg-gray-700 w-9/12 h-4/5" onSubmit={onLogin}>
+      <div className="relative left-2">
+        {errors.length ? <div className="text-red-600 font-bold">Errors:</div> : <></>}
         {errors.map((error) => (
-          <div>{error}</div>
+          <>
+            <li className="text-red-800">{error}</li>
+          </>
         ))}
-        <h1 className="bg-gray-200 border-black p-4 text-center w-full"> Login </h1>
       </div>
+      <h1 className="bg-gray-200 border-black p-4 text-center w-full"> Login </h1>
       <div className="flex flex-col p-2">
-        <label className="text-left p-1 text-left" htmlFor="email">Email</label>
+          <label className="text-left p-1 text-left font-bold text-white" htmlFor="email">Email:</label>
         <input
-          className="bg-gray-100"
+          //focus:bg-yellow-400
+          className="shadow-inner rounded bg-gray-200 border border-gray-400"
           name="email"
           type="text"
           placeholder="Email"
@@ -50,19 +56,19 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         />
       </div>
       <div className="flex flex-col p-2">
-        <label className="text-left p-1 text-left" htmlFor="password">Password</label>
+          <label className="text-left p-1 text-left font-bold text-white" htmlFor="password">Password:</label>
         <input
-          className="bg-gray-100"
+          className="shadow-inner rounded bg-gray-200 border border-gray-400"
           name="password"
           type="password"
           placeholder="Password"
           value={password}
           onChange={updatePassword}
         />
-        <button className="bg-green-700 w-6/12 self-center p-1 m-4 hover:bg-blue-300 hover:text-yellow-300 rounded" type="submit">Login</button>
+          <button className="text-gray-700 p-2 bg-blue-400 bg-green-700 w-6/12 self-center p-1 m-4 rounded" type="submit">Login</button>
       </div>
       <div className="p-3">
-        <a classNane="text-blue-500" href="/sign-up">I don't have an account</a>
+          <a className="text-blue-500 hover:underline" href="/sign-up">I don't have an account</a>
       </div>
     </form>
     </div>
