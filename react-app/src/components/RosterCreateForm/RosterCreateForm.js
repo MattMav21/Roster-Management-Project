@@ -23,7 +23,7 @@ const RosterCreateForm = () => {
     }
 
     return (
-        <div className="block p-3 text-center m-auto bg-gray-600 w-9/12">
+        <div className="rounded block p-3 text-center m-auto bg-gray-600 w-9/12">
             <div className="container p-3 m-auto bg-gray-200 rounded">
                 <form className="self-center m-auto pb-3" method="POST" action="/rosters/create/new" onSubmit={onSubmit}>
                     <h1 className="bg-black text-white p-3 font-bold">Create a Roster</h1>
@@ -42,7 +42,7 @@ const RosterCreateForm = () => {
                         <div className="flex flex-col p-2">
                         <h1 className="p-1 text-left font-bold">Notes:</h1>
                         <textarea
-                            className="shadow-inner rounded border border-gray-400 focus:bg-blue-200"
+                            className="h-40 shadow-inner rounded border border-gray-400 focus:bg-blue-200"
                             type="text"
                             onChange={(e) => setNotes(e.target.value)}
                             value={notes}

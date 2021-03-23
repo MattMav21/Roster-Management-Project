@@ -23,14 +23,15 @@ const MemberCreateForm = () => {
     }
 
     return (
-        <div className="block p-3 text-center bg-gray-600">
+        <div className="rounded block p-3 text-center bg-gray-600 w-9/12 m-auto">
             <div className="container p-3 m-auto bg-gray-200 rounded">
-                <form className="self-center m-auto" method="POST" action="/members/create/new" onSubmit={onSubmit}>
+                <form className="self-center m-auto pb-3" method="POST" action="/members/create/new" onSubmit={onSubmit}>
                     <h1 className="bg-black text-white p-3">Add a new member to your database!</h1>
                     <div>
                         <div className="flex flex-col p-2">
-                            <h1 className="text-left p-1">Name: </h1>
+                            <h1 className="text-left p-1 font-bold">Name: </h1>
                             <input
+                                className="shadow-inner rounded border border-gray-400 focus:bg-blue-200"
                                 type="text"
                                 onChange={(e) => setName(e.target.value)}
                                 value={name}
@@ -38,15 +39,16 @@ const MemberCreateForm = () => {
                             </input>
                         </div>
                         <div className="flex flex-col p-2">
-                            <h1 className="p-1 text-left">Notes:</h1>
+                            <h1 className="p-1 text-left font-bold">Notes:</h1>
                             <textarea
+                                className="h-40 shadow-inner rounded border border-gray-400 focus:bg-blue-200"
                                 type="text"
                                 onChange={(e) => setNotes(e.target.value)}
                                 value={notes}
                             />
                         </div>
                     </div>
-                    <button type="submit" disabled={name == "" ? true : false} className="bg-black text-white p-2 rounded hover:bg-white hover:text-black disabled:opacity-50">Submit</button>
+                    <button type="submit" disabled={name === "" ? true : false} className="bg-blue-400 text-white p-2 rounded disabled:bg-red-200">Submit</button>
                 </form>
             </div>
         </div>
