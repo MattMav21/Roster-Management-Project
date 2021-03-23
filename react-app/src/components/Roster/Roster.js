@@ -27,13 +27,11 @@ const Roster = () => {
         <div className="flex m-auto">
         {loaded && roster &&
                 <div className="container roster flex flex-col border-black m-auto">
-                <div className="relative left-16">
-                    <EditRosterButton />
-                </div>
+                <EditRosterButton />
                 <table className="black m-auto">
                     <thead className="p-6">
                         <tr>
-                            <th className="border-black bg-blue-700 text-white p-6" colSpan="3">
+                            <th className="border-black bg-blue-700 text-white" colSpan="3">
                                 {roster.name}
                             </th>
                         </tr>
@@ -47,23 +45,15 @@ const Roster = () => {
                         //try making a table row for each
                         return (
                             <tr className="border-black border-r">
-                                {/* <td className="flex border-0 border-r justify-between" colSpan="3"> */}
-                                    <td colSpan="3" className="border-0" to={`/members/${member.id}`}>
+                                    <td colSpan="3" className="border-0">
                                         <UnassignButton roster_name={roster.name} this_member={Object.values(roster.this_roster).filter((data) => member.id === data.id)} />
                                         <a href={`/members/${member.id}`} className="border-black text-blue-600 hover:underline">
                                             {member.name}
                                         </a>
                                     <div className="">
-                                        {/* <div className="relative"> */}
-                                        {/* </div> */}
                                     </div>
                                     </td>
-                                        {/* <div className="flex relative left-4 space-x-2"> */}
-                                        {/* <td className="relative">
-                                        </td> */}
-                                        {/* </div> */}
-                                    {/* </td> */}
-                                </tr>
+                            </tr>
                             )
                         }) : <td colSpan="3" className="text-center">This roster has no members.</td> }
                     </tbody>

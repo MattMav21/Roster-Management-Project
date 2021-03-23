@@ -17,7 +17,7 @@ const EditRosterButton = () => {
         history.push(`/rosters/edit/${rosterId}`)
     };
 
-    return <button className="hover:bg-green-600 hover:text-white hover:shadow-2xl bg-green-500 text-black rounded px-4 py-1 mb-2" onClick={editMember}> Edit </button>;
+    return <button className="hover:bg-green-600 hover:text-white hover:shadow-2xl bg-green-500 text-black rounded px-4 py-1 mb-2 w-32 m-auto" onClick={editMember}> Edit </button>;
 };
 
 export default EditRosterButton;

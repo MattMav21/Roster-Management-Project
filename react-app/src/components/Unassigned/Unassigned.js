@@ -17,15 +17,17 @@ const Unassigned = () => {
     return (
         <div className="flex">
             <table className="border-black m-auto">
+                {loaded && Object.values(everybody).length ? 
+                <>
                 <thead className="bg-gray-200 p-4">
                     <tr>
-                        <th className="border-black bg-blue-700 text-white p-6" colSpan="2">
+                        <th className="border-black bg-red-700 text-white p-6" colSpan="2">
                             These people are not assigned to a roster.
                         </th>
                     </tr>
                 </thead>
                 <tbody className="border-black">
-                    <tr className="subheading border-black">
+                    <tr className="bg-red-200 border-black">
                         <td className="p-4 border-black text-center font-bold" colSpan="1">Person</td>
                         <td className="p-4 border-black text-center font-bold" colSpan="1">Notes</td>
                     </tr>
@@ -45,6 +47,15 @@ const Unassigned = () => {
                         )
                     })}
                 </tbody>
+                    </> : 
+                    <thead className="bg-gray-200 p-4">
+                        <tr>
+                            <th className="border-black bg-green-700 text-white p-6" colSpan="2">
+                                Everybody in the database has been assigned!
+                            </th>
+                        </tr>
+                    </thead>
+                }
             </table>
         </div>
     );

@@ -17,28 +17,31 @@ const Member = () => {
     }, [getOneMember])
 
     return (
-        <div className="flex">
+        <div className="flex m-auto">
             {loaded &&
-                <div className="border-black m-auto">
+                <div className="container roster flex flex-col border-black m-auto">
                 <EditMemberButton />
                 <table className="border-black m-auto">
-                    <thead className="bg-gray-200 p-4">
-                        <tr>
+                    <thead className="p-6">
+                        <tr className="border-black bg-blue-700 text-white p-6">
                             <th colSpan="3">
                                 {everybody.name}
                             </th>
                         </tr>
                     </thead>
                     <tbody className="border-black">
-                                <tr className="border-black">
-                                    <td className="border-black text-center">{everybody.notes}</td>
+                                <tr className="subheading border-black">
+                                    <td colSpan="3" className="border-black text-center">{everybody.notes}</td>
                                 </tr>
-                                    {everybody.roster_in !== [] ? everybody.roster_in.map((roster) => {
+                                <tr colSpan="3">
+                            <td className="border-b-0">Rosters:</td>
+                                </tr>
+                                   {everybody.roster_in !== [] ? everybody.roster_in.map((roster) => {
                                         return (
-                                            <tr>
-                                                <td className="flex border-0 border-r justify-between">
-                                                    {roster}
-                                                </td>
+                                            <tr className="border-black border-r">
+                                            <td colSpan="3" className="border-0">
+                                                <li>{roster}</li>
+                                            </td>
                                             </tr>
                                         )
                                     }) : <tr>None</tr>}
