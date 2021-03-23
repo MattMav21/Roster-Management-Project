@@ -33,7 +33,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   return (
     <div className="p-14">
     <style>{'body { background-color: navy; }'}</style>
-    <form className="rounded border-black m-auto flex flex-col bg-gray-700 w-9/12 h-4/5" onSubmit={onLogin}>
+    <form className="rounded border-black m-auto flex flex-col bg-gray-700 w-9/12 h-4/5 text-lg" onSubmit={onLogin}>
       <div className="relative left-2">
         {errors.length ? <div className="text-red-600 font-bold">Errors:</div> : <></>}
         {errors.map((error) => (
@@ -42,12 +42,12 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
           </>
         ))}
       </div>
-      <h1 className="bg-gray-200 border-black p-4 text-center w-full"> Login </h1>
+      <h1 className="bg-gray-200 border-black p-4 text-center w-full bg-gray-300 text-bold"> Login </h1>
       <div className="flex flex-col p-2">
           <label className="text-left p-1 text-left font-bold text-white" htmlFor="email">Email:</label>
         <input
           //focus:bg-yellow-400
-          className="shadow-inner rounded bg-gray-200 border border-gray-400"
+          className="shadow-inner rounded bg-gray-200 border border-gray-400 focus:bg-blue-200"
           name="email"
           type="text"
           placeholder="Email"
@@ -58,14 +58,14 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
       <div className="flex flex-col p-2">
           <label className="text-left p-1 text-left font-bold text-white" htmlFor="password">Password:</label>
         <input
-          className="shadow-inner rounded bg-gray-200 border border-gray-400"
+            className="shadow-inner rounded bg-gray-200 border border-gray-400 focus:bg-blue-200"
           name="password"
           type="password"
           placeholder="Password"
           value={password}
           onChange={updatePassword}
         />
-          <button className="text-gray-700 p-2 bg-blue-400 bg-green-700 w-6/12 self-center p-1 m-4 rounded" type="submit">Login</button>
+          <button className="text-gray-700 p-2 bg-blue-400 bg-green-700 w-6/12 self-center p-1 mt-12 rounded" type="submit">Login</button>
       </div>
       <div className="p-3">
           <a className="text-blue-500 hover:underline" href="/sign-up">I don't have an account</a>

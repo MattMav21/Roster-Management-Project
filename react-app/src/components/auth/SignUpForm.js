@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../services/auth';
+import "./auth.css";
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {
+  
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,12 +42,13 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
 
   return (
     <div className="p-14">
-    <form className="border-black m-auto flex flex-col w-6/12" onSubmit={onSignUp}>
-      <h1 className="bg-gray-200 border-black p-4 text-center w-full"> Sign Up </h1>
+      <form className="rounded border-black m-auto flex flex-col bg-gray-700 h-4/5 text-lg" onSubmit={onSignUp}>
+      <style>{'body { background-color: navy; }'}</style>
+      <h1 className="bg-gray-200 border-black p-4 text-center w-full bg-gray-300 text-bold"> Sign Up </h1>
       <div className="flex flex-col p-2">
-        <label className="text-left p-1 text-left">User Name</label>
+          <label className="text-left p-1 text-left font-bold text-white">User Name</label>
         <input
-          className="bg-gray-100"
+            className="shadow-inner rounded bg-gray-200 border border-gray-400 focus:bg-blue-200"
           type="text"
           name="username"
           onChange={updateUsername}
@@ -53,9 +56,9 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
         ></input>
       </div>
       <div className="flex flex-col p-2">
-        <label className="text-left p-1 text-left">Email</label>
+          <label className="text-left p-1 text-left font-bold text-white">Email</label>
         <input
-          className="bg-gray-100"
+            className="shadow-inner rounded bg-gray-200 border border-gray-400 focus:bg-blue-200"
           type="text"
           name="email"
           onChange={updateEmail}
@@ -63,9 +66,9 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
         ></input>
       </div>
       <div className="flex flex-col p-2">
-        <label className="text-left p-1 text-left">Password</label>
+          <label className="text-left p-1 text-left font-bold text-white">Password</label>
         <input
-          className="bg-gray-100"
+            className="shadow-inner rounded bg-gray-200 border border-gray-400 focus:bg-blue-200"
           type="password"
           name="password"
           onChange={updatePassword}
@@ -73,19 +76,19 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
         ></input>
       </div>
       <div className="flex flex-col p-2">
-        <label className="text-left p-1 text-left">Repeat Password</label>
+          <label className="text-left p-1 text-left font-bold text-white">Repeat Password</label>
         <input
-          className="bg-gray-100"
+            className="shadow-inner rounded bg-gray-200 border border-gray-400 focus:bg-blue-200"
           type="password"
           name="repeat_password"
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
         ></input>
+        <button className="text-gray-700 p-2 bg-blue-400 bg-green-700 w-6/12 self-center p-1 mt-12 rounded" type="submit">Sign Up</button>
       </div>
-      <button className="bg-green-700 w-6/12 self-center p-1 m-4 hover:bg-blue-300 hover:text-yellow-300 rounded" type="submit">Sign Up</button>
       <div className="p-3">
-        <a classNane="text-blue-500" href="/login">I already have an account</a>
+          <a className="text-blue-500 hover:underline" href="/login">I already have an account</a>
       </div>
     </form>
     </div>
