@@ -26,7 +26,7 @@ const MemberCreateForm = () => {
         <div className="rounded block p-3 text-center bg-gray-600 w-9/12 m-auto">
             <div className="container p-3 m-auto bg-gray-200 rounded">
                 <form className="self-center m-auto pb-3" method="POST" action="/members/create/new" onSubmit={onSubmit}>
-                    <h1 className="bg-black text-white p-3">Add a new member to your database!</h1>
+                    <h1 className="bg-black text-white p-3 font-bold">Add to Database!</h1>
                     <div>
                         <div className="flex flex-col p-2">
                             <h1 className="text-left p-1 font-bold">Name: </h1>

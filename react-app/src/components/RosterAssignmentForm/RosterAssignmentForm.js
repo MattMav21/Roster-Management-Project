@@ -60,7 +60,7 @@ const RosterAssignmentForm = () => {
     rosterOptions.forEach((option, i) => rosterCorr[option] = rosterIds[i])
 
     return (
-        <div className="block p-3 text-center bg-gray-600">
+        <div className="rounded w-10/12 m-auto block p-3 text-center bg-gray-600">
         <div className="container p-3 m-auto bg-gray-200 rounded">
         { memberOptions && rosterOptions && loaded &&
             <form className="self-center m-auto" 
@@ -68,10 +68,10 @@ const RosterAssignmentForm = () => {
                 action="/members/assign/new" 
                 onSubmit={onSubmit}
             >
-                    <h1 className="bg-black text-white p-3">Assign a Member to a Roster</h1>
+                    <h1 className="bg-black text-white p-3 font-bold">Assign a Member to a Roster</h1>
                 <div>
                     <div className="flex flex-col p-2">
-                        <h1 className="text-left p-1 text-center">Member</h1>
+                        <h1 className="text-left p-1 text-center font-bold">Member</h1>
                         <select
                             className="w-6/12 self-center"
                             value={member}
@@ -91,7 +91,7 @@ const RosterAssignmentForm = () => {
                     </div>
 
                     <div>
-                    <h1>Roster</h1>
+                    <h1 className="font-bold">Roster</h1>
                     <select
                         className="w-6/12 self-center"
                         value={roster}
@@ -112,8 +112,8 @@ const RosterAssignmentForm = () => {
                 </div>
                 <button 
                     type="submit" 
-                    disabled={member == memberOptions[0] || roster == rosterOptions[0] ? true : false} 
-                    className="bg-black text-white p-2 m-4 rounded hover:bg-white hover:text-black disabled:opacity-50"
+                    disabled={member === memberOptions[0] || roster === rosterOptions[0] ? true : false} 
+                    className="bg-blue-400 text-white p-2 m-4 rounded disabled:opacity-50"
                 >
                     Submit
                 </button>

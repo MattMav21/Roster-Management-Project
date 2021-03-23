@@ -32,7 +32,7 @@ const SearchResults = () => {
             <table className="border-black m-auto pb-4">
                 <thead className="bg-gray-200 p-4">
                     <tr>
-                        <th colSpan="3">
+                            <th className="border-black bg-blue-700 text-white" colSpan="3">
                             Members:
                         </th>
                     </tr>
@@ -60,7 +60,7 @@ const SearchResults = () => {
             <table className="border-black m-auto pb-4">
                 <thead className="bg-gray-200 p-4">
                     <tr>
-                        <th colSpan="3">
+                            <th className="border-black bg-blue-700 text-white" colSpan="3">
                             Rosters:
                         </th>
                     </tr>
