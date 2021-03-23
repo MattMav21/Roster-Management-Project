@@ -4,7 +4,7 @@ import { signUp } from '../../services/auth';
 import "./auth.css";
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {
-  
+  const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +16,8 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
       const user = await signUp(username, email, password);
       if (!user.errors) {
         setAuthenticated(true);
+      } else {
+        setErrors(user.errors)
       }
     }
   };
@@ -45,6 +47,12 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
       <form className="rounded border-black m-auto flex flex-col bg-gray-700 h-4/5 text-lg" onSubmit={onSignUp}>
       <style>{'body { background-color: navy; }'}</style>
       <h1 className="bg-gray-200 border-black p-4 text-center w-full bg-gray-300 text-bold"> Sign Up </h1>
+        {errors.length ? <div className="text-red-600 font-bold">Errors:</div> : <></>}
+        {errors.map((error) => (
+          <>
+            <li className="text-red-800 bg-bold">{error}</li>
+          </>
+        ))}
       <div className="flex flex-col p-2">
           <label className="text-left p-1 text-left font-bold text-white">User Name</label>
         <input

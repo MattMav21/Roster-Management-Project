@@ -38,7 +38,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         {errors.length ? <div className="text-red-600 font-bold">Errors:</div> : <></>}
         {errors.map((error) => (
           <>
-            <li className="text-red-800">{error}</li>
+            <li className="text-red-800 font-bold">{error}</li>
           </>
         ))}
       </div>

@@ -1,0 +1,10 @@
+button:disabled {
+    background-color: gray;
+    box-shadow: none;
+}
+
+hover:bg-white hover:text-black
+
+button:hover:enabled {
+    
+}
