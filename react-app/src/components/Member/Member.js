@@ -36,7 +36,7 @@ const Member = () => {
                                 <tr colSpan="3">
                             <td className="border-b-0">Rosters:</td>
                                 </tr>
-                                   {everybody.roster_in !== [] ? everybody.roster_in.map((roster) => {
+                                   {everybody.roster_in.length ? everybody.roster_in.map((roster) => {
                                         return (
                                             <tr className="border-black border-r">
                                             <td colSpan="3" className="border-0">
@@ -44,7 +44,13 @@ const Member = () => {
                                             </td>
                                             </tr>
                                         )
-                                    }) : <tr>None</tr>}
+                                    }) :
+                                        <tr className="border-black border-r">
+                                            <td colSpan="3" className="border-0">
+                                                None
+                                            </td>
+                                        </tr>
+                                    }
                     </tbody>
                 </table>
                 </div>
