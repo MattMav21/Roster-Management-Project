@@ -1,5 +1,5 @@
 from flask import Blueprint, request, redirect
-from app.models import db, User, Member, Member_Property, Roster_Member, Roster
+from app.models import db, User, Member, Member_Property, Property, Roster_Member, Roster
 from app.forms import MemberCreateForm, MemberEditForm, PropertyAddForm
 from datetime import datetime
 
@@ -169,6 +169,24 @@ def add_property(m_id):
         if form.validate_on_submit:
             data = form.data
             print("DATA!!!!!", data)
+            new_property = Property(
+                name=data['value'],
+                is_checked=data['isChecked'],
+            )
+
+            # print("PROP!!!!!!!!", new_property.id, new_property.name, new_property.is_checked)
+            # print("PROP ASSOCIATION!!!!!", new_member_property.id, new_member_property.member_id, new_member_property.property_id)
+
+            db.session.add(new_property)
+            db.session.commit()
+
+            new_member_property = Member_Property(
+                member_id=m_id,
+                property_id=new_property.id
+            )
+
+            db.session.add(new_member_property)
+            db.session.commit()
 
     return { "Message" : "Property Added Successfully!"}, 200
 
