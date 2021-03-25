@@ -2,6 +2,7 @@ from flask import Blueprint, request, redirect
 from app.models import db, User, Member, Member_Property, Property, Roster_Member, Roster
 from app.forms import MemberCreateForm, MemberEditForm, PropertyAddForm
 from datetime import datetime
+from sqlalchemy import and_
 
 members_routes = Blueprint('members', __name__)
 
@@ -219,9 +220,19 @@ def add_property(m_id):
     return { "Message" : "Property Added Successfully!"}, 200
 
 
-# @members_routes.route('/check', methods=["GET", "POST"])
-# def changed_check():
+@members_routes.route('/changecheck/<int:mem_id>/<int:prop_id>', methods=["PUT"])
+def changed_check(mem_id, prop_id):
+    changed_property = Property.query.filter(Property.id == prop_id).one()
+    changed_association = Member_Property.query.filter(and_(Member_Property.member_id == mem_id, Member_Property.property_id == prop_id)).one()
+    print( "CHECK THIS OUT!!Q!!!!!!", changed_property.id, changed_association.id)
+    request_object = request.get_json()
+    print("REQUEST OBJ CHECK", request_object['isChecked'])
+    changed_property.is_checked = request_object['isChecked']
+    db.session.commit()
+    # change is_checked
+    print("CHANGED???????", changed_property.is_checked)
 
+    return { "message" : "Property changed!"}
 
     # print("TEST", True)
     # print("TEST", 1 == 1)

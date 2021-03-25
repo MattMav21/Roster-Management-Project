@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
+import * as memberActions from "../../store/member";
+
 
 const Checkbox = ({memberId, propObj}) => {
+    const dispatch = useDispatch()
+    const { changeProperty } = memberActions;
+
     let defaultCheck = propObj.map((obj) => obj.is_checked)[0]
     let propertyId = propObj.map((obj) => obj.id)[0]
     let name = propObj.map((obj) => obj.name)[0]
-
     const [currentCheck, setCurrentCheck] = useState(defaultCheck);
     console.log("START CHECK:", currentCheck)
     // console.log(memberId, propObj)
@@ -14,7 +18,7 @@ const Checkbox = ({memberId, propObj}) => {
     // console.log(propObj.map((obj) => obj.is_checked))
 
     const changeValue = async () => {
-        setCurrentCheck(!currentCheck);
+        await setCurrentCheck(!currentCheck);
 
         console.log("onChange check", currentCheck)
 
@@ -22,12 +26,13 @@ const Checkbox = ({memberId, propObj}) => {
             memberId: Number(memberId),
             propId: propertyId,
             name: name,
-            is_checked: !currentCheck
+            isChecked: !currentCheck
         }
 
         console.log(theBigChange)
-
-        return theBigChange;
+        await dispatch(changeProperty(theBigChange))
+        debugger
+        // return theBigChange;
     }
 
     // console.log(name, currentCheck)
