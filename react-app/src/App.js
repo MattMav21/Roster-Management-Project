@@ -20,7 +20,8 @@ import {
   EditRosterForm,
   LandingPage,
   Unassigned,
-  SearchResults
+  SearchResults,
+  AddPropertyForm
 } from "./components/index"
 
 function App() {
@@ -61,6 +62,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path="/members/addProp/:memberId" exact={true} authenticated={authenticated}>
+          <AddPropertyForm />
         </ProtectedRoute>
         <ProtectedRoute path="/home" exact={true} authenticated={authenticated}>
           <Home />

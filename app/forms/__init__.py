@@ -5,3 +5,4 @@ from .roster_create_form import RosterCreateForm
 from .roster_assignment_form import RosterAssignmentForm
 from .member_edit_form import MemberEditForm
 from .roster_edit_form import RosterEditForm
+from .property_add_form import PropertyAddForm

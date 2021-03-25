@@ -2,6 +2,8 @@ const LOAD_MEMBERS = "member/LOAD_MEMBERS"
 const CREATE_MEMBER = "member/CREATE_MEMBER"
 const EDIT_MEMBER = "member/EDIT_MEMBER"
 const DELETE_MEMBER = "member/DELETE_MEMBER"
+const ADD_PROPERTY = "member/ADD_PROPERTY"
+
 
 const loading_everyone = (members) => ({
     type: LOAD_MEMBERS,
@@ -21,6 +23,11 @@ const edit_a_member = (member) => ({
 const delete_member = (member) => ({
     type: DELETE_MEMBER,
     member
+})
+
+const add_property = (property) => ({
+    type: ADD_PROPERTY,
+    property
 })
 
 export const getMembers = () => async (dispatch) => {
@@ -89,7 +96,21 @@ export const getUnassignedMembers = () => async (dispatch) => {
     return res;
 }
 
+export const addNewProperty = (data) => async (dispatch) => {
+    const response = await fetch(`/api/members/addProp/${data.memberId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': "application/json",
+        },
+        body: JSON.stringify(data),
+    });
 
+    if (response.ok) {
+        const property = await response.json();
+        dispatch(add_property(property));
+        return property;
+    }
+}
 
 const memberReducer = (state = {}, action) => {
     let newState;
@@ -109,6 +130,12 @@ const memberReducer = (state = {}, action) => {
         case DELETE_MEMBER:
             newState = Object.assign({}, state);
             newState.roster = action.roster;
+            return newState;
+        case ADD_PROPERTY:
+            newState = Object.assign({}, state);
+            debugger
+            newState.property = action.property;
+            debugger
             return newState;
         default:
             return state

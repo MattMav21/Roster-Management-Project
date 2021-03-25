@@ -12,6 +12,7 @@ import EditRosterForm from './EditRosterForm'
 import LandingPage from './LandingPage'
 import Unassigned from './Unassigned';
 import SearchResults from './SearchResults'
+import AddPropertyForm from './AddPropertyForm';
 
 
 // Export ALL components here
@@ -29,4 +30,5 @@ export {
     LandingPage,
     Unassigned,
     SearchResults,
+    AddPropertyForm,
 }

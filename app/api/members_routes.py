@@ -1,6 +1,6 @@
 from flask import Blueprint, request, redirect
 from app.models import db, User, Member, Member_Property, Roster_Member, Roster
-from app.forms import MemberCreateForm, MemberEditForm
+from app.forms import MemberCreateForm, MemberEditForm, PropertyAddForm
 from datetime import datetime
 
 members_routes = Blueprint('members', __name__)
@@ -49,11 +49,6 @@ def person(id):
         }
         k+=1
 
-    # and_this = []
-
-    # for aroster in correct_rosters:
-    #     and_this.append(roster.id)
-
     print("SEND!!!!", send_this)
 
     single_person = {
@@ -62,7 +57,6 @@ def person(id):
         "notes": member.notes,
         "created_at": member.created_at,
         "roster_in": send_this,
-        # "roster_in_ids": and_this,
     }
 
     return single_person
@@ -163,6 +157,20 @@ def unassigned():
     print("UNASSIGNED!!!!!!!!", unassigned_ppl)
     
     return unassigned_ppl
+
+
+@members_routes.route('/addProp/<int:m_id>', methods=["GET", "POST"])
+def add_property(m_id):
+    print("REQUEST!", request.data)
+    form = PropertyAddForm()
+    print("MEMBER ID!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", m_id)
+    # print("TEST", True)
+    # print("TEST", 1 == 1)
+    # print("TEST", False)
+    # print("TEST", 1 == 2)
+    
+    return { "Message" : "Property Added Successfully!"}, 200
+
 
     # members = Member.query.all()
     # ppl = {}
