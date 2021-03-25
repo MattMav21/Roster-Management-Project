@@ -58,8 +58,23 @@ const Member = () => {
                                             </td>
                                         </tr>
                         }
+                        <tr>
+                            <td>Properties:</td>
+                        </tr>
 
-                        {Object.values(everybody.properties).length ? <h1>yes</h1> : <h1>no</h1>}
+                        {Object.values(everybody.properties).length ? 
+                       
+                            Object.values(everybody.properties).map((property) => {
+                                return (
+                                    <tr>
+                                        <td colSpan="3" className="border-0"><li>{property.name}</li></td>
+                                    </tr>
+                                )
+                            })
+                        : 
+                        <h1>no</h1>
+
+                        }
                     </tbody>
                 </table>
                 </div>
