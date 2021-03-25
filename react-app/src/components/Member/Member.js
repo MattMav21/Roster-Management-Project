@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import "./Member.css"
 import { useParams } from 'react-router-dom';
 import EditMemberButton from '../buttons/EditMemberButton';
+import Checkbox from '../buttons/Checkbox';
 
 const Member = () => {
     const [loaded, setLoaded] = useState(false);
@@ -38,7 +39,7 @@ const Member = () => {
                                     <td colSpan="3" className="border-black text-center">{everybody.notes}</td>
                                 </tr>
                                 <tr colSpan="3">
-                            <td className="border-b-0">Rosters:</td>
+                            <td colSpan="3" className="border-b-0 font-bold">Rosters:</td>
                                 </tr>
                         {Object.values(everybody.roster_in).length ? Object.values(everybody.roster_in).map((roster) => {
                                         return (
@@ -53,26 +54,41 @@ const Member = () => {
                                         )
                                     }) :
                                         <tr className="border-black border-r">
-                                            <td colSpan="3" className="border-0">
+                                            <td className="border-0">
                                                 None
                                             </td>
                                         </tr>
                         }
-                        <tr>
-                            <td>Properties:</td>
+                        <tr colSpan="3">
+                            <td colSpan="3" className="font-bold border-0 border-r">Properties:</td>
                         </tr>
 
                         {Object.values(everybody.properties).length ? 
                        
                             Object.values(everybody.properties).map((property) => {
                                 return (
-                                    <tr>
-                                        <td colSpan="3" className="border-0"><li>{property.name}</li></td>
+                                    <tr className="border-black border-r">
+                                        <td className="border-0">
+                                            <Checkbox
+                                                memberId={memberId} 
+                                                // propertyObj={Object.values(everybody.properties)} 
+                                                propObj={Object.values(everybody.properties).filter((p) => p.id === property.id)}  
+                                            /> 
+                                        </td>
+                                        <td className="border-t-0 border-l-0 border-b-0">
+                                            <div className="relative right-20">
+                                                {property.name}
+                                            </div>
+                                        </td>
                                     </tr>
                                 )
                             })
                         : 
-                        <h1>no</h1>
+                            <tr className="border-black border-r">
+                                <td colSpan="3" className="border-0">
+                                    None
+                                </td>
+                            </tr>
 
                         }
                     </tbody>
