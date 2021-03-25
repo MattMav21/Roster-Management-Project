@@ -63,7 +63,20 @@ def person(id):
 
     valid_properties = Property.query.filter(Property.id.in_(props)).all()
 
-    print("VALID PROPERTIES", valid_properties)
+    print("VALID PROPS", valid_properties)
+
+    props_obj = {}
+
+    p = 0
+    for valid_prop in valid_properties:
+        props_obj[p] = {
+            "id": valid_properties[p].id,
+            "name": valid_properties[p].name,
+            "is_checked": valid_properties[p].is_checked,
+        }
+        p+=1
+
+    print("PROPS OBJECT", props_obj)
 
     single_person = {
         "id": member.id,
@@ -71,7 +84,7 @@ def person(id):
         "notes": member.notes,
         "created_at": member.created_at,
         "roster_in": send_this,
-        "properties": valid_properties,
+        "properties": props_obj,
     }
 
     return single_person

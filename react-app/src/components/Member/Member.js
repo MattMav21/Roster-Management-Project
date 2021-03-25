@@ -11,7 +11,7 @@ const Member = () => {
     const dispatch = useDispatch();
     const { getOneMember } = memberActions;
     const everybody = useSelector((state) => state.member.member);
-    let rosterInfo
+    // console.log(everybody.properties)
     // const rosterIds = rosterInfo.map((roster) => roster.id)
     // const rosterNames = rosterInfo.map((roster) => roster.name)
 
@@ -57,7 +57,9 @@ const Member = () => {
                                                 None
                                             </td>
                                         </tr>
-                                    }
+                        }
+
+                        {Object.values(everybody.properties).length ? <h1>yes</h1> : <h1>no</h1>}
                     </tbody>
                 </table>
                 </div>
