@@ -70,17 +70,18 @@ const Member = () => {
                                     <tr colSpan="3" className="container relative border-black border-r overflow-auto">
                                         {/* <td colSpan="1" className="border-0">
                                             <div className="relative left-4"> */}
+                                            {console.log(property.name, property.is_checked)}
+                                            {/* </div>
+                                        </td> */}
+                                        <td className="border-t-0 border-l-0 border-b-0">
                                                 <Checkbox
                                                     memberId={memberId} 
                                                     // propertyObj={Object.values(everybody.properties)} 
                                                     propObj={Object.values(everybody.properties).filter((p) => p.id === property.id)}  
                                                 /> 
-                                            {/* </div>
-                                        </td> */}
-                                        <td className="border-t-0 border-l-0 border-b-0">
-                                            <div className="relative top-1.5 px-4 right-2">
+                                            {/* <div className="relative top-1.5 px-4 right-2"> */}
                                                 {property.name}
-                                            </div>
+                                            {/* </div> */}
                                         </td>
                                     </tr>
                                 )

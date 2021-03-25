@@ -219,6 +219,10 @@ def add_property(m_id):
     return { "Message" : "Property Added Successfully!"}, 200
 
 
+# @members_routes.route('/check', methods=["GET", "POST"])
+# def changed_check():
+
+
     # print("TEST", True)
     # print("TEST", 1 == 1)
     # print("TEST", False)
