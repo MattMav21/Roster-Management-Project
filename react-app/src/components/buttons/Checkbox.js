@@ -17,7 +17,7 @@ const Checkbox = ({memberId, propObj}) => {
 
     return (
     <input
-        className="relative top-1 left-8"
+        className="relative top-7 left-8"
         type="checkbox"
         checked={currentCheck}
         onChange={changeValue}

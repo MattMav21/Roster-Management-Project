@@ -26,7 +26,7 @@ const Member = () => {
             {loaded && everybody &&
                 <div className="container roster flex flex-col border-black m-auto">
                 <EditMemberButton />
-                <table className="border-black m-auto">
+                <table className="border-black m-auto layout-fixed">
                     <thead className="p-6">
                         <tr className="border-black bg-blue-700 text-white p-6">
                             <th colSpan="3">
@@ -39,7 +39,7 @@ const Member = () => {
                                     <td colSpan="3" className="border-black text-center">{everybody.notes}</td>
                                 </tr>
                                 <tr colSpan="3">
-                            <td colSpan="3" className="border-b-0 font-bold">Rosters:</td>
+                                    <td colSpan="3" className="border-b-0 font-bold">Rosters:</td>
                                 </tr>
                         {Object.values(everybody.roster_in).length ? Object.values(everybody.roster_in).map((roster) => {
                                         return (
@@ -67,16 +67,18 @@ const Member = () => {
                        
                             Object.values(everybody.properties).map((property) => {
                                 return (
-                                    <tr className="border-black border-r">
-                                        <td className="border-0">
-                                            <Checkbox
-                                                memberId={memberId} 
-                                                // propertyObj={Object.values(everybody.properties)} 
-                                                propObj={Object.values(everybody.properties).filter((p) => p.id === property.id)}  
-                                            /> 
-                                        </td>
+                                    <tr colSpan="3" className="container relative border-black border-r overflow-auto">
+                                        {/* <td colSpan="1" className="border-0">
+                                            <div className="relative left-4"> */}
+                                                <Checkbox
+                                                    memberId={memberId} 
+                                                    // propertyObj={Object.values(everybody.properties)} 
+                                                    propObj={Object.values(everybody.properties).filter((p) => p.id === property.id)}  
+                                                /> 
+                                            {/* </div>
+                                        </td> */}
                                         <td className="border-t-0 border-l-0 border-b-0">
-                                            <div className="relative right-20">
+                                            <div className="relative top-1.5 px-4 right-2">
                                                 {property.name}
                                             </div>
                                         </td>
