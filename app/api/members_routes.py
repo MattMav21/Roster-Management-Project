@@ -164,12 +164,19 @@ def add_property(m_id):
     print("REQUEST!", request.data)
     form = PropertyAddForm()
     print("MEMBER ID!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", m_id)
+    if request.method == "POST":
+        print("ATTEMPTING TO POST!!")
+        if form.validate_on_submit:
+            data = form.data
+            print("DATA!!!!!", data)
+
+    return { "Message" : "Property Added Successfully!"}, 200
+
+
     # print("TEST", True)
     # print("TEST", 1 == 1)
     # print("TEST", False)
     # print("TEST", 1 == 2)
-    
-    return { "Message" : "Property Added Successfully!"}, 200
 
 
     # members = Member.query.all()
