@@ -51,12 +51,27 @@ def person(id):
 
     print("SEND!!!!", send_this)
 
+    props = [];
+
+    members_properties = Member_Property.query.filter(Member_Property.member_id == id).all()
+    print("THIS MEMBER'S PROPERTIES", members_properties)
+
+    for prop in members_properties:
+        props.append(prop.property_id)
+
+    print("PROPS", props)
+
+    valid_properties = Property.query.filter(Property.id.in_(props)).all()
+
+    print("VALID PROPERTIES", valid_properties)
+
     single_person = {
         "id": member.id,
         "name": member.name,
         "notes": member.notes,
         "created_at": member.created_at,
         "roster_in": send_this,
+        "properties": valid_properties,
     }
 
     return single_person
