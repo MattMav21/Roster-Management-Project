@@ -1,5 +1,5 @@
 from flask import Blueprint, request, redirect, session
-from app.models import db, User, Roster, Roster_Member, Member
+from app.models import db, User, Roster, Roster_Member, Member, Property, Member_Property
 from app.forms import RosterCreateForm, RosterAssignmentForm, RosterEditForm
 from sqlalchemy import and_
 from sqlalchemy.sql import select
@@ -178,7 +178,6 @@ def search_for(query):
     print("VALID", valid_members)
 
     valid_rosters = {}
-    #or notes
     matching_rosters = Roster.query.filter(Roster.name.ilike('%{}%'.format(query))).all()
 
     idx2 = 0
@@ -193,9 +192,24 @@ def search_for(query):
 
     print("VALID", valid_rosters)
 
+    valid_properties = {}
+    matching_properties = Property.query.filter(Property.name.ilike('%{}%'.format(query))).all()
+
+    idx3 = 0
+    for match_props in matching_properties:
+        valid_properties[idx3] = {
+            "id": matching_properties[idx3].id,
+            "name": matching_properties[idx3].name,
+            "is_checked": matching_properties[idx3].is_checked,
+        }
+        idx2+=1
+
+    print("VALID PROPERTIES", valid_properties)
+
     matching_dict = {
         "matching_members": valid_members,
         "matching_rosters": valid_rosters,
+        "matching_properties": valid_properties,
     }
 
     # matching_rosters = Roster.query.filter(Roster.name.ilike('%{}%'.format(query))).all()

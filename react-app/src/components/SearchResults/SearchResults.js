@@ -76,13 +76,37 @@ const SearchResults = () => {
                                         </a>
                                     </>
                                 </td>
-                                <td className="border-black">{roster.notes}</   td>
+                                <td className="border-black">{roster.notes}</td>
                             </tr>
                         )
                     })}
                 </tbody>
             </table>
             </div>
+
+            <div className="pb-12">
+                <table className="border-black m-auto pb-4">
+                    <thead className="bg-gray-200 p-4">
+                        <tr>
+                            <th className="border-black bg-blue-700 text-white" colSpan="3">
+                                Properties:
+                        </th>
+                        </tr>
+                    </thead>
+                    <tbody className="border-black">
+                        {isEmpty(matchingData.matching_properties) ? <td>No Results</td> : Object.values(matchingData.matching_properties).map((property) => {
+                            return (
+                                <tr className="border-black">
+                                    <td className="border-black text-center">
+                                        {property.name}
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     );
 
