@@ -43,7 +43,7 @@ const SearchResults = () => {
                             <tr className="border-black">
                                 <td className="border-black">
                                     <>
-                                        <a href={`/members/${member.id}`} className="border-black">
+                                        <a href={`/members/${member.id}`} className="text-blue-600 hover:underline">
                                             {member.name}
                                         </a>
                                     </>
@@ -71,7 +71,7 @@ const SearchResults = () => {
                             <tr className="border-black">
                                 <td className="border-black">
                                     <>
-                                        <a href={`/rosters/${roster.id}`} className="border-black">
+                                        <a href={`/rosters/${roster.id}`} className="text-blue-600 hover:underline">
                                             {roster.name}
                                         </a>
                                     </>

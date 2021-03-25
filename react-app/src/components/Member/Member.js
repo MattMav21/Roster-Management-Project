@@ -11,14 +11,18 @@ const Member = () => {
     const dispatch = useDispatch();
     const { getOneMember } = memberActions;
     const everybody = useSelector((state) => state.member.member);
+    let rosterInfo
+    // const rosterIds = rosterInfo.map((roster) => roster.id)
+    // const rosterNames = rosterInfo.map((roster) => roster.name)
 
     useEffect(() => {
         dispatch(getOneMember(memberId)).then(() => setLoaded(true))
     }, [getOneMember])
+    // console.log(everybody.roster_in)
 
     return (
         <div className="flex m-auto">
-            {loaded &&
+            {loaded && everybody &&
                 <div className="container roster flex flex-col border-black m-auto">
                 <EditMemberButton />
                 <table className="border-black m-auto">
@@ -36,11 +40,14 @@ const Member = () => {
                                 <tr colSpan="3">
                             <td className="border-b-0">Rosters:</td>
                                 </tr>
-                                   {everybody.roster_in.length ? everybody.roster_in.map((roster) => {
+                        {Object.values(everybody.roster_in).length ? Object.values(everybody.roster_in).map((roster) => {
                                         return (
                                             <tr className="border-black border-r">
                                             <td colSpan="3" className="border-0">
-                                                <li>{roster}</li>
+                                                <li>
+                                                    {console.log(roster, Object.values(everybody.roster_in))}
+                                                        {<a className="border-black text-blue-600 hover:underline" href={`/rosters/${roster.id}`}>{roster.name}</a>}
+                                                </li>
                                             </td>
                                             </tr>
                                         )

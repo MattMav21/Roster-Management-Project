@@ -39,10 +39,20 @@ def person(id):
 
     print("CORR ROST", correct_rosters)
 
-    send_this = []
+    send_this = {}
 
+    k = 0;
     for roster in correct_rosters:
-        send_this.append(roster.name)
+        send_this[k] = {
+            "id": correct_rosters[k].id,
+            "name": correct_rosters[k].name,
+        }
+        k+=1
+
+    # and_this = []
+
+    # for aroster in correct_rosters:
+    #     and_this.append(roster.id)
 
     print("SEND!!!!", send_this)
 
@@ -52,6 +62,7 @@ def person(id):
         "notes": member.notes,
         "created_at": member.created_at,
         "roster_in": send_this,
+        # "roster_in_ids": and_this,
     }
 
     return single_person
