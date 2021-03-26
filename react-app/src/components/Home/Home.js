@@ -16,7 +16,7 @@ const Home = () => {
             </div>
             <div className="container flex p-10 m-auto space-x-10 m-auto justify-around flex-nowrap">
                 <Link to="/rosters/create" className="link border-black bg-gray-500 p-5 rounded cursor-pointer">
-                    Add to Roster
+                    Add new Roster
                 </Link>
                     <Link to="/members/create" className="link border-black bg-gray-500 p-5 rounded cursor-pointer">
                     Add to Database
