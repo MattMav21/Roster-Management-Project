@@ -109,7 +109,7 @@ const SearchResults = () => {
                                 </tr>
 
                                     <tr>
-                                        <td className="column w-6/12 text-center bg-green-400 border-b">
+                                        <td className="column w-6/12 text-center bg-green-400 border-b font-bold">
                                             True
                                             <tr className="border-0 bg-green-400">
                                                 {Object.values(matchingData.true_data).length ? 
@@ -125,7 +125,7 @@ const SearchResults = () => {
                                             </tr>
                                         </td>
 
-                                        <td className="column w-6/12 text-center bg-red-400">
+                                        <td className="column w-6/12 text-center bg-red-400 font-bold">
                                             False
                                             <tr className="border-0 bg-red-400">
                                                 {Object.values(matchingData.false_data).length ?
