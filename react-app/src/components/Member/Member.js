@@ -58,7 +58,7 @@ const Member = () => {
                                         )
                                     }) :
                                         <tr className="border-black border-r">
-                                            <td className="border-0">
+                                            <td className="border-t-0 border-b-0 border-r">
                                                 None
                                             </td>
                                         </tr>

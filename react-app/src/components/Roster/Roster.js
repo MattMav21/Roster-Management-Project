@@ -24,10 +24,13 @@ const Roster = () => {
     }, [getOneRoster])
     
     return (
-        <div className="flex m-auto">
+        <div className="flex flex-col m-auto">
         {loaded && roster &&
                 <div className="container roster flex flex-col border-black m-auto">
-                <EditRosterButton />
+                <div className="relative left-16 flex justify-left w-4/12">
+                    <EditRosterButton />
+                    <a className="border-black text-blue-600 hover:underline"  href="/rosters/assign">Add members to roster</a>
+                </div>
                 <table className="black m-auto">
                     <thead className="p-6">
                         <tr>
