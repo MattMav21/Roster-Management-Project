@@ -199,7 +199,7 @@ def search_for(query):
     print("VALID", valid_rosters)
 
     valid_properties = {}
-    matching_properties = Property.query.filter(Property.name.ilike('%{}%'.format(query))).all()
+    matching_properties = Property.query.filter(Property.name.ilike('%{}%'.format(query))).order_by(Property.name).all()
 
     idx3 = 0
     for match_props in matching_properties:
@@ -229,30 +229,6 @@ def search_for(query):
     true_obj = {}
     false_obj = {}
 
-    # idx4 = 0
-    # for t in good_true_query:
-    #     true_obj[idx4] = {
-    #         "member_id": good_true_query[idx4].Member.id,
-    #         "member_name": good_true_query[idx4].Member.name,
-    #         "property_id": good_true_query[idx4].Property.id,
-    #         "property_name": good_true_query[idx4].Property.name,
-    #     }
-    #     idx4+=1
-
-    # idx5 = 0
-    # for f in good_false_query:
-    #     false_obj[idx5] = {
-    #         "member_id": good_false_query[idx5].Member.id,
-    #         "member_name": good_false_query[idx5].Member.name,
-    #         "property_id": good_false_query[idx5].Property.id,
-    #         "property_name": good_false_query[idx5].Property.name,
-    #     }
-    #     idx5+=1
-
-    # print("TRUE", true_obj)
-    # print("FALSE", false_obj)
-
-
     matching_dict = {
         "matching_members": valid_members,
         "matching_rosters": valid_rosters,
@@ -261,6 +237,4 @@ def search_for(query):
         "false_data": good_false_query,
     }
 
-    # matching_rosters = Roster.query.filter(Roster.name.ilike('%{}%'.format(query))).all()
-    # print("MATCHING ROSTERS!!!!!!!!", matching_rosters)
     return matching_dict

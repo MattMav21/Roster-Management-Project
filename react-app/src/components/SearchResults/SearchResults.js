@@ -103,15 +103,15 @@ const SearchResults = () => {
                             return (
                                 <>
                                 <tr className="border-black">
-                                        <td colSpan="3" className="border-black text-center">
+                                    <td colSpan="3" className="border-black text-center">
                                         {property.name}
                                     </td>
                                 </tr>
 
                                     <tr>
-                                        <td className="column w-6/12 text-center bg-green-500 border-b">
+                                        <td className="column w-6/12 text-center bg-green-400 border-b">
                                             True
-                                            <tr className="border-0 bg-green-500">
+                                            <tr className="border-0 bg-green-400">
                                                 {Object.values(matchingData.true_data).length ? 
                                                     Object.values(matchingData.true_data).filter((array) => array[2] === property.id).map((filteredArray) => {
                                                         return (
@@ -125,9 +125,9 @@ const SearchResults = () => {
                                             </tr>
                                         </td>
 
-                                        <td className="column w-6/12 text-center bg-red-500">
+                                        <td className="column w-6/12 text-center bg-red-400">
                                             False
-                                            <tr className="border-0 bg-red-500">
+                                            <tr className="border-0 bg-red-400">
                                                 {Object.values(matchingData.false_data).length ?
                                                     Object.values(matchingData.false_data).filter((array) => array[2] === property.id).map((filteredArray) => {
                                                         return (

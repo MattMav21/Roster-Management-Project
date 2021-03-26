@@ -198,10 +198,27 @@ def add_property(m_id):
         if form.validate_on_submit:
             data = form.data
             print("DATA!!!!!", data)
-            new_property = Property(
-                name=data['value'],
-                is_checked=data['isChecked'],
-            )
+            property_list = []
+            property_check = Property.query.all()
+
+            idx = 0
+            for prop in property_check:
+                property_list.append(property_check[idx].name)
+                idx+=1
+
+            if data['value'] in property_list:
+                print("IF STATEMENT TRIGGERED!!!!!!!!!!!!!!!!!!!!")
+                existing_property = Property.query.filter(Property.name == data['value']).one()
+                new_property = Property(
+                    name=existing_property.name,
+                    is_checked=data['isChecked'],
+                )
+            else:
+                print("ELSE STATEMENT TRIGGERED")
+                new_property = Property(
+                    name=data['value'],
+                    is_checked=data['isChecked'],
+                )
 
             # print("PROP!!!!!!!!", new_property.id, new_property.name, new_property.is_checked)
             # print("PROP ASSOCIATION!!!!!", new_member_property.id, new_member_property.member_id, new_member_property.property_id)
