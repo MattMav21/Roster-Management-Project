@@ -212,140 +212,53 @@ def search_for(query):
 
     print("VALID PROPERTIES", valid_properties)
 
-    true_properties = Property.query.filter(Property.is_checked == True).all()
-    false_properties = Property.query.filter(Property.is_checked == False).all()
-    print("TRUE PROPS", true_properties)
-    print("FALSE PROPS", false_properties)
-
-    true_props = {}
-    false_props = {}
-    true_property_id_list = []
-    false_property_id_list = []
-
-    idx4 = 0
-    for true_p in true_properties:
-        true_props[idx4] = {
-            "id": true_properties[idx4].id,
-            "name": true_properties[idx4].name,
-            "is_checked": true_properties[idx4].is_checked,
-        }
-        true_property_id_list.append(true_properties[idx4].id)
-        idx4+=1
-
-    idx5 = 0
-    for false_p in false_properties:
-        false_props[idx5] = {
-            "id": false_properties[idx5].id,
-            "name": false_properties[idx5].name,
-            "is_checked": false_properties[idx5].is_checked,
-        }
-        false_property_id_list.append(false_properties[idx5].id)
-        idx5+=1
-    
-    # print("true properties...", true_props)
-    # print("false properties...", false_props)
-    print(true_property_id_list)
-
-    true_mp = Member_Property.query.filter(Member_Property.property_id.in_(true_property_id_list)).all()
-    false_mp = Member_Property.query.filter(Member_Property.property_id.in_(false_property_id_list)).all()
-    print(true_mp)
-    print(false_mp)
-
-    true_mps = {}
-    false_mps = {}
-    t_mem = []
-    f_mem = []
-
-    idx6 = 0
-    for t_mp in true_mp:
-        true_mps[idx6] = {
-            "id": true_mp[idx6].id,
-            "member_id": true_mp[idx6].member_id,
-            "property_id": true_mp[idx6].property_id,
-        }
-        t_mem.append(true_mp[idx6].member_id)
-        idx6+=1
-
-    idx7 = 0
-    for f_mp in false_mp:
-        false_mps[idx7] = {
-            "id": false_mp[idx7].id,
-            "member_id": false_mp[idx7].member_id,
-            "property_id": false_mp[idx7].property_id,
-        }
-        f_mem.append(false_mp[idx7].member_id)
-        idx7+=1
-
-    print("True mp", true_mps)
-    print("False mp", false_mps)
-    
-    true_members = Member.query.filter(Member.id.in_(t_mem)).all()
-    false_members = Member.query.filter(Member.id.in_(f_mem)).all()
-
-    true_members_object = {}
-    false_members_object = {}
-
-    idx8 = 0
-    for t in true_members:
-        true_members_object[idx8] = {
-            "id": true_members[idx8].id,
-            "name": true_members[idx8].name,
-        }
-        idx8+=1
-
-    idx9 = 0
-    for f in false_members:
-        false_members_object[idx9] = {
-            "id": false_members[idx9].id,
-            "name": false_members[idx9].name,
-        }
-        idx9+=1
-    
-
-    print("TMO", true_members_object)
-    print("FMO", false_members_object)
-
-
-
-    # matching_member_properties = Member_Property.query.filter(Member_Property.property_id.in_(property_ids)).all()
-    
-
-
-    
-    # mem_ids_for_props = []
-
-    # idx4 = 0
-    # for member in matching_member_properties:
-    #     mem_ids_for_props.append(member.member_id)
-    
-    # print("MEMBER IDS FROM PROPS", mem_ids_for_props)
-
-    # # These are the members with the property you specified
-    # correct_members = Member.query.filter(Member.id.in_(mem_ids_for_props)).all()
-    # print(correct_members)
-
-    good_true_query = db.session.query(Member, Property).\
+    good_true_query = db.session.query(Member.id, Member.name, Property.id, Property.name).\
         filter(Member_Property.member_id == Member.id).\
             filter(Member_Property.property_id == Property.id).\
                 filter(Property.is_checked == True).all()
-    good_false_query = db.session.query(Member, Property).\
+
+    good_false_query = db.session.query(Member.id, Member.name, Property.id, Property.name).\
         filter(Member_Property.member_id == Member.id).\
             filter(Member_Property.property_id == Property.id).\
                 filter(Property.is_checked == False).all()
 
-    print("GOOD?????", good_true_query)
-    print("GOOD?????", good_false_query)
+
+    print("good", good_true_query)
+    print("good", good_false_query)
+
+    true_obj = {}
+    false_obj = {}
+
+    # idx4 = 0
+    # for t in good_true_query:
+    #     true_obj[idx4] = {
+    #         "member_id": good_true_query[idx4].Member.id,
+    #         "member_name": good_true_query[idx4].Member.name,
+    #         "property_id": good_true_query[idx4].Property.id,
+    #         "property_name": good_true_query[idx4].Property.name,
+    #     }
+    #     idx4+=1
+
+    # idx5 = 0
+    # for f in good_false_query:
+    #     false_obj[idx5] = {
+    #         "member_id": good_false_query[idx5].Member.id,
+    #         "member_name": good_false_query[idx5].Member.name,
+    #         "property_id": good_false_query[idx5].Property.id,
+    #         "property_name": good_false_query[idx5].Property.name,
+    #     }
+    #     idx5+=1
+
+    # print("TRUE", true_obj)
+    # print("FALSE", false_obj)
+
 
     matching_dict = {
         "matching_members": valid_members,
         "matching_rosters": valid_rosters,
         "matching_properties": valid_properties,
-        "true_props": true_props,
-        "true_mps": true_mps,
-        "true_members_object": true_members_object,
-        "false_props": false_props,
-        "false_mps": false_mps,
-        "false_members_object": false_members_object,
+        "true_data": good_true_query,
+        "false_data": good_false_query,
     }
 
     # matching_rosters = Roster.query.filter(Roster.name.ilike('%{}%'.format(query))).all()
