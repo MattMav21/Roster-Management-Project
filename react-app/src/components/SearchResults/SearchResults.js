@@ -107,13 +107,11 @@ const SearchResults = () => {
                                         {property.name}
                                     </td>
                                 </tr>
+
                                     <tr>
                                         <td className="column w-6/12 text-center bg-green-500 border-b">
                                             True
                                             <tr className="border-0 bg-green-500">
-                                                {console.log("PROPERTY", property)}
-                                                {console.log("TRUE DATA", Object.values(matchingData.true_data))}
-
                                                 {Object.values(matchingData.true_data).length ? 
                                                     Object.values(matchingData.true_data).filter((array) => array[2] === property.id).map((filteredArray) => {
                                                         return (
@@ -122,20 +120,27 @@ const SearchResults = () => {
                                                                     {filteredArray[1]}
                                                                 </a>
                                                             </li>
-                                                        )
-                                                    })
-                                                : <h1>None</h1>}
-                                                {/* {console.log("EEEEEEEEEEEEE", matchingData.true_data[2])}
-                                                {Object.values(matchingData.true_data[2] === property.id) &&
-                                                Object.values(matchingData.true_data).map((t) => console.log(t))} */}
-
-                                                    {/* return (<li>{true_member.name}</li>) */}
+                                                        )})
+                                                : <li>None</li>}
                                             </tr>
                                         </td>
 
                                         <td className="column w-6/12 text-center bg-red-500">
                                             False
-                                            <tr className="border-0 bg-red-500"><li>lads</li></tr>
+                                            <tr className="border-0 bg-red-500">
+                                                {Object.values(matchingData.false_data).length ?
+                                                    Object.values(matchingData.false_data).filter((array) => array[2] === property.id).map((filteredArray) => {
+                                                        return (
+                                                            <li>
+                                                                <a href={`/members/${filteredArray[0]}`}>
+                                                                    {filteredArray[1]}
+                                                                </a>
+                                                            </li>
+                                                        )
+                                                    })
+                                                    : <li>None</li>}
+
+                                            </tr>
                                         </td>
                                     </tr>
                                 </>
