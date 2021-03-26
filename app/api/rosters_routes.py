@@ -324,7 +324,17 @@ def search_for(query):
     # correct_members = Member.query.filter(Member.id.in_(mem_ids_for_props)).all()
     # print(correct_members)
 
+    good_true_query = db.session.query(Member, Property).\
+        filter(Member_Property.member_id == Member.id).\
+            filter(Member_Property.property_id == Property.id).\
+                filter(Property.is_checked == True).all()
+    good_false_query = db.session.query(Member, Property).\
+        filter(Member_Property.member_id == Member.id).\
+            filter(Member_Property.property_id == Property.id).\
+                filter(Property.is_checked == False).all()
 
+    print("GOOD?????", good_true_query)
+    print("GOOD?????", good_false_query)
 
     matching_dict = {
         "matching_members": valid_members,
