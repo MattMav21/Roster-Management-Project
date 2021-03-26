@@ -116,7 +116,7 @@ const SearchResults = () => {
                                                     Object.values(matchingData.true_data).filter((array) => array[2] === property.id).map((filteredArray) => {
                                                         return (
                                                             <li>
-                                                                <a href={`/members/${filteredArray[0]}`}> 
+                                                                <a className="border-black text-blue-600 hover:underline" href={`/members/${filteredArray[0]}`}> 
                                                                     {filteredArray[1]}
                                                                 </a>
                                                             </li>
@@ -132,7 +132,7 @@ const SearchResults = () => {
                                                     Object.values(matchingData.false_data).filter((array) => array[2] === property.id).map((filteredArray) => {
                                                         return (
                                                             <li>
-                                                                <a href={`/members/${filteredArray[0]}`}>
+                                                                <a className="border-black text-blue-600 hover:underline" href={`/members/${filteredArray[0]}`}>
                                                                     {filteredArray[1]}
                                                                 </a>
                                                             </li>
