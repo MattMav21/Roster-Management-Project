@@ -5,6 +5,7 @@ import "./Member.css"
 import { useParams } from 'react-router-dom';
 import EditMemberButton from '../buttons/EditMemberButton';
 import Checkbox from '../buttons/Checkbox';
+import AddProperties from '../buttons/AddProperties';
 
 const Member = () => {
     const [loaded, setLoaded] = useState(false);
@@ -25,7 +26,10 @@ const Member = () => {
         <div className="flex m-auto">
             {loaded && everybody &&
                 <div className="container roster flex flex-col border-black m-auto">
-                <EditMemberButton />
+                <div className="flex relative justify-left">
+                    <EditMemberButton />
+                    <AddProperties />
+                </div>
                 <table className="border-black m-auto layout-fixed">
                     <thead className="p-6">
                         <tr className="border-black bg-blue-700 text-white p-6">
@@ -63,6 +67,7 @@ const Member = () => {
                             <td colSpan="3" className="font-bold border-0 border-r">Properties:</td>
                         </tr>
 
+                        
                         {Object.values(everybody.properties).length ? 
                        
                             Object.values(everybody.properties).map((property) => {
@@ -92,8 +97,9 @@ const Member = () => {
                                     None
                                 </td>
                             </tr>
-
                         }
+
+
                     </tbody>
                 </table>
                 </div>

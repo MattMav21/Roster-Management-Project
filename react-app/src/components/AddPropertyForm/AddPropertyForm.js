@@ -27,7 +27,7 @@ const AddPropertyForm = () => {
         console.log(newProperty)
         debugger
         return dispatch(addNewProperty(newProperty))
-        // .then(() => history.push(`/members/${memberId}`))
+        .then(() => history.push(`/members/${memberId}`))
     }
 
     return (

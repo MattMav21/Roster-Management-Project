@@ -13,9 +13,66 @@ const SearchResults = () => {
     const { searchEverything } = rosterActions;
     const matchingData = useSelector((state) => state.roster.roster);
 
+    let true_properties, 
+    true_mp, true_members,
+    false_properties, false_mp,
+    false_members
+
+    if (matchingData !== undefined) {
+        true_properties = matchingData.true_props;
+        true_mp = matchingData.true_mps;
+        true_members = matchingData.true_members_object;
+        false_properties = matchingData.false_props;
+        false_mp = matchingData.false_mps;
+        false_members = matchingData.false_members_object;
+
+
+        const true_prop_ids = Object.values(true_properties).map((property) => {
+            return property.id
+        })
+        const false_prop_ids = Object.values(false_properties).map((property) => {
+            return property.id
+        })
+
+        let true_member_prop = [];
+        let false_member_prop = [];
+
+        Object.values(true_mp).map((mp) => {
+            if (true_prop_ids.includes(mp.property_id)) {
+                true_member_prop.push(mp.member_id)
+            }
+            return true_member_prop;
+        })
+
+        Object.values(false_mp).map((mp) => {
+            if (false_prop_ids.includes(mp.property_id)) {
+                false_member_prop.push(mp.member_id)
+            }
+            return false_member_prop;
+        })
+
+        console.log(true_member_prop)
+        console.log(false_member_prop)
+        
+        console.log(true_prop_ids, false_prop_ids)
+    }
+
+    console.log(true_properties,
+        true_mp, true_members,
+        false_properties, false_mp,
+        false_members)
+
+
+
+
+
+    console.log(matchingData)
+
     useEffect(() => {
         dispatch(searchEverything(query)).then(() => setLoaded(true))
     }, [searchEverything])
+
+    console.log(matchingData)
 
     function isEmpty(obj) {
         return Object.keys(obj).length === 0;
@@ -84,7 +141,7 @@ const SearchResults = () => {
             </table>
             </div>
 
-            <div className="pb-12">
+            {/* <div className="pb-12">
                 <table className="border-black m-auto pb-4">
                     <thead className="bg-gray-200 p-4">
                         <tr>
@@ -96,16 +153,33 @@ const SearchResults = () => {
                     <tbody className="border-black">
                         {isEmpty(matchingData.matching_properties) ? <td>No Results</td> : Object.values(matchingData.matching_properties).map((property) => {
                             return (
+                                <>
                                 <tr className="border-black">
-                                    <td className="border-black text-center">
+                                        <td colSpan="3" className="border-black text-center">
                                         {property.name}
                                     </td>
                                 </tr>
+                                    <tr>
+                                        <td className="column w-6/12 text-center bg-green-500 border-b">
+                                            True
+                                            <tr className="border-0 bg-green-500">
+                                                {Object.values(matchingData.true_members_object).length ? Object.values(matchingData.true_members_object).map((true_member) => {
+                                                    return (<li>{true_member.name}</li>)
+                                                }) : <h1>No Results</h1> }
+                                            </tr>
+                                        </td>
+
+                                        <td className="column w-6/12 text-center bg-red-500">
+                                            False
+                                            <tr className="border-0 bg-red-500"><li>lads</li></tr>
+                                        </td>
+                                    </tr>
+                                </>
                             )
                         })}
                     </tbody>
                 </table>
-            </div>
+            </div> */}
 
         </div>
     );

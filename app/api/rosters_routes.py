@@ -1,8 +1,11 @@
 from flask import Blueprint, request, redirect, session
 from app.models import db, User, Roster, Roster_Member, Member, Property, Member_Property
 from app.forms import RosterCreateForm, RosterAssignmentForm, RosterEditForm
-from sqlalchemy import and_
+from sqlalchemy import and_, join
 from sqlalchemy.sql import select
+# from sqlalchemy.orm import sessionmaker
+# Session = sessionmaker(bind = engine)
+# session = Session()
 
 rosters_routes = Blueprint('rosters', __name__)
 
@@ -47,6 +50,7 @@ def roster(id):
             "created_at": correct.created_at
         }
         count+=1
+
     # print("OMG!!!!!!!!!!!!!!!", correct_object)
     single_roster = {
         "id": roster.id,
@@ -162,7 +166,7 @@ def delete_roster(r_id, m_id):
 @rosters_routes.route('search/<query>', methods=["GET"])
 def search_for(query):
     valid_members = {}
-    #or notes
+    member_ids = []
     matching_members = Member.query.filter(Member.name.ilike('%{}%'.format(query))).all()
 
     idx = 0
@@ -173,9 +177,11 @@ def search_for(query):
             "notes": matching_members[idx].notes,
             "created_at": matching_members[idx].created_at,
         }
+        member_ids.append(matching_members[idx].id)
         idx+=1
 
     print("VALID", valid_members)
+    print("MEMBER IDS", member_ids)
 
     valid_rosters = {}
     matching_rosters = Roster.query.filter(Roster.name.ilike('%{}%'.format(query))).all()
@@ -202,14 +208,134 @@ def search_for(query):
             "name": matching_properties[idx3].name,
             "is_checked": matching_properties[idx3].is_checked,
         }
-        idx2+=1
+        idx3+=1
 
     print("VALID PROPERTIES", valid_properties)
+
+    true_properties = Property.query.filter(Property.is_checked == True).all()
+    false_properties = Property.query.filter(Property.is_checked == False).all()
+    print("TRUE PROPS", true_properties)
+    print("FALSE PROPS", false_properties)
+
+    true_props = {}
+    false_props = {}
+    true_property_id_list = []
+    false_property_id_list = []
+
+    idx4 = 0
+    for true_p in true_properties:
+        true_props[idx4] = {
+            "id": true_properties[idx4].id,
+            "name": true_properties[idx4].name,
+            "is_checked": true_properties[idx4].is_checked,
+        }
+        true_property_id_list.append(true_properties[idx4].id)
+        idx4+=1
+
+    idx5 = 0
+    for false_p in false_properties:
+        false_props[idx5] = {
+            "id": false_properties[idx5].id,
+            "name": false_properties[idx5].name,
+            "is_checked": false_properties[idx5].is_checked,
+        }
+        false_property_id_list.append(false_properties[idx5].id)
+        idx5+=1
+    
+    # print("true properties...", true_props)
+    # print("false properties...", false_props)
+    print(true_property_id_list)
+
+    true_mp = Member_Property.query.filter(Member_Property.property_id.in_(true_property_id_list)).all()
+    false_mp = Member_Property.query.filter(Member_Property.property_id.in_(false_property_id_list)).all()
+    print(true_mp)
+    print(false_mp)
+
+    true_mps = {}
+    false_mps = {}
+    t_mem = []
+    f_mem = []
+
+    idx6 = 0
+    for t_mp in true_mp:
+        true_mps[idx6] = {
+            "id": true_mp[idx6].id,
+            "member_id": true_mp[idx6].member_id,
+            "property_id": true_mp[idx6].property_id,
+        }
+        t_mem.append(true_mp[idx6].member_id)
+        idx6+=1
+
+    idx7 = 0
+    for f_mp in false_mp:
+        false_mps[idx7] = {
+            "id": false_mp[idx7].id,
+            "member_id": false_mp[idx7].member_id,
+            "property_id": false_mp[idx7].property_id,
+        }
+        f_mem.append(false_mp[idx7].member_id)
+        idx7+=1
+
+    print("True mp", true_mps)
+    print("False mp", false_mps)
+    
+    true_members = Member.query.filter(Member.id.in_(t_mem)).all()
+    false_members = Member.query.filter(Member.id.in_(f_mem)).all()
+
+    true_members_object = {}
+    false_members_object = {}
+
+    idx8 = 0
+    for t in true_members:
+        true_members_object[idx8] = {
+            "id": true_members[idx8].id,
+            "name": true_members[idx8].name,
+        }
+        idx8+=1
+
+    idx9 = 0
+    for f in false_members:
+        false_members_object[idx9] = {
+            "id": false_members[idx9].id,
+            "name": false_members[idx9].name,
+        }
+        idx9+=1
+    
+
+    print("TMO", true_members_object)
+    print("FMO", false_members_object)
+
+
+
+    # matching_member_properties = Member_Property.query.filter(Member_Property.property_id.in_(property_ids)).all()
+    
+
+
+    
+    # mem_ids_for_props = []
+
+    # idx4 = 0
+    # for member in matching_member_properties:
+    #     mem_ids_for_props.append(member.member_id)
+    
+    # print("MEMBER IDS FROM PROPS", mem_ids_for_props)
+
+    # # These are the members with the property you specified
+    # correct_members = Member.query.filter(Member.id.in_(mem_ids_for_props)).all()
+    # print(correct_members)
+
+
 
     matching_dict = {
         "matching_members": valid_members,
         "matching_rosters": valid_rosters,
         "matching_properties": valid_properties,
+        "true_props": true_props,
+        "true_mps": true_mps,
+        "true_members_object": true_members_object,
+        "false_props": false_props,
+        "false_mps": false_mps,
+        "false_members_object": false_members_object,
     }
 
     # matching_rosters = Roster.query.filter(Roster.name.ilike('%{}%'.format(query))).all()

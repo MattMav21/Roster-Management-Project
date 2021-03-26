@@ -44,7 +44,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
 
   return (
     <div className="p-14">
-      <form className="rounded border-black m-auto flex flex-col bg-gray-700 h-4/5 text-lg" onSubmit={onSignUp}>
+      <form className="rounded border-black m-auto flex flex-col bg-gray-700 h-4/5 w-9/12 text-lg" onSubmit={onSignUp}>
       <style>{'body { background-color: navy; }'}</style>
       <h1 className="bg-gray-200 border-black p-4 text-center w-full bg-gray-300 text-bold"> Sign Up </h1>
         {errors.length ? <div className="text-red-600 font-bold">Errors:</div> : <></>}
