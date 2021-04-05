@@ -180,8 +180,8 @@ def search_for(query):
         member_ids.append(matching_members[idx].id)
         idx+=1
 
-    print("VALID", valid_members)
-    print("MEMBER IDS", member_ids)
+    # print("VALID", valid_members)
+    # print("MEMBER IDS", member_ids)
 
     valid_rosters = {}
     matching_rosters = Roster.query.filter(Roster.name.ilike('%{}%'.format(query))).all()
@@ -196,7 +196,7 @@ def search_for(query):
         }
         idx2+=1
 
-    print("VALID", valid_rosters)
+    # print("VALID", valid_rosters)
 
     valid_properties = {}
     matching_properties = Property.query.filter(Property.name.ilike('%{}%'.format(query))).order_by(Property.name).all()
@@ -223,8 +223,8 @@ def search_for(query):
                 filter(Property.is_checked == False).all()
 
 
-    print("good", good_true_query)
-    print("good", good_false_query)
+    print("good true", good_true_query)
+    print("good false", good_false_query)
 
     true_obj = {}
     false_obj = {}

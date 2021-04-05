@@ -113,7 +113,7 @@ const SearchResults = () => {
                                             True
                                             <tr className="border-0 bg-green-400">
                                                 {Object.values(matchingData.true_data).length ? 
-                                                    Object.values(matchingData.true_data).filter((array) => array[2] === property.id).map((filteredArray) => {
+                                                    Object.values(matchingData.true_data).filter((array) => array[3] === property.name).map((filteredArray) => {
                                                         return (
                                                             <li>
                                                                 <a className="border-black text-blue-600 hover:underline" href={`/members/${filteredArray[0]}`}> 
@@ -129,7 +129,7 @@ const SearchResults = () => {
                                             False
                                             <tr className="border-0 bg-red-400">
                                                 {Object.values(matchingData.false_data).length ?
-                                                    Object.values(matchingData.false_data).filter((array) => array[2] === property.id).map((filteredArray) => {
+                                                    Object.values(matchingData.false_data).filter((array) => array[3] === property.name).map((filteredArray) => {
                                                         return (
                                                             <li>
                                                                 <a className="border-black text-blue-600 hover:underline" href={`/members/${filteredArray[0]}`}>
