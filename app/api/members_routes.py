@@ -198,33 +198,33 @@ def add_property(m_id):
         if form.validate_on_submit:
             data = form.data
             print("DATA!!!!!", data)
-            property_list = []
-            property_check = Property.query.all()
+            # property_list = []
+            # property_check = Property.query.all()
 
-            idx = 0
-            for prop in property_check:
-                property_list.append(property_check[idx].name)
-                idx+=1
+            # idx = 0
+            # for prop in property_check:
+            #     property_list.append(property_check[idx].name)
+            #     idx+=1
 
-            if data['value'] in property_list:
-                print("IF STATEMENT TRIGGERED!!!!!!!!!!!!!!!!!!!!")
-                existing_property = Property.query.filter(Property.name == data['value']).one()
-                print("WHAT IS THIS????????????", existing_property)
-                print("existing property id", existing_property.id, existing_property.name)
-                new_property = existing_property
+            # if data['value'] in property_list:
+            #     print("IF STATEMENT TRIGGERED!!!!!!!!!!!!!!!!!!!!")
+            #     existing_property = Property.query.filter(Property.name == data['value']).one()
+            #     print("WHAT IS THIS????????????", existing_property)
+            #     print("existing property id", existing_property.id, existing_property.name)
+            #     new_property = existing_property
                 
-                # new_property = existing_property(
-                #     name=existing_property.name,
-                #     is_checked=data['isChecked'],
-                # )
-            else:
-                print("ELSE STATEMENT TRIGGERED")
-                new_property = Property(
-                    name=data['value'],
-                    is_checked=data['isChecked'],
-                )
-                db.session.add(new_property)
-                db.session.commit()
+            #     # new_property = existing_property(
+            #     #     name=existing_property.name,
+            #     #     is_checked=data['isChecked'],
+            #     # )
+            # else:
+            # print("ELSE STATEMENT TRIGGERED")
+            new_property = Property(
+                name=data['value'],
+                is_checked=data['isChecked'],
+            )
+            db.session.add(new_property)
+            db.session.commit()
 
             # new_property.id somehow is "None"
             print("PROP!!!!!!!!", new_property.id, new_property.name, new_property.is_checked)
@@ -245,9 +245,10 @@ def add_property(m_id):
 def changed_check(mem_id, prop_id):
     changed_property = Property.query.filter(Property.id == prop_id).one()
     changed_association = Member_Property.query.filter(and_(Member_Property.member_id == mem_id, Member_Property.property_id == prop_id)).one()
-    print( "CHECK THIS OUT!!Q!!!!!!", changed_property.id, changed_association.id)
+
+    # print( "CHECK THIS OUT!!Q!!!!!!", changed_property.id, changed_association.id)
     request_object = request.get_json()
-    print("REQUEST OBJ CHECK", request_object['isChecked'])
+    # print("REQUEST OBJ CHECK", request_object['isChecked'])
     changed_property.is_checked = request_object['isChecked']
     db.session.commit()
     # change is_checked
