@@ -209,22 +209,26 @@ def add_property(m_id):
             if data['value'] in property_list:
                 print("IF STATEMENT TRIGGERED!!!!!!!!!!!!!!!!!!!!")
                 existing_property = Property.query.filter(Property.name == data['value']).one()
-                new_property = Property(
-                    name=existing_property.name,
-                    is_checked=data['isChecked'],
-                )
+                print("WHAT IS THIS????????????", existing_property)
+                print("existing property id", existing_property.id, existing_property.name)
+                new_property = existing_property
+                
+                # new_property = existing_property(
+                #     name=existing_property.name,
+                #     is_checked=data['isChecked'],
+                # )
             else:
                 print("ELSE STATEMENT TRIGGERED")
                 new_property = Property(
                     name=data['value'],
                     is_checked=data['isChecked'],
                 )
+                db.session.add(new_property)
+                db.session.commit()
 
-            # print("PROP!!!!!!!!", new_property.id, new_property.name, new_property.is_checked)
+            # new_property.id somehow is "None"
+            print("PROP!!!!!!!!", new_property.id, new_property.name, new_property.is_checked)
             # print("PROP ASSOCIATION!!!!!", new_member_property.id, new_member_property.member_id, new_member_property.property_id)
-
-            db.session.add(new_property)
-            db.session.commit()
 
             new_member_property = Member_Property(
                 member_id=m_id,

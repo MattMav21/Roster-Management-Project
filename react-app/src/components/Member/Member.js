@@ -26,7 +26,7 @@ const Member = () => {
         <div className="flex m-auto">
             {loaded && everybody &&
                 <div className="container roster flex flex-col border-black m-auto">
-                <div className="flex relative justify-left">
+                <div className="relative left-24 flex justify-left w-4/12">
                     <EditMemberButton />
                     <AddProperties />
                 </div>
