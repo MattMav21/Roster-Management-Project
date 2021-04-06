@@ -26,13 +26,31 @@ const SearchResults = () => {
         return Object.keys(obj).length === 0;
     }
 
+
+    let matchingProps;
+    let capturedProps = [];
+
+    if (matchingData !== undefined) {
+        matchingProps = Object.values(matchingData.matching_properties)
+        
+        matchingProps.map((prop) => {
+            if (!capturedProps.includes(prop.name)) {
+                capturedProps.push(prop.name)
+            }
+        })
+
+        console.log(matchingData.true_data, matchingData.false_data)
+    }
+
+    console.log(capturedProps)
+
+    
     return (
-        loaded && matchingData &&
+        loaded && matchingData && capturedProps &&
         <div className="flex flex-col">
         <div className="pb-4 m-auto font-bold">
             <h1>Search Results for "{query}":</h1>
         </div>
-
             <div className="pb-12">
             <table className="border-black m-auto pb-4">
                 <thead className="bg-gray-200 p-4">
@@ -53,7 +71,7 @@ const SearchResults = () => {
                                         </a>
                                     </>
                                 </td>
-                                <td className="border-black">{member.notes}</   td>
+                                <td className="border-black">{member.notes}</td>
                             </tr>
                         )
                     })}
@@ -65,7 +83,7 @@ const SearchResults = () => {
             <table className="border-black m-auto pb-4">
                 <thead className="bg-gray-200 p-4">
                     <tr>
-                            <th className="border-black bg-blue-700 text-white" colSpan="3">
+                        <th className="border-black bg-blue-700 text-white" colSpan="3">
                             Rosters:
                         </th>
                     </tr>
@@ -99,21 +117,26 @@ const SearchResults = () => {
                         </tr>
                     </thead>
                     <tbody className="border-black">
-                        {isEmpty(matchingData.matching_properties) ? <td>No Results</td> : Object.values(matchingData.matching_properties).map((property) => {
-                            return (
-                                <>
-                                <tr className="border-black">
-                                    <td colSpan="3" className="border-black text-center">
-                                        {property.name}
-                                    </td>
-                                </tr>
 
+                        {capturedProps.length === 0 ? <td>No Results</td> : 
+                        
+                            capturedProps.map((prop) => {
+
+                               return (
+                                   <>
+                                        <tr className="border-black">
+                                            <td colSpan="3" className="border-black text-center">
+                                                 {prop}
+                                            </td>
+                                        </tr>
+                                <>
                                     <tr>
                                         <td className="column w-6/12 text-center bg-green-400 border-b font-bold">
                                             True
                                             <tr className="border-0 bg-green-400">
                                                 {Object.values(matchingData.true_data).length ? 
-                                                    Object.values(matchingData.true_data).filter((array) => array[3] === property.name).map((filteredArray) => {
+                                                    Object.values(matchingData.true_data).filter((array) => array[3] === prop).map((filteredArray) => {
+                                                        console.log("FILTERED ARRAY IS THIS: ", filteredArray)
                                                         return (
                                                             <li>
                                                                 <a className="border-black text-blue-600 hover:underline" href={`/members/${filteredArray[0]}`}> 
@@ -129,7 +152,7 @@ const SearchResults = () => {
                                             False
                                             <tr className="border-0 bg-red-400">
                                                 {Object.values(matchingData.false_data).length ?
-                                                    Object.values(matchingData.false_data).filter((array) => array[3] === property.name).map((filteredArray) => {
+                                                    Object.values(matchingData.false_data).filter((array) => array[3] === prop).map((filteredArray) => {
                                                         return (
                                                             <li>
                                                                 <a className="border-black text-blue-600 hover:underline" href={`/members/${filteredArray[0]}`}>
@@ -142,10 +165,15 @@ const SearchResults = () => {
 
                                             </tr>
                                         </td>
-                                    </tr>
+                                    </tr>        
                                 </>
-                            )
-                        })}
+                            </>
+                        )})}
+
+
+
+
+
                     </tbody>
                 </table>
             </div>
