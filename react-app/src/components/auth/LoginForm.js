@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { login } from "../../services/auth";
 import "./auth.css";
+import { demoLogin } from '../../services/auth';
+import * as UserActions from '../../store/user';
+import { useDispatch } from 'react-redux';
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -29,6 +34,12 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   if (authenticated) {
     return <Redirect to="/home" />;
   }
+
+  const loginDemo = async (e) => {
+    const user = await demoLogin();
+    setAuthenticated(true);
+    dispatch(UserActions.saveUser(user));
+  };
 
   return (
     <div className="p-14">
@@ -66,6 +77,14 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
           onChange={updatePassword}
         />
           <button className="text-gray-700 p-2 bg-blue-400 bg-green-700 w-6/12 self-center p-1 mt-12 rounded" type="submit">Login</button>
+          <button
+            to="/login"
+            exact={true}
+            className="text-gray-700 p-2 bg-blue-400 bg-green-700 w-6/12 self-center p-1 mt-12 rounded"
+            onClick={loginDemo}
+          >
+            Demo User
+              </button>
       </div>
       <div className="p-3">
           <a className="text-blue-500 hover:underline" href="/sign-up">I don't have an account</a>

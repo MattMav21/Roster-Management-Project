@@ -45,3 +45,8 @@ export const signUp = async (username, email, password) => {
   });
   return await response.json();
 }
+
+export const demoLogin = async () => {
+  const response = await fetch("/api/auth/demo-login");
+  return await response.json();
+};

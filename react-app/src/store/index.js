@@ -5,9 +5,10 @@ import memberReducer from "./member";
 import * as storage from 'redux-storage';
 import createEngine from 'redux-storage-engine-localstorage';
 import rosterReducer from "./roster";
+import userReducer from "./user";
 
 const rootReducer = combineReducers({
-    // user: userReducer,
+    user: userReducer,
     member: memberReducer,
     roster: rosterReducer,
 });
