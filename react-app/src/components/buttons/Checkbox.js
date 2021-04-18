@@ -12,15 +12,9 @@ const Checkbox = ({memberId, propObj}) => {
     let propertyId = propObj.map((obj) => obj.id)[0]
     let name = propObj.map((obj) => obj.name)[0]
     const [currentCheck, setCurrentCheck] = useState(defaultCheck);
-    console.log("START CHECK:", currentCheck)
-    // console.log(memberId, propObj)
-    // console.log(currentCheck)
-    // console.log(propObj.map((obj) => obj.is_checked))
 
     const changeValue = async () => {
         await setCurrentCheck(!currentCheck);
-
-        console.log("onChange check", currentCheck)
 
         let theBigChange = {
             memberId: Number(memberId),
@@ -29,13 +23,8 @@ const Checkbox = ({memberId, propObj}) => {
             isChecked: !currentCheck
         }
 
-        console.log(theBigChange)
         await dispatch(changeProperty(theBigChange))
-        debugger
-        // return theBigChange;
     }
-
-    // console.log(name, currentCheck)
 
     return (
     <input

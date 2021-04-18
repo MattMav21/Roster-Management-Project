@@ -9,18 +9,12 @@ const SearchResults = () => {
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
     const { query } = useParams();
-    console.log(query)
     const { searchEverything } = rosterActions;
     const matchingData = useSelector((state) => state.roster.roster);
-    console.log(matchingData)
-
-
 
     useEffect(() => {
         dispatch(searchEverything(query)).then(() => setLoaded(true))
     }, [searchEverything])
-
-    console.log(matchingData)
 
     function isEmpty(obj) {
         return Object.keys(obj).length === 0;
@@ -38,12 +32,7 @@ const SearchResults = () => {
                 capturedProps.push(prop.name)
             }
         })
-
-        console.log(matchingData.true_data, matchingData.false_data)
     }
-
-    console.log(capturedProps)
-
     
     return (
         loaded && matchingData && capturedProps &&

@@ -13,14 +13,10 @@ const Member = () => {
     const dispatch = useDispatch();
     const { getOneMember } = memberActions;
     const everybody = useSelector((state) => state.member.member);
-    // console.log(everybody.properties)
-    // const rosterIds = rosterInfo.map((roster) => roster.id)
-    // const rosterNames = rosterInfo.map((roster) => roster.name)
 
     useEffect(() => {
         dispatch(getOneMember(memberId)).then(() => setLoaded(true))
     }, [getOneMember])
-    // console.log(everybody.roster_in)
 
     return (
         <div className="flex m-auto">
@@ -50,8 +46,7 @@ const Member = () => {
                                             <tr className="border-black border-r">
                                             <td colSpan="3" className="border-0">
                                                 <li>
-                                                    {console.log(roster, Object.values(everybody.roster_in))}
-                                                        {<a className="border-black text-blue-600 hover:underline" href={`/rosters/${roster.id}`}>{roster.name}</a>}
+                                                    {<a className="border-black text-blue-600 hover:underline" href={`/rosters/${roster.id}`}>{roster.name}</a>}
                                                 </li>
                                             </td>
                                             </tr>
@@ -75,7 +70,6 @@ const Member = () => {
                                     <tr colSpan="3" className="container relative border-black border-r overflow-auto">
                                         {/* <td colSpan="1" className="border-0">
                                             <div className="relative left-4"> */}
-                                            {console.log(property.name, property.is_checked)}
                                             {/* </div>
                                         </td> */}
                                         <td className="border-t-0 border-l-0 border-b-0">

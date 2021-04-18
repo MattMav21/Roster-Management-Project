@@ -24,8 +24,6 @@ const AddPropertyForm = () => {
             isChecked,
             memberId,
         }
-        console.log(newProperty)
-        debugger
         return dispatch(addNewProperty(newProperty))
         .then(() => history.push(`/members/${memberId}`))
     }
