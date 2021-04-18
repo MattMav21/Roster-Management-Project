@@ -29,7 +29,6 @@ const EditRosterForm = () => {
             notes: notes,
             rosterId: rosterId
         }
-        debugger
         dispatch(editRoster(editedRoster)).then(() => history.push(`/rosters/${rosterId}`))
     }
 

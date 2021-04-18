@@ -126,7 +126,6 @@ export const changeProperty = (data) => async (dispatch) => {
         },
         body: JSON.stringify(data)
     });
-    debugger
     const res = await response.json();
     dispatch(change_property(res));
     return res;
@@ -154,15 +153,11 @@ const memberReducer = (state = {}, action) => {
             return newState;
         case ADD_PROPERTY:
             newState = Object.assign({}, state);
-            debugger
             newState.property = action.property;
-            debugger
             return newState;
         case CHANGE_PROPERTY:
             newState = Object.assign({}, state);
-            debugger
             newState.data = action.data;
-            debugger
             return newState;
         default:
             return state
