@@ -157,9 +157,11 @@ const SearchResults = () => {
                                                     Object.values(matchingData.false_data).filter((array) => array[3] === prop).map((filteredArray) => {
                                                         return (
                                                             <div>
-                                                                <a className="border-black text-blue-600 hover:underline" href={`/members/${filteredArray[0]}`}>
-                                                                    {filteredArray[1]}
-                                                                </a>
+                                                                <td className="border-0">
+                                                                    <a className="border-black text-blue-600 hover:underline" href={`/members/${filteredArray[0]}`}>
+                                                                        {filteredArray[1]}
+                                                                    </a>
+                                                                </td>
                                                             </div>
                                                         )
                                                     })
