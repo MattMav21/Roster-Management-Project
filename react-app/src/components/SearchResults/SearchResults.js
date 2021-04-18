@@ -129,14 +129,14 @@ const SearchResults = () => {
                                                  {prop}
                                             </td>
                                         </tr>
-                                <>
+                                    <>
+
                                     <tr>
                                         <td className="column w-6/12 text-center bg-green-400 border-b font-bold">
                                             True
                                             <tr className="border-0 bg-green-400">
                                                 {Object.values(matchingData.true_data).length ? 
                                                     Object.values(matchingData.true_data).filter((array) => array[3] === prop).map((filteredArray) => {
-                                                        console.log("FILTERED ARRAY IS THIS: ", filteredArray)
                                                         return (
                                                             <div>
                                                                 <td className="border-0">
@@ -150,7 +150,7 @@ const SearchResults = () => {
                                             </tr>
                                         </td>
 
-                                        <td className="column w-6/12 text-center bg-red-400 font-bold">
+                                        <td className="column w-6/12 text-center bg-red-400 border-b font-bold">
                                             False
                                             <tr className="border-0 bg-red-400">
                                                 {Object.values(matchingData.false_data).length ?
@@ -163,10 +163,8 @@ const SearchResults = () => {
                                                                     </a>
                                                                 </td>
                                                             </div>
-                                                        )
-                                                    })
+                                                        )})
                                                     : <li>None</li>}
-
                                             </tr>
                                         </td>
                                     </tr>        

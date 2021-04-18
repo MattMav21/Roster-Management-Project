@@ -157,8 +157,9 @@ def unassign(r_id):
 # debug this
 @rosters_routes.route('<int:r_id>/delete/<int:m_id>', methods=["DELETE"])
 def delete_roster(r_id, m_id):
-    deleted_roster_member = Roster_Member.query.filter(and_(Roster_Member.roster_id == r_id, Roster_Member.member_id == m_id)).one()
-    db.session.delete(deleted_roster_member)
+    deleted_roster_members = Roster_Member.query.filter(and_(Roster_Member.roster_id == r_id, Roster_Member.member_id == m_id)).all()
+    for rm_roster_member in deleted_roster_members:
+        db.session.delete(rm_roster_member)
     db.session.commit()
     return { "Deletion" : "successful" }
 
