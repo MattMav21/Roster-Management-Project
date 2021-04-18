@@ -138,11 +138,13 @@ const SearchResults = () => {
                                                     Object.values(matchingData.true_data).filter((array) => array[3] === prop).map((filteredArray) => {
                                                         console.log("FILTERED ARRAY IS THIS: ", filteredArray)
                                                         return (
-                                                            <li>
-                                                                <a className="border-black text-blue-600 hover:underline" href={`/members/${filteredArray[0]}`}> 
-                                                                    {filteredArray[1]}
-                                                                </a>
-                                                            </li>
+                                                            <div>
+                                                                <td className="border-0">
+                                                                    <a className="border-black text-blue-600 hover:underline" href={`/members/${filteredArray[0]}`}> 
+                                                                        {filteredArray[1]}
+                                                                    </a>
+                                                                </td>
+                                                            </div>
                                                         )})
                                                 : <li>None</li>}
                                             </tr>
@@ -154,11 +156,11 @@ const SearchResults = () => {
                                                 {Object.values(matchingData.false_data).length ?
                                                     Object.values(matchingData.false_data).filter((array) => array[3] === prop).map((filteredArray) => {
                                                         return (
-                                                            <li>
+                                                            <div>
                                                                 <a className="border-black text-blue-600 hover:underline" href={`/members/${filteredArray[0]}`}>
                                                                     {filteredArray[1]}
                                                                 </a>
-                                                            </li>
+                                                            </div>
                                                         )
                                                     })
                                                     : <li>None</li>}
